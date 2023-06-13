@@ -7,24 +7,17 @@ from pages.Carriersummary_page import Carrier
 language = ["kannada", "english", "hindi"]
 proficiency = ["beg", "adv", "inter"]
 
+
 @pytest.mark.usefixtures("setup")
 class TestCases:
-    # Login happens automatically using fixtures..!!!
+    # Login happens automatically using fixtures..!!![for all the forms]
 
-    # Languages from edit profile!!
     def test_languages(self):
         # click on language button from edit profile page
         """Languages"""
         lg = Language(self.driver, self.wait)
         for i in range(len(language)):
-
-            lg.location_button()
-            # Language Drop Down
-            lg.lang_drop(language[i])
-            # Proficiency
-            lg.profiency(proficiency[i])
-            # Add + Button
-            lg.add_button()
+            lg.language(language[i], proficiency[i])
             # Save
             lg.save()
             # Back
@@ -33,39 +26,22 @@ class TestCases:
             lg.next()
         # Next
         lg.next()
-    def test_cognitive_skills(self):
 
+    def test_cognitive_skills(self):
         cg = CognitiveSkills(self.driver, self.wait)
         cg.cognitive()
-        # cg.page_scroll()
         cg.save()
-        cg.next()
-    def test_assessment(self):
+        # cg.next()
 
+    @pytest.mark.tryagain
+    def test_assessment(self):
         ta = Assessment(self.driver, self.wait)
         ta.dashboard()
         ta.assessment()
-        ta.page_scroll()
-        ta.checkbox()
-        ta.answer()
-    def test_carrier(self):
 
+    def test_carrier(self):
         ca = Carrier(self.driver, self.wait)
         ca.carrier()
         ca.save()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

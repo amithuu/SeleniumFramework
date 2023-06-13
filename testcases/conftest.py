@@ -16,14 +16,9 @@ def setup(request):
     driver.maximize_window()
 
     """ Login Page"""
-    wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("prod2@g.co")
+    wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("test@mailinator.com")
     wait.until(ec.element_to_be_clickable((By.NAME, "password"))).send_keys("New@1234")
     wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()
-    time.sleep(3)
-
-    # Going to Dash Board
-    dashboard = wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Dashboard']")))
-    dashboard.click()
     time.sleep(3)
 
     # Click on edit profile

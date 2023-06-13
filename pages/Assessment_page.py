@@ -1,5 +1,6 @@
 import time
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from base.Basedriver import BaseDriver
 
@@ -11,22 +12,34 @@ class Assessment(BaseDriver):
         self.driver = driver
         self.wait = wait
 
-    def assessment(self):
-        button = self.element_to_click(By.XPATH, "//*[text()='Take Assessment']")
-        button.click()
-        time.sleep(2)
+    # Locators
+    assessment_button = "//*[text()='Take Assessment']"
+    check_box = "//*[@id='root']/div/div[2]/div[1]/div[2]/div[1]//span[1]"
+    start_test = "//*[@id='root']/div/div[2]/div[1]/div[2]/div[1]/div/div[3]//button"
 
-    def checkbox(self):
-        # Click on check Box
-        check_box = self.wait.until(
-            ec.element_to_be_clickable((By.XPATH, "//*[@id='root']/div/div[2]/div[1]/div[2]/div[1]//span")))
-        check_box.click()
-        # Start Test
-        start_test = self.wait.until(ec.element_to_be_clickable(
-            (By.XPATH, "//*[@id='root']/div/div[2]/div[1]/div[2]/div[1]/div/div[3]//button")))
-        start_test.click()
+    """GETTERS"""
 
-    def answer(self):
+    def get_assessment(self):
+        return self.element_to_click(By.XPATH, self.assessment_button)
+
+    def get_checkbox(self):
+        return self.element_to_click(By.XPATH, self.check_box)
+
+    def get_starttest(self):  # Start Test
+        return self.element_to_click(By.XPATH, self.start_test)
+
+    """ SETTERS"""
+
+    def click_takeassessment(self):
+        self.get_assessment().click()
+
+    def click_checkbox(self):
+        self.get_checkbox().click()
+
+    def click_starttest(self):
+        self.get_starttest().click()
+
+    def click_answer(self):
         # Answers
         for i in range(1, 10):
             for j in range(1, 6):
@@ -40,4 +53,10 @@ class Assessment(BaseDriver):
         view_report = self.element_to_click(By.XPATH, "//*[@id='root']/div/div[2]//button")
         view_report.click()
         time.sleep(3)
-        time.sleep(2)
+
+    def assessment(self):
+        self.click_takeassessment()
+        self.page_down()
+        self.click_checkbox()
+        self.click_starttest()
+        self.click_answer()

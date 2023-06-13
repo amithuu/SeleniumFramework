@@ -1,4 +1,6 @@
 import time
+
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 
@@ -40,6 +42,7 @@ class BaseDriver:
     def presence_of_all_element(self, locator_id, path):
         list_of_element = self.wait.until(ec.presence_of_all_elements_located((locator_id, path)))
         return list_of_element
-
+    def page_down(self):
+        self.driver.find_element(By.TAG_NAME, value="body").send_keys(Keys.END)
 
 
