@@ -11,37 +11,25 @@ proficiency = ["beg", "adv", "inter"]
 @pytest.mark.usefixtures("setup")
 class TestCases:
     # Login happens automatically using fixtures..!!![for all the forms]
+    @pytest.fixture(autouse=True)
+    def class_setup(self):
+        self.lang = Language(self.driver, self.wait)
+        self.cog = CognitiveSkills(self.driver, self.wait)
+        self.tass = Assessment(self.driver, self.wait)
+        self.cas = Carrier(self.driver, self.wait)
 
     def test_languages(self):
-        # click on language button from edit profile page
-        """Languages"""
-        lg = Language(self.driver, self.wait)
         for i in range(len(language)):
-            lg.language(language[i], proficiency[i])
-            # Save
-            lg.save()
-            # Back
-            lg.back()
-            # Next
-            lg.next()
-        # Next
-        lg.next()
+            self.lang.language(language[i], proficiency[i])
+        self.lang.next()
 
     def test_cognitive_skills(self):
-        cg = CognitiveSkills(self.driver, self.wait)
-        cg.cognitive()
-        cg.save()
-        # cg.next()
-
-    @pytest.mark.tryagain
-    def test_assessment(self):
-        ta = Assessment(self.driver, self.wait)
-        ta.dashboard()
-        ta.assessment()
+        self.cog.cognitive()
 
     def test_carrier(self):
-        ca = Carrier(self.driver, self.wait)
-        ca.carrier()
-        ca.save()
+        self.cas.carrier()
+
+    def test_assessment(self):
+        self.tass.assessment()
 
 

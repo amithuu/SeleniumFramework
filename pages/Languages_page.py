@@ -16,7 +16,7 @@ class Language(BaseDriver):
     language_proficiency = "//*[@id='root']/div[2]/div/div/div/div/div/div[2]//input"
     language_add_button = "//*[@id='root']/div[2]/div/div/div/div/div[2]/div[2]//button"
 
-    """ GETTERS"""
+    """GETTERS"""
     def get_Locationbutton(self):
         return self.element_to_click(By.XPATH, self.location_button_in_edit_profile)
     def get_locationdropdown(self):
@@ -47,8 +47,11 @@ class Language(BaseDriver):
 
     def language(self, user_language, user_proficiency):
         self.click_locationbutton()
-        time.sleep(5)
+        # time.sleep(5)
         self.enter_langdrop(user_language)
         self.enter_profiency(user_proficiency)
         self.click_addbutton()
+        self.save()
+        self.back()
+        self.next()
 

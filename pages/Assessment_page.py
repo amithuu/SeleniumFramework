@@ -1,7 +1,5 @@
 import time
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
 from base.Basedriver import BaseDriver
 
 
@@ -18,7 +16,6 @@ class Assessment(BaseDriver):
     start_test = "//*[@id='root']/div/div[2]/div[1]/div[2]/div[1]/div/div[3]//button"
 
     """GETTERS"""
-
     def get_assessment(self):
         return self.element_to_click(By.XPATH, self.assessment_button)
 
@@ -29,7 +26,6 @@ class Assessment(BaseDriver):
         return self.element_to_click(By.XPATH, self.start_test)
 
     """ SETTERS"""
-
     def click_takeassessment(self):
         self.get_assessment().click()
 
@@ -55,8 +51,10 @@ class Assessment(BaseDriver):
         time.sleep(3)
 
     def assessment(self):
+        self.dashboard()
         self.click_takeassessment()
         self.page_down()
         self.click_checkbox()
         self.click_starttest()
         self.click_answer()
+
