@@ -1,4 +1,5 @@
 import pytest
+from
 from pages.Languages_page import Language
 from pages.Cognitiveskills import CognitiveSkills
 from pages.Assessment_page import Assessment
@@ -31,5 +32,3 @@ class TestCases:
 
     def test_assessment(self):
         self.tass.assessment()
-
-
