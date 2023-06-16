@@ -1,11 +1,10 @@
 import time
-
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
 
 
-class SignUp(BaseDriver):
+class Signup(BaseDriver):
 
     def __init__(self, driver, wait):
         super().__init__(driver, wait)
@@ -110,7 +109,7 @@ class SignUp(BaseDriver):
         self.enter_password(phone_no)
         self.enter_dob(dob)
         self.enter_gender(gender)
-
+        self.enter_location(location)
         self.enter_password(password)
         self.enter_confirmpassword(confirm_password)
         self.click_signupbutton()
