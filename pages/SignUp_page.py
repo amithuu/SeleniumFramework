@@ -2,7 +2,15 @@ import time
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
-
+# firstname = "test"
+# lastname = "talentPlace"
+# email = f"prod{k}@g.co"
+# phone_no = f"+1 {k}45848445"
+# location = "Bangalore"
+# dob = "25031999"
+# gender = "male"
+# password = "New@1234"
+# confirm_password = "New@1234"
 
 class Signup(BaseDriver):
 
