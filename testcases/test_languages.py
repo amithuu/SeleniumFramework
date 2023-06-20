@@ -6,7 +6,6 @@ from pages.Languages_page import Language
 from pages.SignUp_page import Signup
 from pages.Welcome_page import Welcome
 from pages.Personal_details_page import Personaldetails
-from pages.Experience_page import Experience
 from pages.Jobrole_page import JobRole
 
 # Variables
@@ -62,6 +61,7 @@ class TestCases:
 
     def test_jobrole(self):
         self.job.edit_profile()
+        self.job.experience()
         for i in range(3):
             self.job.addcompany(i, companyname[i], jobtype[i], experience[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[i], year[i], endyear[i], endmonth[i], startsalary[i], endsalary[i])
 

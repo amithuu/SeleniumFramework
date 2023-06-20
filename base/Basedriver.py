@@ -59,3 +59,7 @@ class BaseDriver:
     def edit_profile(self):
         edit_profile = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//*[text()='Edit Profile']")))
         edit_profile.click()
+
+    def experience(self):
+        experience = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//*[text()='Experience']")))
+        experience.click()

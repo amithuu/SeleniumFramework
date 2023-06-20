@@ -56,6 +56,7 @@ class Personaldetails(BaseDriver):
     """SETTERS"""
     def click_uploadpicture(self):
         self.get_uploadpicture().click()
+        time.sleep(5)
 
     def enter_firstname(self, firstname):
         self.get_firstname().click()
@@ -89,6 +90,7 @@ class Personaldetails(BaseDriver):
     def enter_place(self, place):
         self.get_place().click()
         self.get_place().send_keys(place)
+        time.sleep(3)
 
     def enter_headline(self, headline):
         self.get_headline().click()

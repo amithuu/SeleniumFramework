@@ -23,7 +23,7 @@ class Welcome(BaseDriver):
 
     """SETTERS"""
     def click_carrerbutton(self):
-        self.get_assessmentbutton().click()
+        self.get_carrerbutton().click()
 
     def click_assessmentbutton(self):
         self.get_assessmentbutton().click()

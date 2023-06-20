@@ -32,9 +32,9 @@ def setup(url, browser, request):
     wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()
     time.sleep(3)
 
-    # Click on edit profile
-    edit_profile = wait.until(ec.element_to_be_clickable((By.XPATH, "//*[text()='Edit Profile']")))
-    edit_profile.click()
+    # # Click on edit profile
+    # edit_profile = wait.until(ec.element_to_be_clickable((By.XPATH, "//*[text()='Edit Profile']")))
+    # edit_profile.click()
 
     request.cls.driver = driver
     request.cls.wait = wait
