@@ -5,7 +5,7 @@ from base.Basedriver import BaseDriver
 # firstname = "test"
 # lastname = "talentPlace"
 # email = f"prod{k}@g.co"
-# phone_no = f"+1 {k}45848445"
+# phone_no = f"1{k}234567890"
 # location = "Bangalore"
 # dob = "25031999"
 # gender = "male"

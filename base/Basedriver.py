@@ -55,3 +55,7 @@ class BaseDriver:
 
     def page_down(self):
         self.driver.find_element(By.TAG_NAME, value="body").send_keys(Keys.END)
+
+    def edit_profile(self):
+        edit_profile = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//*[text()='Edit Profile']")))
+        edit_profile.click()

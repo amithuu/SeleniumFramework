@@ -30,4 +30,4 @@ class Welcome(BaseDriver):
 
     def welcomepage(self):
         self.click_carrerbutton()
-        self.click_assessmentbutton()
+        # self.click_assessmentbutton()

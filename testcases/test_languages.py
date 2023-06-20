@@ -7,6 +7,7 @@ from pages.SignUp_page import Signup
 from pages.Welcome_page import Welcome
 from pages.Personal_details_page import Personaldetails
 from pages.Experience_page import Experience
+from pages.Jobrole_page import JobRole
 
 # Variables
 language = ["kannada", "english", "hindi"]
@@ -17,9 +18,18 @@ jobtype = ["full time", "intern", "part time", "freelanc", "contract"]
 experience = ["Advanced Technologies", "IT Services", "Agri-business"]
 organization = ["startup", "small", "mnc"]
 based = ["product", "service", "both"]
-linkdin = "https://www.linkedin.com/in/amith-kulkarni-1326241b4"
 month = ["jan", "feb", "march"]
 year = ["1999", "2020", "2010"]
+endyear = ["2000", "2021", "2022"]
+endmonth = ["april", "may", "june"]
+designation = ["Developer", "Automation", "application"]
+managementlevel = ["jun", "sen", "mid"]
+functionalarea = ["development", "human", "marketing"]
+skill = ["java", "python", "c prog"]
+expertise = ["beg", "skil", "expert"]
+startsalary = ["12", "3213", "214"]
+endsalary = ["2143312", "2136832", "812765"]
+linkdin = "https://www.linkedin.com/in/amith-kulkarni-1326241b4"
 dob = "25031999"
 headline = "Automation Developer"
 firstname = "Amith"
@@ -38,7 +48,7 @@ class TestCases:
         self.sup = Signup(self.driver, self.wait)
         self.wcl = Welcome(self.driver, self.wait)
         self.per = Personaldetails(self.driver, self.wait)
-        self.exp = Experience(self.driver, self.wait)
+        self.job = JobRole(self.driver, self.wait)
 
     # def test_signUp(self): BCZ of  Line 25
     #     self.sup.sign_up(firstname, lastname, email, phone_no, dob, gender, location, password, confirm_password)
@@ -50,9 +60,10 @@ class TestCases:
         for i in range(1):
             self.per.personaldetails(firstname, lastname, dob, month[i], year[i], location[i], headline, linkdin)
 
-    def test_experience(self):
+    def test_jobrole(self):
+        self.job.edit_profile()
         for i in range(3):
-            self.exp.addcompany(companyname[i], jobtype[i], experience[i], organization[i], based[i])
+            self.job.addcompany(i, companyname[i], jobtype[i], experience[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[i], year[i], endyear[i], endmonth[i], startsalary[i], endsalary[i])
 
     def test_languages(self):
         for i in range(len(language)):
