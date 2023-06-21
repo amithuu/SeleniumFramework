@@ -27,14 +27,10 @@ def setup(url, browser, request):
     driver.maximize_window()
 
     """ Login Page"""
-    wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("prod18@g.co")
+    wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("autotest32@g.co")
     wait.until(ec.element_to_be_clickable((By.NAME, "password"))).send_keys("New@1234")
     wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()
     time.sleep(3)
-
-    # # Click on edit profile
-    # edit_profile = wait.until(ec.element_to_be_clickable((By.XPATH, "//*[text()='Edit Profile']")))
-    # edit_profile.click()
 
     request.cls.driver = driver
     request.cls.wait = wait

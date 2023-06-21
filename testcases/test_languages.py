@@ -17,6 +17,7 @@ jobtype = ["full time", "intern", "part time", "freelanc", "contract"]
 experience = ["Advanced Technologies", "IT Services", "Agri-business"]
 organization = ["startup", "small", "mnc"]
 based = ["product", "service", "both"]
+date = "25041999"
 month = ["jan", "feb", "march"]
 year = ["1999", "2020", "2010"]
 endyear = ["2000", "2021", "2022"]
@@ -29,7 +30,6 @@ expertise = ["beg", "skil", "expert"]
 startsalary = ["12", "3213", "214"]
 endsalary = ["2143312", "2136832", "812765"]
 linkdin = "https://www.linkedin.com/in/amith-kulkarni-1326241b4"
-dob = "25031999"
 headline = "Automation Developer"
 firstname = "Amith"
 lastname = "talentPlace"
@@ -57,7 +57,7 @@ class TestCases:
 
     def test_personal_details(self):
         for i in range(1):
-            self.per.personaldetails(firstname, lastname, dob, month[i], year[i], location[i], headline, linkdin)
+            self.per.personaldetails(firstname, lastname, date, year[i], location[i], headline, linkdin)
 
     def test_jobrole(self):
         self.job.edit_profile()

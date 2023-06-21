@@ -15,10 +15,12 @@ class Personaldetails(BaseDriver):
     firstname = "first-name"
     lastname = "lastName"
     gender = "//*[@class=' css-19bb58m']/input"
-    dob= "//*[@name='dob']"
+    dob = "//*[@name='dob']"
     currency = "//*[@class='chakra-stack css-11i9qz7']/div[3]/div//input"
-    experience = "//*[@name='experienceStartDate']"
-    place = "//input[contains(@name,'loca')]"
+    # month = "//*[@id = 'root']/div[2]/div[2]/div/div/div[1]/div[3]/div[2]/div//select"
+    month = "//*[@id = 'root']/div[2]/div[2]/div/div/div[1]/div[3]/div[2]/div/div/div/div//select"
+    year = "//input[@Placeholder='Year']"
+    place = "//*[@id = 'root']/div[2]/div[2]/div/div/div[1]/div[4]/div[1]//input"
     headline = "headline"
     socilamedia = "socialMedia.linkedin"
 
@@ -41,8 +43,11 @@ class Personaldetails(BaseDriver):
     def get_currency(self):
         return self.element_to_click(By.XPATH, self.currency)
 
-    def get_experience(self):
-        return self.element_to_click(By.XPATH, self.experience)
+    def get_month(self):
+        return self.element_to_click(By.XPATH, self.month)
+
+    def get_year(self):
+        return self.element_to_click(By.XPATH, self.year)
 
     def get_place(self):
         return self.element_to_click(By.XPATH, self.place)
@@ -51,7 +56,7 @@ class Personaldetails(BaseDriver):
         return self.element_to_click(By.NAME, self.headline)
 
     def get_socialmedia(self):
-        return self.element_to_click(By.XPATH, self.socilamedia)
+        return self.element_to_click(By.NAME, self.socilamedia)
 
     """SETTERS"""
     def click_uploadpicture(self):
@@ -64,53 +69,62 @@ class Personaldetails(BaseDriver):
         self.get_firstname().send_keys(firstname)
 
     def enter_lastname(self, lastname):
-        self.get_firstname().click()
-        self.get_firstname().send_keys(Keys.CONTROL + "a")
-        self.get_firstname().send_keys(lastname)
+        self.get_lastname().click()
+        self.get_lastname().send_keys(Keys.CONTROL + "a")
+        self.get_lastname().send_keys(lastname)
 
     def enter_gender(self):
         self.get_gender().click()
+        self.get_gender().send_keys(Keys.ARROW_DOWN)
         self.get_gender().send_keys(Keys.ENTER)
+        time.sleep(3)
 
     def enter_dob(self, dob):
         self.get_dob().click()
         self.get_dob().send_keys(dob)
+        self.get_dob().send_keys(Keys.TAB)
 
     def enter_currency(self):
         self.get_currency().click()
+        self.get_currency().send_keys(Keys.ARROW_DOWN)
+        self.get_currency().send_keys(Keys.ARROW_DOWN)
         self.get_currency().send_keys(Keys.ENTER)
+        self.get_currency().send_keys(Keys.TAB)
 
-    def enter_experience(self, month, year):
-        self.get_experience().click()
-        self.get_experience().send_keys(month)
-        self.get_experience().send_keys(Keys.TAB)
-        self.get_experience().send_keys(year)
-
+    def enter_experience(self, year):
+        self.get_month().click()
+        self.get_month().send_keys(Keys.ARROW_DOWN)
+        self.get_month().send_keys(Keys.ENTER)
+        self.get_month().send_keys(Keys.TAB)
+        self.get_year().send_keys(year)
 
     def enter_place(self, place):
         self.get_place().click()
+        self.get_place().send_keys(Keys.CONTROL + "a")
         self.get_place().send_keys(place)
         time.sleep(3)
 
     def enter_headline(self, headline):
         self.get_headline().click()
+        self.get_headline().send_keys(Keys.CONTROL + "a")
         self.get_headline().send_keys(headline)
 
     def enter_socialmedia(self, socilamedia):
         self.get_socialmedia().click()
+        self.get_socialmedia().send_keys(Keys.CONTROL + "a")
         self.get_socialmedia().send_keys(socilamedia)
 
-    def personaldetails(self, firstname, lastname, dob, month, year, place, headline, socialmedia):
+    def personaldetails(self, firstname, lastname, dob, year, place, headline, socialmedia):
         self.click_uploadpicture()
         self.enter_firstname(firstname)
         self.enter_lastname(lastname)
-        self.enter_gender()
         self.enter_dob(dob)
-        self.enter_currency()
-        self.enter_experience(month, year)
+        self.enter_experience(year)
         self.enter_place(place)
         self.enter_headline(headline)
         self.enter_socialmedia(socialmedia)
+        self.enter_gender()
+        self.enter_currency()
         self.save()
         time.sleep(5)
         self.next()
