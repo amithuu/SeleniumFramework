@@ -17,6 +17,7 @@ class JobRole(BaseDriver):
     experience = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div[2]/div[2]//input"
     organization = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div[3]/div[1]//input"
     based = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div[3]/div[2]//input"
+    save_company = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div//button"
 
     addrole_button = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div/div[{s+1}]//ul//button"
     designation = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[1]/div[1]/div[1]//input"
@@ -26,11 +27,14 @@ class JobRole(BaseDriver):
     skill = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[3]/div[2]/div[1]//input"
     expertise = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[3]/div[2]/div[2]//input"
     addskill_button = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[3]/div[2]/div[2]//button"
-    start_date = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[4]/div[1]//input"
-    end_date = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[4]/div[2]//input"
+    start_date = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[4]/div[1]//select"
+    start_year = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[4]/div[1]//input"
+    end_date = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[4]/div[2]//select"
+    end_year = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[4]/div[2]//input"
     start_salary = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[5]/div[1]//input"
     end_salary = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[5]/div[2]//input"
     generate_suggestion = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[6]/div/div[2]//button"
+    save_role = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/button"
     back_to_company = "//*[@class='css-hboir5']//button"
 
     """GETTERS"""
@@ -79,8 +83,14 @@ class JobRole(BaseDriver):
     def get_startdate(self):
         return self.element_to_click(By.XPATH, self.start_date)
 
+    def get_startyear(self):
+        return self.element_to_click(By.XPATH, self.start_year)
+
     def get_enddate(self):
         return self.element_to_click(By.XPATH, self.end_date)
+
+    def get_endyear(self):
+        return self.element_to_click(By.XPATH, self.end_year)
 
     def get_startsalary(self):
         return self.element_to_click(By.XPATH, self.start_salary)
@@ -93,6 +103,12 @@ class JobRole(BaseDriver):
 
     def get_backtocompany(self):
         return self.element_to_click(By.XPATH, self.back_to_company)
+
+    def get_savecompany(self):
+        return self.element_to_click(By.XPATH, self.save_company)
+
+    def get_saverole(self):
+        return self.element_to_click(By.XPATH, self.save_role)
 
     """SETTERS"""
     def click_addcompanybutton(self):
@@ -122,47 +138,56 @@ class JobRole(BaseDriver):
         self.get_based().click()
         self.get_based().send_keys(based)
         self.get_based().send_keys(Keys.TAB)
+
+    def click_save(self):
+        self.get_savecompany().click()
+
     def enter_designation(self, designation):
         self.get_designation().click()
         self.get_designation().send_keys(designation)
+        self.get_designation().send_keys(Keys.TAB)
 
-    def enter_managementlevvel(self, managementlevel):
+    def enter_managementlevel(self, managementlevel):
         self.get_managementlevel().click()
         self.get_managementlevel().send_keys(managementlevel)
+        self.get_managementlevel().send_keys(Keys.TAB)
 
     def enter_location(self, location):
         self.get_location().click()
         self.get_location().send_keys(Keys.CONTROL + "a")
         self.get_location().send_keys(location)
-        time.sleep(5)
+        self.get_location().send_keys(Keys.BACK_SPACE)
+        time.sleep(3)
 
     def enter_functionalarea(self, functionalarea):
         self.get_functionalarea().click()
         self.get_functionalarea().send_keys(functionalarea)
+        self.get_functionalarea().send_keys(Keys.TAB)
 
     def enter_skill(self, skill):
         self.get_skill().click()
         self.get_skill().send_keys(skill)
+        self.get_skill().send_keys(Keys.TAB)
 
     def enter_expertise(self, expertise):
         self.get_expertise().click()
         self.get_expertise().send_keys(expertise)
+        self.get_expertise().send_keys(Keys.TAB)
 
     def click_addskillbutton(self):
         self.get_addskillbutton().click()
-        time.sleep(10)
 
-    def enter_startdate(self, startyear, startmonth):
+    def enter_startdate(self, startyear):
         self.get_startdate().click()
-        self.get_startdate().send_keys(startyear)
-        self.get_startdate().send_keys(Keys.TAB)
-        self.get_startdate().send_keys(startmonth)
+        self.get_startdate().send_keys(Keys.ARROW_DOWN)
+        self.get_startdate().send_keys(Keys.ENTER)
+        self.get_startyear().send_keys(startyear)
 
-    def enter_enddate(self, endyear, endmonth):
+    def enter_enddate(self, endyear):
         self.get_enddate().click()
-        self.get_enddate().send_keys(endyear)
-        self.get_enddate().send_keys(Keys.TAB)
-        self.get_enddate().send_keys(endmonth)
+        self.get_enddate().send_keys(Keys.ARROW_DOWN)
+        self.get_enddate().send_keys(Keys.ENTER)
+        self.get_endyear().send_keys(endyear)
 
     def enter_startsalary(self, startsalary):
         self.get_startsalary().click()
@@ -182,34 +207,38 @@ class JobRole(BaseDriver):
             self.element_to_click(By.XPATH, f"//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[6]/div/div[2]/div/div/div[{j}]//button").click()
             time.sleep(1)
 
+    def click_saverole(self):
+        return self.get_saverole().click()
+
     def click_backtocompany(self):
         self.get_backtocompany().click()
 
-    def addcompany(self, s, companyname, jobtype, experience, organization, based, designation, managemnetlevel, location, functionalarea, skill, expertise, startyear, startmonth, endyear, endmonth, startsalary, endsalary):
+    def addcompany(self, s, companyname, jobtype, experience, organization, based, designation, managemnetlevel, location, functionalarea, skill, expertise, startyear, endyear, startsalary, endsalary):
+        self.edit_profile()
+        self.experience_dasboard()
         self.click_addcompanybutton()
         self.enter_companyname(companyname)
         self.enter_jobtype(jobtype)
         self.enter_experience(experience)
         self.enter_organization(organization)
         self.enter_based(based)
-        self.save()
-        time.sleep(3)
-        self.next()
+        self.click_save()
         for a in range(1, 3):
             self.element_to_click(By.XPATH, f"//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div/div[{s+1}]//ul//button").click()
             self.enter_designation(designation)
-            self.enter_managementlevvel(managemnetlevel)
+            self.enter_managementlevel(managemnetlevel)
             self.enter_location(location)
             self.enter_functionalarea(functionalarea)
             self.enter_skill(skill)
             self.enter_expertise(expertise)
             self.click_addskillbutton()
-            self.enter_startdate(startmonth, startyear)
-            self.enter_enddate(endmonth, endyear)
+            self.enter_startdate(startyear)
+            self.enter_enddate(endyear)
             self.enter_startsalary(startsalary)
             self.enter_endsalary(endsalary)
-            self.click_generatesuggestion()
-            self.save()
+            # self.click_generatesuggestion()
+            self.click_saverole()
+            time.sleep(3)
             self.click_backtocompany()
 
 

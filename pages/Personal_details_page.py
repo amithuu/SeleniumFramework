@@ -76,6 +76,7 @@ class Personaldetails(BaseDriver):
     def enter_gender(self):
         self.get_gender().click()
         self.get_gender().send_keys(Keys.ARROW_DOWN)
+        self.get_gender().send_keys(Keys.ARROW_DOWN)
         self.get_gender().send_keys(Keys.ENTER)
         time.sleep(3)
 
@@ -89,7 +90,6 @@ class Personaldetails(BaseDriver):
         self.get_currency().send_keys(Keys.ARROW_DOWN)
         self.get_currency().send_keys(Keys.ARROW_DOWN)
         self.get_currency().send_keys(Keys.ENTER)
-        self.get_currency().send_keys(Keys.TAB)
 
     def enter_experience(self, year):
         self.get_month().click()
@@ -102,6 +102,7 @@ class Personaldetails(BaseDriver):
         self.get_place().click()
         self.get_place().send_keys(Keys.CONTROL + "a")
         self.get_place().send_keys(place)
+        self.get_place().send_keys(Keys.BACK_SPACE)
         time.sleep(3)
 
     def enter_headline(self, headline):
@@ -118,14 +119,14 @@ class Personaldetails(BaseDriver):
         self.click_uploadpicture()
         self.enter_firstname(firstname)
         self.enter_lastname(lastname)
+        self.enter_gender()
         self.enter_dob(dob)
+        self.enter_currency()
         self.enter_experience(year)
         self.enter_place(place)
         self.enter_headline(headline)
         self.enter_socialmedia(socialmedia)
-        self.enter_gender()
-        self.enter_currency()
         self.save()
-        time.sleep(5)
-        self.next()
-        self.dashboard()
+        time.sleep(3)
+        self.back()# back is next here
+        # self.dashboard()
