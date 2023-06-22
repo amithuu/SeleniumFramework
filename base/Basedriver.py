@@ -63,3 +63,12 @@ class BaseDriver:
     def experience_dasboard(self):
         experience = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//*[text()='Experience']")))
         experience.click()
+
+    def javascript_link(self, path):
+        image = self.driver.execute_script(f" return {path}")
+        self.driver.execute_script("arguments[0].click();", image)
+        time.sleep(5)
+
+    def discrad(self):
+        discard = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Discard']")))
+        discard.click()
