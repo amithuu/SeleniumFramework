@@ -11,7 +11,8 @@ from pages.Jobrole_page import JobRole
 from pages.Project_page import Projects
 from pages.Education_page import Education
 from pages.Certificate_page import Certificate
-
+from pages.Publication_page import Publication
+from pages.Patents_page import Patent
 # Variables
 language = ["kannada", "english", "hindi"]
 proficiency = ["beg", "adv", "inter"]
@@ -57,6 +58,8 @@ class TestCases:
         self.prj = Projects(self.driver, self.wait)
         self.edu = Education(self.driver, self.wait)
         self.cert = Certificate(self.driver, self.wait)
+        self.pub = Publication(self.driver, self.wait)
+        self.pat = Patent(self.driver, self.wait)
 
     # def test_signUp(self): BCZ of  Line 25
     #     self.sup.sign_up(firstname, lastname, email, phone_no, dob, gender, location, password, confirm_password)
@@ -98,7 +101,24 @@ class TestCases:
         for i in range(3):
             self.cert.certificate(designation[i], university[i], year[i], year[i+1], skill[i], description[i])
         self.cert.next()
-        
+
+    @pytest.mark.publication
+    def test_publication(self):
+        self.pub.edit_profile()
+        self.pub.click_publicationdashboard()
+        for i in range(3):
+            self.pub.publication(companyname[i], year[i], date, linkdin, firstname, linkdin, description[i])
+        self.pub.next()
+
+    @pytest.mark.patent
+    def test_patent(self):
+        self.pat.edit_profile()
+        self.pat.click_patentdashboard()
+        for i in range(3):
+            self.pat.patent(i, companyname[i], year[i], date, linkdin, firstname, linkdin, description[i])
+        self.pub.next()
+
+
     @pytest.mark.languages
     def test_languages(self):
         for i in range(len(language)):

@@ -3,6 +3,7 @@ import time
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.select import Select
 
 
 class BaseDriver:
@@ -72,3 +73,8 @@ class BaseDriver:
     def discrad(self):
         discard = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Discard']")))
         discard.click()
+
+    # def select(self, path):
+    #     author_title = Select(self.driver.find_element(By.XPATH, f"{path}"))
+    #     author_title.select_by_visible_text()
+
