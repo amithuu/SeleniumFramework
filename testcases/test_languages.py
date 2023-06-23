@@ -10,6 +10,7 @@ from pages.Personal_details_page import Personaldetails
 from pages.Jobrole_page import JobRole
 from pages.Project_page import Projects
 from pages.Education_page import Education
+from pages.Certificate_page import Certificate
 
 # Variables
 language = ["kannada", "english", "hindi"]
@@ -23,7 +24,7 @@ based = ["product", "service", "both"]
 date = "25041999"
 month = ["jan", "feb", "march", "may", "june", "july"]
 year = ["1900", "1910", "1920", "1930", "1940", "2000", "2001", "2002"]
-designation = ["Developer", "Automation", "application"]
+designation = ["Developer", "Automation", "Manualtester", "frontend", "backend"]
 managementlevel = ["jun", "sen", "mid"]
 functionalarea = ["development", "human", "marketing"]
 skill = ["java", "python", "c prog", "automation", "php"]
@@ -55,6 +56,7 @@ class TestCases:
         self.job = JobRole(self.driver, self.wait)
         self.prj = Projects(self.driver, self.wait)
         self.edu = Education(self.driver, self.wait)
+        self.cert = Certificate(self.driver, self.wait)
 
     # def test_signUp(self): BCZ of  Line 25
     #     self.sup.sign_up(firstname, lastname, email, phone_no, dob, gender, location, password, confirm_password)
@@ -62,15 +64,18 @@ class TestCases:
     def test_welcome_page(self):
         self.wcl.welcomepage()
 
+    @pytest.mark.personaldetails
     def test_personal_details(self):
         for i in range(1):
             self.per.personaldetails(firstname, lastname, date, year[i], location[i], headline, linkdin)
 
+    @pytest.mark.jobrole
     def test_jobrole(self):
         for i in range(3):
             self.job.addcompany(i, companyname[i], jobtype[i], experience[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], year[i], year[i+1], startsalary[i], endsalary[i])
             self.job.next()
 
+    @pytest.mark.projects
     def test_projects(self):
         self.prj.edit_profile()
         self.prj.click_projectdashboard()
@@ -86,17 +91,29 @@ class TestCases:
             self.edu.education(degree[i], university[i], location[i], cgpa[i], year[i], year[i+1], description[i], description[i+1])
         self.edu.next()
 
+    @pytest.mark.certificate
+    def test_certificate(self):
+        self.cert.edit_profile()
+        self.cert.click_certificatedashboard()
+        for i in range(3):
+            self.cert.certificate(designation[i], university[i], year[i], year[i+1], skill[i], description[i])
+        self.cert.next()
+        
+    @pytest.mark.languages
     def test_languages(self):
         for i in range(len(language)):
             self.lang.language(language[i], proficiency[i])
         self.lang.next()
 
+    @pytest.mark.cognitiveskills
     def test_cognitive_skills(self):
         self.cog.cognitive()
 
+    @pytest.mark.carriersummary
     def test_carrier(self):
         self.cas.carrier()
 
+    @pytest.mark.assessment
     def test_assessment(self):
         self.tass.assessment()
 

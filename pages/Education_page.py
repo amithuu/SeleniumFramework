@@ -139,7 +139,7 @@ class Education(BaseDriver):
         time.sleep(5)
         self.back()
         self.next()
-        self.discrad()
+        # self.discrad()
 
 
 
