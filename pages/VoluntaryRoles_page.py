@@ -93,7 +93,7 @@ class VoluntaryRoles(BaseDriver):
     def click_savevoluntaryrole(self):
         self.get_savepatent().click()
 
-    def voluntaryroles(self, role, organization, durationfrom, durationto, description):
+    def voluntaryroles(self, i, role, organization, durationfrom, durationto, description):
         self.click_addvoluntarroles()
         self.enter_role(role)
         self.enter_organization(organization)
@@ -102,5 +102,8 @@ class VoluntaryRoles(BaseDriver):
         self.enter_description(description)
         self.click_savevoluntaryrole()
         time.sleep(5)
-        self.next()
-        self.back()
+        if i <= 1:
+            self.next()
+            self.back()
+        else:
+            self.next()

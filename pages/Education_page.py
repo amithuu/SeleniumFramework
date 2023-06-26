@@ -124,7 +124,7 @@ class Education(BaseDriver):
     def click_saveeducation(self):
         self.get_saveeducation().click()
 
-    def education(self, degree, university, location, cgpa, fromyear, toyear, description, extracircular):
+    def education(self, i, degree, university, location, cgpa, fromyear, toyear, description, extracircular):
         self.click_addeducation()
         self.enter_degree(degree)
         self.enter_university(university)
@@ -137,9 +137,12 @@ class Education(BaseDriver):
         # self.click_image()
         self.click_saveeducation()
         time.sleep(5)
-        self.back()
-        self.next()
-        # self.discrad()
+        if i <= 1:
+            self.next()
+            self.back()
+        else:
+            self.next()
+
 
 
 

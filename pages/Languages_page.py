@@ -45,13 +45,17 @@ class Language(BaseDriver):
         self.get_addbutton().click()
         time.sleep(2)
 
-    def language(self, user_language, user_proficiency):
+    def language(self, i, user_language, user_proficiency):
         self.click_locationbutton()
         # time.sleep(5)
         self.enter_langdrop(user_language)
         self.enter_profiency(user_proficiency)
         self.click_addbutton()
         self.save()
-        self.back()
-        self.next()
+        if i <= 1:
+            self.next()
+            self.back()
+        else:
+            self.next()
+
 

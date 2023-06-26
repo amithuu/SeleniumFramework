@@ -52,5 +52,9 @@ class Hobbies(BaseDriver):
         self.enter_hobbies(hobbies)
         self.click_addhobbies()
         self.save()
-        self.next()
-        self.back()
+        if i <= 1:
+            self.next()
+            self.back()
+        else:
+            self.next()
+

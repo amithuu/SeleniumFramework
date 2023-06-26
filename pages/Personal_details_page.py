@@ -4,6 +4,8 @@ from selenium.webdriver import Keys
 
 from base.Basedriver import BaseDriver
 from selenium.webdriver.common.by import By
+
+
 class Personaldetails(BaseDriver):
     def __init__(self, driver, wait):
         super().__init__(driver, wait)
@@ -11,6 +13,7 @@ class Personaldetails(BaseDriver):
         self.wait = wait
 
     # Locators
+    personaldetails_dashboard = "//*[text()='Personal Details']"
     uploadpicture = "//*[text()='Upload profile']"
     firstname = "first-name"
     lastname = "lastName"
@@ -25,6 +28,9 @@ class Personaldetails(BaseDriver):
     socilamedia = "socialMedia.linkedin"
 
     """GETTERS"""
+    def get_personaldetailsdashboard(self):
+        return self.element_to_click(By.XPATH, self.personaldetails_dashboard)
+
     def get_uploadpicture(self):
         return self.element_to_click(By.XPATH, self.uploadpicture)
 
@@ -59,6 +65,9 @@ class Personaldetails(BaseDriver):
         return self.element_to_click(By.NAME, self.socilamedia)
 
     """SETTERS"""
+    def click_personaldetailsdashboard(self):
+        self.get_personaldetailsdashboard().click()
+
     def click_uploadpicture(self):
         self.get_uploadpicture().click()
         time.sleep(5)
@@ -116,6 +125,7 @@ class Personaldetails(BaseDriver):
         self.get_socialmedia().send_keys(socilamedia)
 
     def personaldetails(self, firstname, lastname, dob, year, place, headline, socialmedia):
+        self.click_personaldetailsdashboard()
         self.click_uploadpicture()
         self.enter_firstname(firstname)
         self.enter_lastname(lastname)
@@ -129,4 +139,3 @@ class Personaldetails(BaseDriver):
         self.save()
         time.sleep(3)
         self.back()# back is next here
-        # self.dashboard()

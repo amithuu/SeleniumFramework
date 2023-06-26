@@ -109,7 +109,7 @@ class Certificate(BaseDriver):
     def click_savecertrificate(self):
         self.get_savecertificate().click()
 
-    def certificate(self, title, institution, durationfrom, durationto, skill, description):
+    def certificate(self, i, title, institution, durationfrom, durationto, skill, description):
         self.click_addcertificate()
         self.enter_title(title)
         self.enter_institution(institution)
@@ -121,6 +121,8 @@ class Certificate(BaseDriver):
         self.javascript_link(self.image)
         self.click_savecertrificate()
         time.sleep(5)
-        self.back()
-        self.next()
-        self.discrad()
+        if i <= 1:
+            self.next()
+            self.back()
+        else:
+            self.next()

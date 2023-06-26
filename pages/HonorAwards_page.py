@@ -96,7 +96,13 @@ class HonorAwards(BaseDriver):
         self.enter_description(description)
         self.click_savehonoraward()
         time.sleep(5)
-        self.next()
-        if i == 1:
+        if i == 0:
+            self.next()
+            self.back()
+        elif i == 1:
+            self.next()
             self.discrad()
-        self.back()
+            self.back()
+        else:
+            self.next()
+            self.discrad()

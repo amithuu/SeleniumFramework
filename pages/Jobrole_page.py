@@ -214,8 +214,6 @@ class JobRole(BaseDriver):
         self.get_backtocompany().click()
 
     def addcompany(self, s, companyname, jobtype, experience, organization, based, designation, managemnetlevel, location, functionalarea, skill, expertise, startyear, endyear, startsalary, endsalary):
-        self.edit_profile()
-        self.experience_dasboard()
         self.click_addcompanybutton()
         self.enter_companyname(companyname)
         self.enter_jobtype(jobtype)
@@ -223,6 +221,7 @@ class JobRole(BaseDriver):
         self.enter_organization(organization)
         self.enter_based(based)
         self.click_save()
+        # add job role
         for a in range(1, 3):
             self.element_to_click(By.XPATH, f"//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div/div[{s+1}]//ul//button").click()
             self.enter_designation(designation)

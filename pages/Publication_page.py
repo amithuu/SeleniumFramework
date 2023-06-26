@@ -113,7 +113,7 @@ class Publication(BaseDriver):
     def click_savepublication(self):
         self.get_savepublication().click()
 
-    def publication(self, title, id, date, url, name, link, description):
+    def publication(self, i, title, id, date, url, name, link, description):
         self.click_addpublication()
         self.enter_publicationtitle(title)
         self.enter_publisherid(id)
@@ -127,8 +127,11 @@ class Publication(BaseDriver):
         self.enter_description(description)
         self.click_savepublication()
         time.sleep(5)
-        self.next()
-        self.back()
+        if i <= 1:
+            self.next()
+            self.back()
+        else:
+            self.next()
 
 
 

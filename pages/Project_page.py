@@ -150,8 +150,14 @@ class Projects(BaseDriver):
         self.enter_descriptionskillapplication(descriptionskillapplication)
         self.click_saveproject()
         time.sleep(5)
-        self.back()
-        self.next()
-
+        if j == 0:
+            self.next()
+            self.back()
+        elif j == 1:
+            self.next()
+            self.discrad()
+            self.back()
+        else:
+            self.next()
 
 
