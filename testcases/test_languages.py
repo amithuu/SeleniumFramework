@@ -13,6 +13,8 @@ from pages.Education_page import Education
 from pages.Certificate_page import Certificate
 from pages.Publication_page import Publication
 from pages.Patents_page import Patent
+from pages.VoluntaryRoles_page import VoluntaryRoles
+
 # Variables
 language = ["kannada", "english", "hindi"]
 proficiency = ["beg", "adv", "inter"]
@@ -60,6 +62,7 @@ class TestCases:
         self.cert = Certificate(self.driver, self.wait)
         self.pub = Publication(self.driver, self.wait)
         self.pat = Patent(self.driver, self.wait)
+        self.vol = VoluntaryRoles(self.driver, self.wait)
 
     # def test_signUp(self): BCZ of  Line 25
     #     self.sup.sign_up(firstname, lastname, email, phone_no, dob, gender, location, password, confirm_password)
@@ -118,7 +121,21 @@ class TestCases:
             self.pat.patent(i, companyname[i], year[i], date, linkdin, firstname, linkdin, description[i])
         self.pub.next()
 
+    @pytest.mark.voluntaryrole
+    def test_voluntary_roles(self):
+        self.vol.edit_profile()
+        self.vol.click_voluntaryrolesdashboard()
+        for i in range(3):
+            self.vol.voluntaryroles(designation[i], companyname[i], year[i], year[i+1], description[i], )
+        self.vol.next()
 
+    @pytest.mark.voluntaryrole
+    def test_voluntary_roles(self):
+        self.vol.edit_profile()
+        self.vol.click_voluntaryrolesdashboard()
+        for i in range(3):
+            self.vol.voluntaryroles(designation[i], companyname[i], year[i], description[i])
+        self.vol.next()
     @pytest.mark.languages
     def test_languages(self):
         for i in range(len(language)):
