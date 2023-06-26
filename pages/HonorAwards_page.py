@@ -87,7 +87,7 @@ class HonorAwards(BaseDriver):
     def click_savehonoraward(self):
         self.get_savehonorawards().click()
 
-    def honorawards(self, title, issuer, issueyear, description):
+    def honorawards(self, i, title, issuer, issueyear, description):
         self.click_addhonoraward()
         self.enter_title(title)
         self.enter_issuer(issuer)
@@ -97,4 +97,6 @@ class HonorAwards(BaseDriver):
         self.click_savehonoraward()
         time.sleep(5)
         self.next()
+        if i == 1:
+            self.discrad()
         self.back()
