@@ -18,6 +18,8 @@ from pages.HonorAwards_page import HonorAwards
 from pages.Causes_page import Causes
 from pages.Hobbies_page import Hobbies
 from pages.EditProfiles_page import EditProfiles
+from pages.Resume_page import Resume
+from pages.Membership_page import Membership
 
 # Variables
 
@@ -43,6 +45,7 @@ degree = ["10th", "12th", "bsc", "mca", "phd"]
 university = ["bangalore", "delhi", "odisha"]
 hobbies = ["Romantic songs", "Cricket", "Cricket highlights", "Hill Climbing"]
 cgpa = ["7.89", "9.65", "5.98"]
+plan = ["Trail", "Monthly", "Quarterly", "Year"]
 linkdin = "https://www.linkedin.com/in/amith-kulkarni-1326241b4"
 headline = "Automation Developer"
 firstname = "Amith"
@@ -73,12 +76,13 @@ class TestCases:
         self.cau = Causes(self.driver, self.wait)
         self.hob = Hobbies(self.driver, self.wait)
         self.edi = EditProfiles(self.driver, self.wait)
+        self.res = Resume(self.driver, self.wait)
+        self.mem = Membership(self.driver, self.wait)
 
     # def test_signUp(self): BCZ of  Line 25
     #     self.sup.sign_up(firstname, lastname, email, phone_no, dob, gender, location, password, confirm_password)
-
-    # def test_welcome_page(self):
-    #     self.wcl.welcomepage()
+    def test_welcome_page(self):
+        self.wcl.welcomepage()
 
     def test_editprofiles(self):
         self.edi.editprofiles()
@@ -91,6 +95,8 @@ class TestCases:
 
     @pytest.mark.jobrole
     def test_jobrole(self):
+        self.job.edit_profile()
+        self.job.click_experiencedashboard()
         for i in range(3):
             self.job.addcompany(i, companyname[i], jobtype[i], experience[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], year[i], year[i+1], startsalary[i], endsalary[i])
         self.job.next()
@@ -156,5 +162,11 @@ class TestCases:
     def test_assessment(self):
         self.tass.assessment()
 
+    @pytest.mark.resume
+    def test_resume(self):
+        for i in range(1, 7):
+            self.res.resume(i)
 
-
+    @pytest.mark.membership
+    def test_membership(self):
+        self.mem.membership(plan[1], "old", firstname, "india", "karnataka", "bangalore", "15th cross jp nagar", "560078")

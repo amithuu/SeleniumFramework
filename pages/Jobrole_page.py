@@ -11,6 +11,7 @@ class JobRole(BaseDriver):
         self.wait = wait
 
     # Locators
+    experience_dashboard = "//*[text()='Experience']"
     addcompany_button = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]//button"
     company_name = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div[1]/div[1]//input"
     job_type = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div[2]/div[1]//input"
@@ -38,6 +39,9 @@ class JobRole(BaseDriver):
     back_to_company = "//*[@class='css-hboir5']//button"
 
     """GETTERS"""
+    def get_experience_dashbaord(self):
+        return self.element_to_click(By.XPATH, self.experience_dashboard)
+
     def get_addcompanybutton(self):
         return self.element_to_click(By.XPATH, self.addcompany_button)
 
@@ -111,6 +115,9 @@ class JobRole(BaseDriver):
         return self.element_to_click(By.XPATH, self.save_role)
 
     """SETTERS"""
+    def click_experiencedashboard(self):
+        self.get_experience_dashbaord().click()
+
     def click_addcompanybutton(self):
         self.get_addcompanybutton().click()
 
