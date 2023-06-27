@@ -24,6 +24,8 @@ class Membership(BaseDriver):
     SUBSCRIBE_BUTTON = "//*[@type='submit' and @id='submit-button']"
     CLOSE_TAB = "//button[text()='Close this Tab']"
     REFRESH = "//*[text()='Refresh']"
+    MORE_SERVICES = "//*[@id='root']/div[2]/div[2]/div/div[3]/div/div/label[{i}]/span[1]"
+    ENQUIRY_NOW = "//*[@id='root']/div[2]/div[2]/div/div[3]/div//button"
 
     """GETTERS"""
     def get_membership_dashboard(self):
@@ -71,6 +73,12 @@ class Membership(BaseDriver):
 
     def get_refresh(self):
         return self.element_to_click(By.XPATH, self.REFRESH)
+
+    def get_enquirynow(self):
+        return self.element_to_click(By.XPATH, self.ENQUIRY_NOW)
+
+    def get_moreservices(self, i):
+        return self.element_to_click(By.XPATH, f"//*[@id='root']/div[2]/div[2]/div/div[3]/div/div/label[{i}]/span[1]")
 
     """SETTERS"""
     def click_membershipdashboard(self):
@@ -126,6 +134,12 @@ class Membership(BaseDriver):
     def click_refresh(self):
         self.get_refresh().click()
 
+    def click_moreservices(self, i):
+        self.get_moreservices(i).click()
+
+    def click_enquirynow(self):
+        self.get_enquirynow().click()
+
     def membership(self, plan, user, name, country, state, city, street, zipcode):
         self.click_membershipdashboard()
         time.sleep(2)
@@ -133,7 +147,7 @@ class Membership(BaseDriver):
         time.sleep(2)
         parent_wind = self.driver.current_window_handle
 
-        if user == "fresh":
+        if user == "new":
             self.click_plan(plan)
             time.sleep(2)
             self.enter_name(name)
@@ -185,6 +199,13 @@ class Membership(BaseDriver):
             for i in range(4):
                 self.driver.refresh()
                 time.sleep(3)
+
+        elif user == "enquiry":
+            for i in range(1, 4):
+                self.click_moreservices(i)
+            self.click_enquirynow()
+            time.sleep(3)
+
 
 
 
