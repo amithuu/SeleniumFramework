@@ -82,8 +82,10 @@ class TestCases:
         self.mem = Membership(self.driver, self.wait)
         self.set = Setting(self.driver, self.wait)
         self.myp = MyProfile(self.driver, self.wait)
+
     # def test_signUp(self): BCZ of  Line 25
     #     self.sup.sign_up(firstname, lastname, email, phone_no, dob, gender, location, password, confirm_password)
+
     def test_welcome_page(self):
         self.wcl.welcomepage()
 
