@@ -145,8 +145,8 @@ class Setting(EditProfiles):
         elif user == "cancelsubsription":
             self.click_cancelsubsription()
             self.click_closepopup()
-            self.click_staypremium()
-            self.click_cancelsubsriptionpopup()
+            # self.click_staypremium()
+            # self.click_cancelsubsriptionpopup()
 
 
 

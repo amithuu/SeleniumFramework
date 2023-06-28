@@ -21,6 +21,7 @@ from pages.EditProfiles_page import EditProfiles
 from pages.Resume_page import Resume
 from pages.Membership_page import Membership
 from pages.Settings_page import Setting
+from pages.Myprofie_page import MyProfile
 # Variables
 
 language = ["kannada", "english", "hindi"]
@@ -47,6 +48,7 @@ hobbies = ["Romantic songs", "Cricket", "Cricket highlights", "Hill Climbing"]
 cgpa = ["7.89", "9.65", "5.98"]
 plan = ["Trail", "Monthly", "Quarterly", "Year"]
 user_settings = ["editprofile", "changepassword" , "changemobile", "cancelsubsription"]
+user_myprofile = ["shareprofile", "downloadresume", "editprofile"]
 linkdin = "https://www.linkedin.com/in/amith-kulkarni-1326241b4"
 headline = "Automation Developer"
 firstname = "Amith"
@@ -79,6 +81,7 @@ class TestCases:
         self.res = Resume(self.driver, self.wait)
         self.mem = Membership(self.driver, self.wait)
         self.set = Setting(self.driver, self.wait)
+        self.myp = MyProfile(self.driver, self.wait)
     # def test_signUp(self): BCZ of  Line 25
     #     self.sup.sign_up(firstname, lastname, email, phone_no, dob, gender, location, password, confirm_password)
     def test_welcome_page(self):
@@ -173,4 +176,8 @@ class TestCases:
 
     @pytest.mark.setting
     def test_setting(self):
-        self.set.setting(user_settings[1], "New@1234", "New@2345", "New@2345", "12345678901")
+        self.set.setting(user_settings[2], "New@1234", "New@2345", "New@2345", "12345678901")
+
+    @pytest.mark.myprofile
+    def test_myprofile(self):
+        self.myp.myprofile(user_myprofile[0])
