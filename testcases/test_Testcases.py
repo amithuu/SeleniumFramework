@@ -22,6 +22,7 @@ from pages.Resume_page import Resume
 from pages.Membership_page import Membership
 from pages.Settings_page import Setting
 from pages.Myprofie_page import MyProfile
+
 # Variables
 
 language = ["kannada", "english", "hindi"]
@@ -83,7 +84,7 @@ class TestCases:
         self.set = Setting(self.driver, self.wait)
         self.myp = MyProfile(self.driver, self.wait)
 
-    # def test_signUp(self): BCZ of  Line 25
+    # def test_signUp(self): BCZ of  Line 60
     #     self.sup.sign_up(firstname, lastname, email, phone_no, dob, gender, location, password, confirm_password)
 
     def test_welcome_page(self):

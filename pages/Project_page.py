@@ -146,7 +146,6 @@ class Projects(BaseDriver):
         self.enter_description(description)
         self.enter_skill(skill)
         self.slide_skillslider(j)
-        self.click_addbutton()
         self.enter_descriptionskillapplication(descriptionskillapplication)
         self.click_saveproject()
         time.sleep(5)

@@ -114,7 +114,7 @@ class Signup(BaseDriver):
         self.enter_firstname(firstname)
         self.enter_lastname(lastname)
         self.enter_email(email)
-        self.enter_password(phone_no)
+        self.enter_phoneno(phone_no)
         self.enter_dob(dob)
         self.enter_gender(gender)
         self.enter_location(location)

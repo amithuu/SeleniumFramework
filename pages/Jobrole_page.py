@@ -237,7 +237,6 @@ class JobRole(BaseDriver):
             self.enter_functionalarea(functionalarea)
             self.enter_skill(skill)
             self.enter_expertise(expertise)
-            self.click_addskillbutton()
             self.enter_startdate(startyear)
             self.enter_enddate(endyear)
             self.enter_startsalary(startsalary)

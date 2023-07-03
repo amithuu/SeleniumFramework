@@ -116,7 +116,6 @@ class Certificate(BaseDriver):
         self.enter_durationfrom(durationfrom)
         self.enter_durationto(durationto)
         self.enter_skill(skill)
-        self.click_addskill()
         self.enter_projectdescription(description)
         self.javascript_link(self.image)
         self.click_savecertrificate()
