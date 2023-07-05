@@ -25,7 +25,8 @@ class Membership(BaseDriver):
     CLOSE_TAB = "//button[text()='Close this Tab']"
     REFRESH = "//*[text()='Refresh']"
     MORE_SERVICES = "//*[@id='root']/div[2]/div[2]/div/div[3]/div/div/label[{i}]/span[1]"
-    ENQUIRY_NOW = "//*[@id='root']/div[2]/div[2]/div/div[3]/div//button"
+    BUY_NOW = "//*[@id='root']/div[2]/div[2]/div/div[3]/div[{i}]//button[1]"
+    ENQUIRE_NOW = "//*[@id='root']/div[2]/div[2]/div/div[3]/div[{i}]//button[2]"
 
     """GETTERS"""
     def get_membership_dashboard(self):
@@ -40,6 +41,29 @@ class Membership(BaseDriver):
             return self.element_to_click(By.XPATH, f"//*[@id='root']/div[2]/div[2]/div/div[2]/div[3]//button")
         elif plan == "Year":
             return self.element_to_click(By.XPATH, f"//*[@id='root']/div[2]/div[2]/div/div[2]/div[4]//button")
+
+    def get_professionalservice(self, professionalservice, servicetype):
+        if professionalservice == "Fresher Resume Writing":
+            if servicetype == "Buynow":
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[1]//button[1]")
+            else:
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[1]//button[2]")
+
+        if professionalservice == "Experience Resume Writing":
+            if servicetype == "Buynow":
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[2]//button[1]")
+            else:
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[2]//button[2]")
+
+        if professionalservice == "Linkdin Optimization":
+            if servicetype == "Buynow":
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[3]//button[1]")
+            else:
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[3]//button[2]")
+
+        if professionalservice == "What Job Fits Me":
+            if servicetype == "Buynow":
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[4]//button[1]")
 
     def get_name(self):
         return self.element_to_click(By.XPATH, self.NAME)
@@ -73,12 +97,6 @@ class Membership(BaseDriver):
 
     def get_refresh(self):
         return self.element_to_click(By.XPATH, self.REFRESH)
-
-    def get_enquirynow(self):
-        return self.element_to_click(By.XPATH, self.ENQUIRY_NOW)
-
-    def get_moreservices(self, i):
-        return self.element_to_click(By.XPATH, f"//*[@id='root']/div[2]/div[2]/div/div[3]/div/div/label[{i}]/span[1]")
 
     """SETTERS"""
     def click_membershipdashboard(self):
@@ -134,81 +152,95 @@ class Membership(BaseDriver):
     def click_refresh(self):
         self.get_refresh().click()
 
-    def click_moreservices(self, i):
-        self.get_moreservices(i).click()
+    def click_professionalservice(self, professionalservice, servicetype):
+        self.get_professionalservice(professionalservice, servicetype).click()
 
-    def click_enquirynow(self):
-        self.get_enquirynow().click()
-
-    def membership(self, plan, user, name, country, state, city, street, zipcode):
+    def membership(self, plan, user, name, country, state, city, street, zipcode, membership_type, professionalservice, servicetype):
         self.click_membershipdashboard()
         time.sleep(2)
         self.page_down()
         time.sleep(2)
         parent_wind = self.driver.current_window_handle
 
-        if user == "new":
-            self.click_plan(plan)
+        if membership_type == "Resume Builder":
+            if user == "new":
+                self.click_plan(plan)
+                time.sleep(2)
+                self.enter_name(name)
+                self.enter_country(country)
+                self.enter_state(state)
+                self.enter_city(city)
+                self.enter_street(street)
+                self.enter_zipcode(zipcode)
+                self.click_proceed()
+                time.sleep(5)
+
+                all_handles = self.driver.window_handles
+                for handle in all_handles:
+                    if handle != parent_wind:
+                        self.driver.switch_to.window(handle)
+                        self.page_down()
+                        time.sleep(5)
+                        if user == "new":
+                            self.click_successlink()
+                            time.sleep(2)
+                        self.click_subscribe()
+                        time.sleep(3)
+                        self.click_closetab()
+                        break
+                self.driver.switch_to.window(parent_wind)
+
+                self.click_refresh()
+                for i in range(4):
+                    self.driver.refresh()
+                    time.sleep(3)
+
+            elif user == "old":
+                self.click_plan(plan)
+                time.sleep(5)
+
+                all_handles = self.driver.window_handles
+                for handle in all_handles:
+                    if handle != parent_wind:
+                        self.driver.switch_to.window(handle)
+                        self.page_down()
+                        time.sleep(3)
+                        self.click_subscribe()
+                        time.sleep(3)
+                        self.click_closetab()
+                        time.sleep(2)
+                        break
+                self.driver.switch_to.window(parent_wind)
+
+                self.click_refresh()
+                for i in range(4):
+                    self.driver.refresh()
+                    time.sleep(3)
+
+        elif membership_type == "Professional Service":
+            self.click_professionalservice(professionalservice, servicetype)
             time.sleep(2)
-            self.enter_name(name)
-            self.enter_country(country)
-            self.enter_state(state)
-            self.enter_city(city)
-            self.enter_street(street)
-            self.enter_zipcode(zipcode)
-            self.click_proceed()
-            time.sleep(5)
+            if servicetype == "Buynow":
+                self.enter_name(name)
+                self.enter_country(country)
+                self.enter_state(state)
+                self.enter_city(city)
+                self.enter_street(street)
+                self.enter_zipcode(zipcode)
+                self.click_proceed()
+                time.sleep(5)
 
-            all_handles = self.driver.window_handles
-            for handle in all_handles:
-                if handle != parent_wind:
-                    self.driver.switch_to.window(handle)
-                    self.page_down()
-                    time.sleep(5)
-                    self.click_successlink()
-                    time.sleep(2)
-                    self.click_subscribe()
-                    time.sleep(3)
-                    self.click_closetab()
-                    break
-            self.driver.switch_to.window(parent_wind)
-
-            self.click_refresh()
-            for i in range(4):
-                self.driver.refresh()
-                time.sleep(3)
-
-        elif user == "old":
-            self.click_plan(plan)
-            time.sleep(5)
-
-            all_handles = self.driver.window_handles
-            for handle in all_handles:
-                if handle != parent_wind:
-                    self.driver.switch_to.window(handle)
-                    self.page_down()
-                    time.sleep(3)
-                    self.click_subscribe()
-                    time.sleep(3)
-                    self.click_closetab()
-                    time.sleep(2)
-                    break
-            self.driver.switch_to.window(parent_wind)
-
-            self.click_refresh()
-            for i in range(4):
-                self.driver.refresh()
-                time.sleep(3)
-
-        elif user == "enquiry":
-            for i in range(1, 4):
-                self.click_moreservices(i)
-            self.click_enquirynow()
-            time.sleep(3)
-
-
-
-
-
-
-
+                all_handles = self.driver.window_handles
+                for handle in all_handles:
+                    if handle != parent_wind:
+                        self.driver.switch_to.window(handle)
+                        self.page_down()
+                        time.sleep(5)
+                        if user == "new":
+                            self.click_successlink()
+                            time.sleep(2)
+                        self.click_subscribe()
+                        time.sleep(3)
+                        self.click_closetab()
+                        break
+                self.driver.switch_to.window(parent_wind)

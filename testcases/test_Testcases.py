@@ -1,4 +1,3 @@
-import time
 import pytest
 from pages.Assessment_page import Assessment
 from pages.Carriersummary_page import Carrier
@@ -29,7 +28,7 @@ language = ["kannada", "english", "hindi"]
 proficiency = ["beg", "adv", "inter"]
 location = ["bangalore", "delhi", "561203"]
 companyname = ["IBM", "Google", "Cognizant"]
-jobtype = ["full time", "intern", "part time", "freelanc", "contract"]
+jobtype = ["full time", "intern", "part time", "freelance", "contract"]
 experience = ["Advanced Technologies", "IT Services", "Agri-business"]
 organization = ["startup", "small", "mnc"]
 based = ["product", "service", "both"]
@@ -47,14 +46,19 @@ degree = ["10th", "12th", "bsc", "mca", "phd"]
 university = ["bangalore", "delhi", "odisha"]
 hobbies = ["Romantic songs", "Cricket", "Cricket highlights", "Hill Climbing"]
 cgpa = ["7.89", "9.65", "5.98"]
+user = ["new", "old", "Renew"]
 plan = ["Trail", "Monthly", "Quarterly", "Year"]
-user_settings = ["editprofile", "changepassword" , "changemobile", "cancelsubsription"]
+professionalservice = ["Fresher Resume Writing", "Experience Resume Writing", "Linkdin Optimization", "What Job Fits Me"]
+servicetype = ["Buynow", "Enquire Now"]
+membership_type = ["Resume Builder", "Professional Service"]
+user_settings = ["editprofile", "changepassword", "changemobile", "cancelsubsription"]
 user_myprofile = ["shareprofile", "downloadresume", "editprofile"]
 linkdin = "https://www.linkedin.com/in/amith-kulkarni-1326241b4"
 headline = "Automation Developer"
 firstname = "Amith"
 lastname = "talentPlace"
 description = ["Listing projects on your resume allows hiring managers", " It's important to list your most relevant projects on your resume.", "List the skills you want to highlight", "Think of the specific projects you want to include."]
+
 
 @pytest.mark.usefixtures("setup")
 class TestCases:
@@ -170,12 +174,12 @@ class TestCases:
 
     @pytest.mark.resume
     def test_resume(self):
-        for i in range(1, 7):
-            self.res.resume(i)
+        for i in range(1, 22):
+            self.res.resume(i, plan[1])
 
     @pytest.mark.membership
     def test_membership(self):
-        self.mem.membership(plan[1], "old", firstname, "india", "karnataka", "bangalore", "15th cross jp nagar", "560078")
+        self.mem.membership("Quarterly", "old", firstname, "india", "karnataka", "bangalore", "15th cross jp nagar", "560078", "Resume Builder", "Fresher Resume Writing", "Buynow")
 
     @pytest.mark.setting
     def test_setting(self):
