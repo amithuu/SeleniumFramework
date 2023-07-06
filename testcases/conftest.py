@@ -22,15 +22,17 @@ def setup(url, browser, request):
 
     # driver.get("https://test-talentplace.vercel.app/login")
     # driver.get("https://www.talentplace.ai/login")
+
     driver.get(url)
+    driver.maximize_window()
     wait = WebDriverWait(driver, 10)
     driver.maximize_window()
 
     """ Login Page"""
-    wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("autotest61@g.co")
-    wait.until(ec.element_to_be_clickable((By.NAME, "password"))).send_keys("New@1234")
-    wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()
-    time.sleep(3)
+    # wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("autotest61@g.co")
+    # wait.until(ec.element_to_be_clickable((By.NAME, "password"))).send_keys("New@1234")
+    # wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()
+    # time.sleep(3)
 
     request.cls.driver = driver
     request.cls.wait = wait

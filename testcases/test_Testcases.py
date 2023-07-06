@@ -21,7 +21,7 @@ from pages.Resume_page import Resume
 from pages.Membership_page import Membership
 from pages.Settings_page import Setting
 from pages.Myprofie_page import MyProfile
-
+from pages.Landing_Page import Landing_page
 # Variables
 
 language = ["kannada", "english", "hindi"]
@@ -87,6 +87,7 @@ class TestCases:
         self.mem = Membership(self.driver, self.wait)
         self.set = Setting(self.driver, self.wait)
         self.myp = MyProfile(self.driver, self.wait)
+        self.lan = Landing_page(self.driver, self.wait)
 
     # def test_signUp(self): BCZ of  Line 60
     #     self.sup.sign_up(firstname, lastname, email, phone_no, dob, gender, location, password, confirm_password)
@@ -188,3 +189,7 @@ class TestCases:
     @pytest.mark.myprofile
     def test_myprofile(self):
         self.myp.myprofile(user_myprofile[0])
+
+    @pytest.mark.landingpage
+    def test_landingpage(self):
+        self.lan.landingpage(firstname, "autotest61@g.co", date, description[1])
