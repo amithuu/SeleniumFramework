@@ -247,6 +247,7 @@ class Landing_page(BaseDriver):
         time.sleep(2)
         self.page_down()
         time.sleep(3)
+        # THANK-YOU
 
 
 
