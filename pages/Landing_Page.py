@@ -1,4 +1,6 @@
 import time
+
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
 
@@ -14,27 +16,27 @@ class Landing_page(BaseDriver):
     SIGN_UP = "//button[text()='Sign Up']"
     PRODUCTS = "//button[text()='Products']"
 
-    RESUME_BUILDER = "//body/div[5]/div[2]/div/div/div/div/a[1]"
+    RESUME_BUILDER = "//body/div[3]/div[2]/div/div/div/div/a[1]"                    #div[5] for talentplace.ai, as we are not using zoho, zoho chat takes 3 div in middle.[for all 4 links.]
     OPEN_FILTER = "//*[@id='root']/div/div[2]/div/div[2]/div[1]/div[1]//button"
     CLOSE_FILTER = "//*[@id='root']/div/div[2]/div/div[2]/div[1]//button"
     CHOOSE_COLOR = "//*[@id='root']/div/div[2]/div/div[2]/div[1]/div[2]//span[1]"   # WE HAVE 12 COLORS
 
-    HIRE_RESUME_WRITER = "//body/div[5]/div[2]/div/div/div/div/a[2]"
+    HIRE_RESUME_WRITER = "//body/div[3]/div[2]/div/div/div/div/a[2]"
     GET_STARTED = "//*[@id='root']/div/div[2]/div/div/div/div/div[1]//button[1]"
     BUY_NOW = "//*[@id='root']/div/div[2]/div/div/div/div/div[1]//button[2]"
     BUY_NOW_FRESHER = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[1]//button[1]"
     ENQUIRY_NOW_FRESHER = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[1]//button[2]"
     BUY_NOW_EXPERIENCE = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[2]//button[1]"
     ENQUIRY_NOW_EXPERIENCE = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[2]//button[2]"
-    FORM_NAME = "//body/div[5]/div[3]/div/section/div/div/div[1]//input"
-    FORM_EMAIL = "//body/div[5]/div[3]/div/section/div/div/div[2]//input"
-    FORM_NUMBER = "//body/div[5]/div[3]/div/section/div/div/div[3]//input"
-    FORM_TEXT = "//body/div[5]/div[3]/div/section/div/div/div[4]//textarea"
+    FORM_NAME = "//body/div[3]/div[3]/div/section/div/div/div[1]//input"                #same above contect for froms as well
+    FORM_EMAIL = "//body/div[3]/div[3]/div/section/div/div/div[2]//input"
+    FORM_NUMBER = "//body/div[3]/div[3]/div/section/div/div/div[3]//input"
+    FORM_TEXT = "//body/div[3]/div[3]/div/section/div/div/div[4]//textarea"
     SUBMIT_BUTTON = "//button[text()='Submit']"
 
-    PERSONALITY_ASSESSMENT = "//body/div[5]/div[2]/div/div/div/div/a[3]"
+    PERSONALITY_ASSESSMENT = "//body/div[3]/div[2]/div/div/div/div/a[3]"
 
-    LINKDIN_OPTIMIZATION = "//body/div[5]/div[2]/div/div/div/div/a[1]"
+    LINKDIN_OPTIMIZATION = "//body/div[3]/div[2]/div/div/div/div/a[1]"
 
     CLICK_RESUME = "//*[@id='root']/div/div[2]/div/div[2]/div[2]/div/div[{i}]/div"  # WE HAVE 21 RESUMES
     CHOOSE_TEMPLATE = "//button[text()='Choose Template']"
@@ -185,7 +187,7 @@ class Landing_page(BaseDriver):
         time.sleep(2)
         self.driver.back()
 
-        # Resume Builder
+        # # Resume Builder
         self.click_productslink()
         time.sleep(2)
         self.click_resumebuilder()
@@ -193,6 +195,7 @@ class Landing_page(BaseDriver):
         self.click_closefilter()
         time.sleep(2)
         self.click_openfilter()
+        self.page_down()
         for i in range(1, 12):
             self.click_choosecolor(i)
             time.sleep(2)
@@ -203,15 +206,17 @@ class Landing_page(BaseDriver):
             if j <= 11:
                 self.click_chossetemplate()
                 time.sleep(2)
-                self.driver.back()
+                self.page_back()
             else:
                 self.click_closepopup()
         time.sleep(2)
+        self.page_back()
 
         # Hire Resume writer
         self.click_productslink()
         time.sleep(2)
         self.click_hireresumewriter()
+        self.page_up()
         self.click_getstarted()
         self.click_buynowfresher()
         time.sleep(2)
@@ -245,7 +250,7 @@ class Landing_page(BaseDriver):
         # Linkdin optimization
         self.click_productslink()
         time.sleep(2)
-        self.page_down()
+        self.page_end()
         time.sleep(3)
         # THANK-YOU
 

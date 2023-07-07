@@ -101,8 +101,8 @@ class HonorAwards(BaseDriver):
             self.back()
         elif i == 1:
             self.next()
-            self.discrad()
+            self.discard()
             self.back()
         else:
             self.next()
-            self.discrad()
+            self.discard()

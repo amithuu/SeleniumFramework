@@ -158,7 +158,7 @@ class Membership(BaseDriver):
     def membership(self, plan, user, name, country, state, city, street, zipcode, membership_type, professionalservice, servicetype):
         self.click_membershipdashboard()
         time.sleep(2)
-        self.page_down()
+        self.page_end()
         time.sleep(2)
         parent_wind = self.driver.current_window_handle
 
@@ -179,7 +179,7 @@ class Membership(BaseDriver):
                 for handle in all_handles:
                     if handle != parent_wind:
                         self.driver.switch_to.window(handle)
-                        self.page_down()
+                        self.page_end()
                         time.sleep(5)
                         if user == "new":
                             self.click_successlink()
@@ -203,7 +203,7 @@ class Membership(BaseDriver):
                 for handle in all_handles:
                     if handle != parent_wind:
                         self.driver.switch_to.window(handle)
-                        self.page_down()
+                        self.page_end()
                         time.sleep(3)
                         self.click_subscribe()
                         time.sleep(3)
@@ -234,7 +234,7 @@ class Membership(BaseDriver):
                 for handle in all_handles:
                     if handle != parent_wind:
                         self.driver.switch_to.window(handle)
-                        self.page_down()
+                        self.page_end()
                         time.sleep(5)
                         if user == "new":
                             self.click_successlink()

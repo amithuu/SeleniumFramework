@@ -154,7 +154,7 @@ class Projects(BaseDriver):
             self.back()
         elif j == 1:
             self.next()
-            self.discrad()
+            self.discard()
             self.back()
         else:
             self.next()

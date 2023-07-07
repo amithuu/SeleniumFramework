@@ -54,14 +54,26 @@ class BaseDriver:
         list_of_element = self.wait.until(ec.presence_of_all_elements_located((locator_id, path)))
         return list_of_element
 
-    def page_down(self):
+    def page_end(self):
         self.driver.find_element(By.TAG_NAME, value="body").send_keys(Keys.END)
+
+    def page_down(self):
+        self.driver.find_element(By.TAG_NAME, value="body").send_keys(Keys.PAGE_DOWN)
+
+    def page_up(self):
+        self.driver.find_element(By.TAG_NAME, value="body").send_keys(Keys.PAGE_UP)
+
+    def copy_all(self):
+        self.driver.find_element(By.TAG_NAME, value="body").send_keys(Keys.CONTROL + "a")
+
+    def page_back(self):
+        self.driver.back()
 
     def edit_profile(self):
         edit_profile = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//*[text()='Edit Profile']")))
         edit_profile.click()
 
-    def experience_dasboard(self):
+    def experience_dashboard(self):
         experience = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//*[text()='Experience']")))
         experience.click()
 
@@ -70,7 +82,7 @@ class BaseDriver:
         self.driver.execute_script("arguments[0].click();", image)
         time.sleep(5)
 
-    def discrad(self):
+    def discard(self):
         discard = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Discard']")))
         discard.click()
 

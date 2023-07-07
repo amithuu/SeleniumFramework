@@ -27,7 +27,7 @@ class Carrier(Language):
             time.sleep(1)
     def carrier(self):
         self.driver.set_window_size(1200, 1400)
-        self.page_down()
+        self.page_end()
         time.sleep(2)
         self.click_generatesuggestion()
         time.sleep(12)

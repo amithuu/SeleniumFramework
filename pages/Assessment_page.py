@@ -53,7 +53,7 @@ class Assessment(BaseDriver):
     def assessment(self):
         self.dashboard()
         self.click_takeassessment()
-        self.page_down()
+        self.page_end()
         self.click_checkbox()
         self.click_starttest()
         self.click_answer()

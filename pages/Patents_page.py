@@ -122,7 +122,7 @@ class Patent(BaseDriver):
         self.enter_patentdate(date)
         self.enter_patenturl(url)
         self.click_addauthor()
-        self.page_down()
+        self.page_end()
         self.enter_authortitle()
         self.enter_authorname(name)
         self.enter_link(link)
@@ -134,7 +134,7 @@ class Patent(BaseDriver):
             self.back()
         elif i == 1:
             self.next()
-            self.discrad()
+            self.discard()
             self.back()
         else:
             self.next()

@@ -120,7 +120,7 @@ class Publication(BaseDriver):
         self.enter_publicationdate(date)
         self.enter_publicationurl(url)
         self.click_addauthor()
-        self.page_down()
+        self.page_end()
         self.enter_authortitle()
         self.enter_authorname(name)
         self.enter_link(link)
