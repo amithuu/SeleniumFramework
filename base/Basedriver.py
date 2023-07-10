@@ -90,3 +90,9 @@ class BaseDriver:
     #     author_title = Select(self.driver.find_element(By.XPATH, f"{path}"))
     #     author_title.select_by_visible_text()
 
+    def login(self):
+        self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()
+        self.wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("autotest32@g.co")
+        self.wait.until(ec.element_to_be_clickable((By.NAME, "password"))).send_keys("New@1234")
+        self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()
+        time.sleep(3)

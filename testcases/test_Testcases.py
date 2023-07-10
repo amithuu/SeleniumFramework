@@ -192,4 +192,4 @@ class TestCases:
 
     @pytest.mark.landingpage
     def test_landingpage(self):
-        self.lan.landingpage(firstname, "autotest61@g.co", date, description[1])
+        self.lan.landingpage(firstname, "autotest61@g.co", date, description[1], "india", "karnataka", "bangalore", "15th cross jp nagar", "560078")
