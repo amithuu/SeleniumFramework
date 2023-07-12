@@ -23,36 +23,50 @@ class Landing_page(Membership):
     OPEN_FILTER = "//*[@id='root']/div/div[2]/div/div[2]/div[1]/div[1]//button"
     CLOSE_FILTER = "//*[@id='root']/div/div[2]/div/div[2]/div[1]//button"
     CHOOSE_COLOR = "//*[@id='root']/div/div[2]/div/div[2]/div[1]/div[2]//span[1]"  # WE HAVE 12 COLORS
+    CLICK_RESUME = "//*[@id='root']/div/div[2]/div/div[2]/div[2]/div/div[{i}]/div"  # WE HAVE 21 RESUMES
+    CHOOSE_TEMPLATE = "//button[text()='Choose Template']"
+    CLOSE_POPUP = "//button[@aria-label='Close']"
 
     HIRE_RESUME_WRITER = "//body/div[5]/div[2]/div/div/div/div/a[2]"                    # in templates[4], in writer [5]
     GET_STARTED = "//*[@id='root']/div/div[2]/div/div/div/div/div[1]//button[1]"
-    BUY_NOW_PROFESSIONAL = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[1]//button[1]"
+    ENTRY_LEVEL_FEATURES = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div[3]//button"
+    ENTRY_LEVEL_ORDERNOW_BUTTON = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div[4]//button"
+    MID_LEVEL_FEATURES = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[3]//button"
+    MID_LEVEL_ORDERNOW_BUTTON = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[4]//button"
+    PROFESSIONALS_LEVEL_FEATURES = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[3]/div[3]//button"
+    PROFESSIONALS_LEVEL_ORDERNOW_BUTTON = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[3]/div[4]//button"
 
-    BILLING_NAME = "//body/div[5]//section//form/div/div/div[1]//input"
-    BILLING_COUNTRY = "//body/div[5]//section//form/div/div/div[2]//input"
-    BILLING_STATE = "//body/div[5]//section//form/div/div/div[3]//input"
-    BILLING_CITY = "//body/div[5]//section//form/div/div/div[4]//input"
-    BILLING_STREET = "//body/div[5]//section//form/div/div/div[5]//input"
-    BILLING_ZIPCODE = "//body/div[5]//section//form/div/div/div[6]//input"
-    PROCEED_BUTTON = "//body/div[5]//section//form/div/button"
-    BILLINGFORM_CLOSE_POPUP = "//body/div[5]//section/button[1]"
-    ENQUIRY_NOW_PROFESSIONAL = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[1]//button[2]"
-    BUY_NOW_FRESHER = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[2]//button[1]"
-    ENQUIRY_NOW_FRESHER = "//*[@id='root']/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[2]//button[2]"
+    RESUME_REVIEW = "//*[@id='root']/div/div[2]/div/div[3]//button"
+
+    EXPLORE_RESUME_TEMPLATES = "//*[@id='root']/div/div[2]/div/div[7]//button"
+    CLOSE_POPUP_RESUME_EXPLORE = "//button[@aria-label='Close']"
+    CLOSE_POPUP_BILLING_EXPLORE = "//body/div[6]//section/button"
+    PRIME_RESUME_ENTRY_LEVEL_FEATURES = "//body/div[5]/div/div/div/div/div/div[2]/div/div/div[1]/div[3]//button"
+    PRIME_RESUME_ENTRY_LEVEL_ORDERNOW_BUTTON = "//body/div[5]/div/div/div/div/div/div[2]/div/div/div[1]/div[4]//button"
+    PRIME_RESUME_MID_LEVEL_FEATURES = "//body/div[5]/div/div/div/div/div/div[2]/div/div/div[2]/div[3]//button"
+    PRIME_RESUME_MID_LEVEL_ORDERNOW_BUTTON = "//body/div[5]/div/div/div/div/div/div[2]/div/div/div[2]/div[4]//button"
+    PRIME_RESUME_PROFESSIONALS_LEVEL_FEATURES = "//body/div[5]/div/div/div/div/div/div[2]/div/div/div[3]/div[3]//button"
+    PRIME_RESUME_PROFESSIONALS_LEVEL_ORDERNOW_BUTTON = "//body/div[5]/div/div/div/div/div/div[2]/div/div/div[3]/div[4]//button"
+
+    BILLING_NAME = f"//body/div[5/6]//section//form/div/div/div[1]//input"
+    BILLING_COUNTRY = f"//body/div[5/6]//section//form/div/div/div[2]//input"
+    BILLING_STATE = f"//body/div[5/6]//section//form/div/div/div[3]//input"
+    BILLING_CITY = f"//body/div[5/6]//section//form/div/div/div[4]//input"
+    BILLING_STREET = f"//body/div[5/6]//section//form/div/div/div[5]//input"
+    BILLING_ZIPCODE = f"//body/div[5/6]//section//form/div/div/div[6]//input"
+    PROCEED_BUTTON = f"//body/div[5/6]//section//form/div/button"
+    BILLINGFORM_CLOSE_POPUP = f"//body/div[5/6]//section/button[1]"
 
     FORM_NAME = "//body/div[5]/div[3]/div/section/div/div/div[1]//input"  # same above content for forms as well
     FORM_EMAIL = "//body/div[5]/div[3]/div/section/div/div/div[2]//input"
     FORM_NUMBER = "//body/div[5]/div[3]/div/section/div/div/div[3]//input"
-    FORM_TEXT = "//body/div[5]/div[3]/div/section/div/div/div[4]//textarea"
+    UPLOAD_RESUME = "//body/div[5]/div[3]/div/section/div/div/div[4]//u"
     SUBMIT_BUTTON = "//button[text()='Submit']"
 
     PERSONALITY_ASSESSMENT = "//body/div[5]/div[2]/div/div/div/div/a[3]"
 
     LINKDIN_OPTIMIZATION = "//body/div[5]/div[2]/div/div/div/div/a[4]"
 
-    CLICK_RESUME = "//*[@id='root']/div/div[2]/div/div[2]/div[2]/div/div[{i}]/div"  # WE HAVE 21 RESUMES
-    CHOOSE_TEMPLATE = "//button[text()='Choose Template']"
-    CLOSE_POPUP = "//button[@aria-label='Close']"
     """GETTERS"""
 
     def get_products(self):
@@ -67,17 +81,47 @@ class Landing_page(Membership):
     def get_getstarted(self):
         return self.element_to_click(By.XPATH, self.GET_STARTED)
 
-    def get_buynowprofessional(self):
-        return self.element_to_click(By.XPATH, self.BUY_NOW_PROFESSIONAL)
+    def get_entrylevelfeatures(self):
+        return self.element_to_click(By.XPATH, self.ENTRY_LEVEL_FEATURES)
 
-    def get_enquirynowprofessional(self):
-        return self.element_to_click(By.XPATH, self.ENQUIRY_NOW_PROFESSIONAL)
+    def get_entrylevelbutton(self):
+        return self.element_to_click(By.XPATH, self.ENTRY_LEVEL_ORDERNOW_BUTTON)
 
-    def get_buynowfresher(self):
-        return self.element_to_click(By.XPATH, self.BUY_NOW_FRESHER)
+    def get_midlevelfeatures(self):
+        return self.element_to_click(By.XPATH, self.MID_LEVEL_FEATURES)
 
-    def get_enquirynowfresher(self):
-        return self.element_to_click(By.XPATH, self.ENQUIRY_NOW_FRESHER)
+    def get_midlevelbutton(self):
+        return self.element_to_click(By.XPATH, self.MID_LEVEL_ORDERNOW_BUTTON)
+
+    def get_professionallevelfeatures(self):
+        return self.element_to_click(By.XPATH, self.PROFESSIONALS_LEVEL_FEATURES)
+
+    def get_professionallevelbutton(self):
+        return self.element_to_click(By.XPATH, self.PROFESSIONALS_LEVEL_ORDERNOW_BUTTON)
+
+    def get_resumereview(self):
+        return self.element_to_click(By.XPATH, self.RESUME_REVIEW)
+
+    def get_exploreresumetemplatesbutton(self):
+        return self.element_to_click(By.XPATH, self.EXPLORE_RESUME_TEMPLATES)
+
+    def get_prime_entrylevelfeatures(self):
+        return self.element_to_click(By.XPATH, self.PRIME_RESUME_ENTRY_LEVEL_FEATURES)
+
+    def get_prime_entrylevelbutton(self):
+        return self.element_to_click(By.XPATH, self.PRIME_RESUME_ENTRY_LEVEL_ORDERNOW_BUTTON)
+
+    def get_prime_midlevelfeatures(self):
+        return self.element_to_click(By.XPATH, self.PRIME_RESUME_MID_LEVEL_FEATURES)
+
+    def get_prime_midlevelbutton(self):
+        return self.element_to_click(By.XPATH, self.PRIME_RESUME_MID_LEVEL_ORDERNOW_BUTTON)
+
+    def get_prime_professionallevelfeatures(self):
+        return self.element_to_click(By.XPATH, self.PRIME_RESUME_PROFESSIONALS_LEVEL_FEATURES)
+
+    def get_prime_professionallevelbutton(self):
+        return self.element_to_click(By.XPATH, self.PRIME_RESUME_PROFESSIONALS_LEVEL_ORDERNOW_BUTTON)
 
     def get_personlaityassessment(self):
         return self.element_to_click(By.XPATH, self.PERSONALITY_ASSESSMENT)
@@ -95,8 +139,7 @@ class Landing_page(Membership):
         return self.element_to_click(By.XPATH, self.CLOSE_FILTER)
 
     def get_choosecolor(self, i):
-        return self.element_to_click(By.XPATH,
-                                     f"//*[@id='root']/div/div[2]/div/div[2]/div[1]/div[2]/div/label[{i}]//span")
+        return self.element_to_click(By.XPATH, f"//*[@id='root']/div/div[2]/div/div[2]/div[1]/div[2]/div/label[{i}]//span")
 
     def get_clickresume(self, j):
         return self.element_to_click(By.XPATH, f"//*[@id='root']/div/div[2]/div/div[2]/div[2]/div/div[{j}]/div")
@@ -116,35 +159,35 @@ class Landing_page(Membership):
     def get_formnumber(self):
         return self.element_to_click(By.XPATH, self.FORM_NUMBER)
 
-    def get_formtext(self):
-        return self.element_to_click(By.XPATH, self.FORM_TEXT)
+    def get_uploadresume(self):
+        return self.element_to_click(By.XPATH, self.UPLOAD_RESUME)
 
     def get_submitbutton(self):
         return self.element_to_click(By.XPATH, self.SUBMIT_BUTTON)
 
-    def get_billingname(self):
-        return self.element_to_click(By.XPATH, self.BILLING_NAME)
+    def get_billingname(self, i):
+        return self.element_to_click(By.XPATH, f"//body/div[{i}]//section//form/div/div/div[1]//input")
 
-    def get_billingcountry(self):
-        return self.element_to_click(By.XPATH, self.BILLING_COUNTRY)
+    def get_billingcountry(self, i):
+        return self.element_to_click(By.XPATH, f"//body/div[{i}]//section//form/div/div/div[2]//input")
 
-    def get_billingcity(self):
-        return self.element_to_click(By.XPATH, self.BILLING_CITY)
+    def get_billingstate(self, i):
+        return self.element_to_click(By.XPATH, f"//body/div[{i}]//section//form/div/div/div[3]//input")
 
-    def get_billingstate(self):
-        return self.element_to_click(By.XPATH, self.BILLING_STATE)
+    def get_billingcity(self, i):
+        return self.element_to_click(By.XPATH, f"//body/div[{i}]//section//form/div/div/div[4]//input")
 
-    def get_billingstreet(self):
-        return self.element_to_click(By.XPATH, self.BILLING_STREET)
+    def get_billingstreet(self, i):
+        return self.element_to_click(By.XPATH, f"//body/div[{i}]//section//form/div/div/div[5]//input")
 
-    def get_billingzipcode(self):
-        return self.element_to_click(By.XPATH, self.BILLING_ZIPCODE)
+    def get_billingzipcode(self, i):
+        return self.element_to_click(By.XPATH, f"//body/div[{i}]//section//form/div/div/div[6]//input")
 
-    def get_proceedbutton(self):
-        return self.element_to_click(By.XPATH, self.PROCEED_BUTTON)
+    def get_proceedbuttonlandingpage(self, i):
+        return self.element_to_click(By.XPATH, f"//body/div[{i}]//section//form/div/button")
 
-    def get_billingformclosepopup(self):
-        return self.element_to_click(By.XPATH, self.BILLINGFORM_CLOSE_POPUP)
+    def get_billingformclosepopup(self, i):
+        return self.element_to_click(By.XPATH, f"//body/div[{i}]//section/button[1]")
 
     """SETTERS"""
 
@@ -160,11 +203,47 @@ class Landing_page(Membership):
     def click_getstarted(self):
         self.get_getstarted().click()
 
-    def click_buynowprofessional(self):
-        self.get_buynowprofessional().click()
+    def click_entrylevel(self):
+        self.get_entrylevelfeatures().click()
+        time.sleep(1)
+        self.get_entrylevelfeatures().click()
+        self.get_entrylevelbutton().click()
 
-    def click_enquirynowprofessional(self):
-        self.get_enquirynowprofessional().click()
+    def click_midlevel(self):
+        self.get_midlevelfeatures().click()
+        time.sleep(1)
+        self.get_midlevelfeatures().click()
+        self.get_midlevelbutton().click()
+
+    def click_professionallevel(self):
+        self.get_professionallevelfeatures().click()
+        time.sleep(1)
+        self.get_professionallevelfeatures().click()
+        self.get_professionallevelbutton().click()
+
+    def click_exploreresumetemplates(self):
+        self.get_exploreresumetemplatesbutton().click()
+
+    def click_prime_entrylevel(self):
+        self.get_prime_entrylevelfeatures().click()
+        time.sleep(1)
+        self.get_prime_entrylevelfeatures().click()
+        self.get_prime_entrylevelbutton().click()
+
+    def click_prime_midlevel(self):
+        self.get_prime_midlevelfeatures().click()
+        time.sleep(1)
+        self.get_prime_midlevelfeatures().click()
+        self.get_prime_midlevelbutton().click()
+
+    def click_prime_professionallevel(self):
+        self.get_prime_professionallevelfeatures().click()
+        time.sleep(1)
+        self.get_prime_professionallevelfeatures().click()
+        self.get_prime_professionallevelbutton().click()
+
+    def click_resumereview(self):
+        self.get_resumereview().click()
 
     def enter_formname(self, name):
         self.get_formname().click()
@@ -178,18 +257,11 @@ class Landing_page(Membership):
         self.get_formnumber().click()
         self.get_formnumber().send_keys(number)
 
-    def enter_formtext(self, text):
-        self.get_formtext().click()
-        self.get_formtext().send_keys(text)
+    def click_uploadresume(self):
+        self.get_uploadresume().click()
 
     def click_submitbutton(self):
         self.get_submitbutton().click()
-
-    def click_buynowfresher(self):
-        self.get_buynowfresher().click()
-
-    def click_enquirynowfresher(self):
-        self.get_enquirynowfresher().click()
 
     def click_personalityassessment(self):
         self.get_personlaityassessment().click()
@@ -218,54 +290,54 @@ class Landing_page(Membership):
     def click_closepopup(self):
         self.get_closepopup().click()
 
-    def enter_billingname(self, name):
-        self.get_billingname().click()
-        self.get_billingname().send_keys(name)
-        self.get_billingname().send_keys(Keys.TAB)
+    def enter_billingname(self, name, i):
+        self.get_billingname(i).click()
+        self.get_billingname(i).send_keys(name)
+        self.get_billingname(i).send_keys(Keys.TAB)
 
-    def enter_billingcountry(self, country):
-        self.get_billingcountry().click()
-        self.get_billingcountry().send_keys(country)
-        self.get_billingcountry().send_keys(Keys.ARROW_DOWN)
-        self.get_billingcountry().send_keys(Keys.ENTER)
+    def enter_billingcountry(self, country, i):
+        self.get_billingcountry(i).click()
+        self.get_billingcountry(i).send_keys(country)
+        self.get_billingcountry(i).send_keys(Keys.ARROW_DOWN)
+        self.get_billingcountry(i).send_keys(Keys.ENTER)
 
-    def enter_billingstate(self, state):
-        self.get_billingstate().click()
-        self.get_billingstate().send_keys(state)
-        self.get_billingstate().send_keys(Keys.ARROW_DOWN)
-        self.get_billingstate().send_keys(Keys.ENTER)
+    def enter_billingstate(self, state, i):
+        self.get_billingstate(i).click()
+        self.get_billingstate(i).send_keys(state)
+        self.get_billingstate(i).send_keys(Keys.ARROW_DOWN)
+        self.get_billingstate(i).send_keys(Keys.ENTER)
 
-    def enter_billingcity(self, city):
-        self.get_billingcity().click()
-        self.get_billingcity().send_keys(city)
-        self.get_billingcity().send_keys(Keys.TAB)
+    def enter_billingcity(self, city, i):
+        self.get_billingcity(i).click()
+        self.get_billingcity(i).send_keys(city)
+        self.get_billingcity(i).send_keys(Keys.TAB)
 
-    def enter_billingstreet(self, street):
-        self.get_billingstreet().click()
-        self.get_billingstreet().send_keys(street)
-        self.get_billingstreet().send_keys(Keys.TAB)
+    def enter_billingstreet(self, street, i):
+        self.get_billingstreet(i).click()
+        self.get_billingstreet(i).send_keys(street)
+        self.get_billingstreet(i).send_keys(Keys.TAB)
 
-    def enter_billingzipcode(self, zipcode):
-        self.get_billingzipcode().click()
-        self.get_billingzipcode().send_keys(zipcode)
-        self.get_billingzipcode().send_keys(Keys.TAB)
+    def enter_billingzipcode(self, zipcode, i):
+        self.get_billingzipcode(i).click()
+        self.get_billingzipcode(i).send_keys(zipcode)
+        self.get_billingzipcode(i).send_keys(Keys.TAB)
 
-    def click_proceedbutton(self):
-        self.get_proceedbutton().click()
+    def click_proceedbutton(self, i):
+        self.get_proceedbuttonlandingpage(i).click()
 
-    def click_billingfromclosepopup(self):
-        self.get_billingformclosepopup().click()
+    def click_billingfromclosepopup(self, i):
+        self.get_billingformclosepopup(i).click()
 
-    def enter_billingform(self, name, country, city, state, street, zipcode):
+    def enter_billingform(self, name, country, state, city, street, zipcode, i):
         parent_wind = self.driver.current_window_handle
         time.sleep(2)
-        self.enter_billingname(name)
-        self.enter_billingcountry(country)
-        self.enter_billingcity(city)
-        self.enter_billingstate(state)
-        self.enter_billingstreet(street)
-        self.enter_billingzipcode(zipcode)
-        self.click_proceedbutton()
+        self.enter_billingname(name, i)
+        self.enter_billingcountry(country, i)
+        self.enter_billingstate(state, i)
+        self.enter_billingcity(city, i)
+        self.enter_billingstreet(street, i)
+        self.enter_billingzipcode(zipcode, i)
+        self.click_proceedbutton(i)
         time.sleep(3)
         all_handles = self.driver.window_handles
         for handle in all_handles:
@@ -279,12 +351,12 @@ class Landing_page(Membership):
                 break
         self.driver.switch_to.window(parent_wind)
 
-    def landingpage(self, name, email, number, text, country, state, city, street, zipcode):
+    def landingpage(self, name, email, number, country, state, city, street, zipcode):
         self.click_signup()
         time.sleep(2)
         self.driver.back()
 
-        # # # Resume Builder
+        # Resume Builder
         self.click_productslink()
         time.sleep(2)
         self.click_resumebuilder()
@@ -313,36 +385,68 @@ class Landing_page(Membership):
         time.sleep(2)
         self.click_hireresumewriter()
         self.click_getstarted()
-        self.click_buynowprofessional()
+        self.click_entrylevel()
         time.sleep(2)
         self.login()
         time.sleep(2)
-        self.enter_billingform(name, country, city, state, street, zipcode)
-        self.click_billingfromclosepopup()
+        self.enter_billingform(name, country, state, city, street, zipcode, 5)
+        self.click_billingfromclosepopup(5)
         self.page_down()
         time.sleep(5)
-        self.click_enquirynowprofessional()
-        self.enter_formname(name)
-        self.enter_formemail(email)
-        self.enter_formnumber(number)
-        self.enter_formtext(text)
-        self.click_submitbutton()
-        time.sleep(2)
 
-        self.click_productslink()
-        time.sleep(2)
-        self.click_hireresumewriter()
-        self.click_buynowfresher()
-        self.enter_billingform(name, country, city, state, street, zipcode)
-        self.click_billingfromclosepopup()
+        # self.click_productslink()
+        # time.sleep(2)
+        # self.click_hireresumewriter()
+        self.click_midlevel()
+        time.sleep(1)
+        self.enter_billingform(name, country, state, city, street, zipcode, 5)
+        self.click_billingfromclosepopup(5)
         time.sleep(2)
         self.page_down()
-        self.click_enquirynowfresher()
+
+        self.click_professionallevel()
+        time.sleep(1)
+        self.enter_billingform(name, country, state, city, street, zipcode, 5)
+        self.click_billingfromclosepopup(5)
+        time.sleep(2)
+        self.page_down()
+        self.page_down()
+
+        #  Free Resume Review
+        self.click_resumereview()
         self.enter_formname(name)
         self.enter_formemail(email)
         self.enter_formnumber(number)
-        self.enter_formtext(text)
+        self.click_uploadresume()
         self.click_submitbutton()
+        self.page_down()
+        self.page_down()
+
+        self.click_exploreresumetemplates()
+        self.page_down()
+        for j in range(1, 22):
+            self.click_clickresume(j)
+            time.sleep(2)
+            if j == 1:
+                self.click_prime_entrylevel()
+                self.enter_billingform(name, country, state, city, street, zipcode, 6)
+                self.click_billingfromclosepopup(6)
+                time.sleep(2)
+                self.click_closepopup()
+            elif j == 2:
+                self.click_prime_midlevel()
+                self.enter_billingform(name, country, state, city, street, zipcode, 6)
+                self.click_billingfromclosepopup(6)
+                time.sleep(2)
+                self.click_closepopup()
+            elif j == 3:
+                self.click_prime_professionallevel()
+                self.enter_billingform(name, country, state, city, street, zipcode, 6)
+                self.click_billingfromclosepopup(6)
+                time.sleep(2)
+                self.click_closepopup()
+            else:
+                self.click_closepopup()
         time.sleep(2)
 
         # Personality assessment
@@ -350,6 +454,8 @@ class Landing_page(Membership):
         time.sleep(2)
         self.click_personalityassessment()
         time.sleep(2)
+        self.driver.back()
+        self.driver.back()
         self.driver.back()
 
         # Linkdin optimization

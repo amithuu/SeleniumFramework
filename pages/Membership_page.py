@@ -19,7 +19,7 @@ class Membership(BaseDriver):
     CITY = "//form/div/div/div[4]//input"
     STREET = "//form/div/div/div[5]//input"
     ZIP_CODE = "//form/div/div/div[6]//input"
-    PROCEED_BUTTON = "//button[text()='Proceed']"
+    PROCEED_BUTTON_MEMBSERSHIP = "//button[text()='Proceed']"
     SUCCESS = "//a[text()='Success']"
     SUBSCRIBE_BUTTON = "//*[@type='submit' and @id='submit-button']"
     CLOSE_TAB = "//button[text()='Close this Tab']"
@@ -84,7 +84,7 @@ class Membership(BaseDriver):
         return self.element_to_click(By.XPATH, self.ZIP_CODE)
 
     def get_proceedbutton(self):
-        return self.element_to_click(By.XPATH, self.PROCEED_BUTTON)
+        return self.element_to_click(By.XPATH, self.PROCEED_BUTTON_MEMBSERSHIP)
 
     def get_successlink(self):
         return self.element_to_click(By.XPATH, self.SUCCESS)
