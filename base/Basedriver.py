@@ -92,7 +92,7 @@ class BaseDriver:
 
     def login(self):
         self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()
-        self.wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("autotest32@g.co")
+        self.wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("autotest30@g.co")
         self.wait.until(ec.element_to_be_clickable((By.NAME, "password"))).send_keys("New@1234")
         self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()
         time.sleep(3)

@@ -28,10 +28,10 @@ def setup(url, browser, request):
     wait = WebDriverWait(driver, 10)
     driver.maximize_window()
 
-    """ Login Page"""
-    wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("amithtalentplace@gmail.com")
-    wait.until(ec.element_to_be_clickable((By.NAME, "password"))).send_keys("New@1234")
-    wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()
+    # """ Login Page"""
+    # wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("amithtalentplace@gmail.com")
+    # wait.until(ec.element_to_be_clickable((By.NAME, "password"))).send_keys("New@1234")
+    # wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()
     time.sleep(3)
 
     request.cls.driver = driver
