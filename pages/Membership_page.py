@@ -20,7 +20,7 @@ class Membership(BaseDriver):
     STREET = "//form/div/div/div[5]//input"
     ZIP_CODE = "//form/div/div/div[6]//input"
     PROCEED_BUTTON_MEMBSERSHIP = "//button[text()='Proceed']"
-    SUCCESS_LANDING_PAGE = "//a[text()='Success']"
+    SUCCESS_MEMBERSHIP = "//a[text()='Success']"
     SUBSCRIBE_BUTTON = "//*[@type='submit' and @id='submit-button']"
     CLOSE_TAB = "//button[text()='Close this Tab']"
     REFRESH = "//*[text()='Refresh']"
@@ -86,8 +86,8 @@ class Membership(BaseDriver):
     def get_proceedbutton(self):
         return self.element_to_click(By.XPATH, self.PROCEED_BUTTON_MEMBSERSHIP)
 
-    def get_successlinklandingpage(self):
-        return self.element_to_click(By.XPATH, self.SUCCESS_LANDING_PAGE)
+    def get_successlinkmembership(self):
+        return self.element_to_click(By.XPATH, self.SUCCESS_MEMBERSHIP)
 
     def get_subscribe(self):
         return self.element_to_click(By.XPATH, self.SUBSCRIBE_BUTTON)
@@ -140,8 +140,8 @@ class Membership(BaseDriver):
     def click_proceed(self):
         self.get_proceedbutton().click()
 
-    def click_successlinklandingpage(self):
-        self.get_successlinklandingpage().click()
+    def click_successlinkmembership(self):
+        self.get_successlinkmembership().click()
 
     def click_subscribe(self):
         self.get_subscribe().click()
@@ -182,7 +182,7 @@ class Membership(BaseDriver):
                         self.page_end()
                         time.sleep(5)
                         if user == "new":
-                            self.click_successlinklandingpage()
+                            self.click_successlinkmembership()
                             time.sleep(2)
                         self.click_subscribe()
                         time.sleep(3)
@@ -237,7 +237,7 @@ class Membership(BaseDriver):
                         self.page_end()
                         time.sleep(5)
                         if user == "new":
-                            self.click_successlinklandingpage()
+                            self.click_successlinkmembership()
                             time.sleep(2)
                         self.click_subscribe()
                         time.sleep(3)

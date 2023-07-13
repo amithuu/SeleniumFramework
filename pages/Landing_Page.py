@@ -56,6 +56,7 @@ class Landing_page(Membership):
     BILLING_ZIPCODE = f"//body/div[5/6]//section//form/div/div/div[6]//input"
     PROCEED_BUTTON = f"//body/div[5/6]//section//form/div/button"
     BILLINGFORM_CLOSE_POPUP = f"//body/div[5/6]//section/button[1]"
+    SUCCESS_LANDING_PAGE = "//a[text()='Success']"
 
     FORM_NAME = "//body/div[5]/div[3]/div/section/div/div/div[1]//input"  # same above content for forms as well
     FORM_EMAIL = "//body/div[5]/div[3]/div/section/div/div/div[2]//input"
@@ -189,6 +190,9 @@ class Landing_page(Membership):
     def get_billingformclosepopup(self, i):
         return self.element_to_click(By.XPATH, f"//body/div[{i}]//section/button[1]")
 
+    def get_successlinklandingpage(self):
+        return self.element_to_click(By.XPATH, self.SUCCESS_LANDING_PAGE)
+
     """SETTERS"""
 
     def click_productslink(self):
@@ -291,6 +295,9 @@ class Landing_page(Membership):
     def click_closepopup(self):
         self.get_closepopup().click()
 
+    def click_successlinklandingpage(self):
+        self.get_successlinklandingpage().click()
+
     def enter_billingname(self, name, i):
         self.get_billingname(i).click()
         self.get_billingname(i).send_keys(name)
@@ -345,8 +352,9 @@ class Landing_page(Membership):
             if handle != parent_wind:
                 self.driver.switch_to.window(handle)
                 self.page_end()
+                time.sleep(5)
                 self.click_successlinklandingpage()
-                time.sleep(1)
+                time.sleep(2)
                 self.click_subscribe()
                 time.sleep(2)
                 self.click_closetab()
@@ -402,6 +410,8 @@ class Landing_page(Membership):
         time.sleep(2)
         self.click_hireresumewriter()
         self.click_midlevel()
+        time.sleep(2)
+        self.login()
         time.sleep(1)
         self.enter_billingform(name, country, state, city, street, zipcode, 5)
         self.click_billingfromclosepopup(5)
