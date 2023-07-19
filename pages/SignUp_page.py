@@ -2,6 +2,7 @@ import time
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
+from selenium.webdriver.support import expected_conditions as ec
 # firstname = "test"
 # lastname = "talentPlace"
 # email = f"prod{k}@g.co"
@@ -24,7 +25,9 @@ class Signup(BaseDriver):
     FIRST_NAME = "//*[@name='firstName']"
     LAST_NAME = "//*[@name='lastName']"
     EMAIL = "//*[@name='email']"
-    PHONE_NO = "//*[@class='form-control telephone-input']"
+    PHONE_NO = "//input[@type='tel']"
+    COUNTRY_FLAG = "//*[@class='selected-flag']"
+    COUNTRY_DROPDOWN = "//*[@class = 'country-list']/li/span"
     DOB = "//*[@name='dob']"
     GENDER = "//*[@name='gender']"
     PASSWORD = "//*[@name='password']"
@@ -46,6 +49,12 @@ class Signup(BaseDriver):
 
     def get_phoneno(self):
         return self.element_to_click(By.XPATH, self.PHONE_NO)
+
+    def get_countaryflag(self):
+        return self.element_to_click(By.XPATH, self.COUNTRY_FLAG)
+
+    def get_countrydropdown(self):
+        return self.presence_of_all_element(By.XPATH, self.COUNTRY_DROPDOWN)
 
     def get_dob(self):
         return self.element_to_click(By.XPATH, self.DOB)
@@ -81,10 +90,21 @@ class Signup(BaseDriver):
         self.get_email().send_keys(email)
         self.get_email().send_keys(Keys.TAB)
 
-    def enter_phoneno(self, phone_number):
+    def click_countryflag(self):
+        self.get_countaryflag().click()
+
+    def select_countarydropdown(self, countryname):
+        # I am storing the all the list of country flags in this list and taking which ever I need by sending its country name.
+        country_list = self.get_countrydropdown()
+        for country in country_list:
+            if countryname in country.text:
+                country.click()
+                break
+
+    def enter_phonenumber(self, phoneno):
         self.get_phoneno().click()
         self.get_phoneno().send_keys(Keys.CONTROL + "a")
-        self.get_phoneno().send_keys(phone_number)
+        self.get_phoneno().send_keys(phoneno)
 
     def enter_dob(self, date_of_birth):
         self.get_dob().click()
@@ -97,7 +117,7 @@ class Signup(BaseDriver):
         self.get_gender().send_keys(gender)
         self.get_gender().send_keys(Keys.TAB)
 
-    def enter_location(self, location):
+    def enter_location(self):
         self.get_location().click()
         self.get_location().send_keys(Keys.CONTROL + "a")
         self.get_location().send_keys("Bangalore, Karnataka, India")
@@ -109,15 +129,16 @@ class Signup(BaseDriver):
     def enter_confirmpassword(self, confirm_password):
         self.get_confirmpassword().send_keys(confirm_password)
 
-    def sign_up(self, firstname, lastname, email, phone_no, dob, gender, location, password, confirm_password):
+    def sign_up(self, firstname, lastname, email, countaryname, phone_no, password, confirm_password):
         self.click_signupbutton()
         self.enter_firstname(firstname)
         self.enter_lastname(lastname)
         self.enter_email(email)
-        self.enter_phoneno(phone_no)
-        self.enter_dob(dob)
-        self.enter_gender(gender)
-        self.enter_location(location)
+        self.click_countryflag()
+        self.select_countarydropdown(countaryname)
+        time.sleep(5)
+        self.enter_phonenumber(phone_no)
         self.enter_password(password)
         self.enter_confirmpassword(confirm_password)
         self.click_signupbutton()
+        time.sleep(5)

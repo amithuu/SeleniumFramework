@@ -57,6 +57,12 @@ linkdin = "https://www.linkedin.com/in/amith-kulkarni-1326241b4"
 headline = "Automation Developer"
 firstname = "Amith"
 lastname = "talentPlace"
+k = 76
+email = f"autotest{k}@g.co"
+phone_no = f"11234567890"
+countryname = ["Indonesia", "United States"]
+password = "New@1234"
+confirm_password = "New@1234"
 description = ["Listing projects on your resume allows hiring managers", " It's important to list your most relevant projects on your resume.", "List the skills you want to highlight", "Think of the specific projects you want to include."]
 
 
@@ -89,8 +95,9 @@ class TestCases:
         self.myp = MyProfile(self.driver, self.wait)
         self.lan = Landing_page(self.driver, self.wait)
 
-    # def test_signUp(self): BCZ of  Line 60
-    #     self.sup.sign_up(firstname, lastname, email, phone_no, dob, gender, location, password, confirm_password)
+    @pytest.mark.signup
+    def test_signUp(self): #BCZ of  Line 60
+        self.sup.sign_up(firstname, lastname, email, countryname[1], phone_no, password, confirm_password)
 
     def test_welcome_page(self):
         self.wcl.welcomepage()

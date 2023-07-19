@@ -1,24 +1,18 @@
 import time
 import pytest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
-from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.chrome.service import Service
+chrome_path = Service(executable_path="/home/chiku/webdriver_manager")
+options = webdriver.ChromeOptions()
 
 
 @pytest.fixture(scope="class")
 def setup(url, browser, request):
     if browser == "chrome":
-        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
-    elif browser == "firefox":
-        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
-    elif browser == "edge":
-        driver = webdriver.Edge(EdgeChromiumDriverManager().install())
+        driver = webdriver.Chrome(service=chrome_path, options=options)
     else:
-        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=chrome_path, options=options)
 
     # driver.get("https://test-talentplace.vercel.app/login")
     # driver.get("https://www.talentplace.ai/login")
