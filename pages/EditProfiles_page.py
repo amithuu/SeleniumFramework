@@ -14,17 +14,17 @@ class EditProfiles(BaseDriver):
     ADD_BUTTON = "//*[@id = 'root']/div[2]/div[2]/div/div/div[2]/div[1]//button"
 
     """GETTERS"""
-    def get_addbutton(self):
-        return self.element_to_click(By.XPATH, self.ADD_BUTTON)
+    def get_addbutton(self, i):
+        return self.element_to_click(By.XPATH, f"//*[@id = 'root']/div[2]/div[2]//div[2]/div/div[{i}]//button")
     
     """SETTERS"""
     
-    def click_addbutton(self):
-        self.get_addbutton().click()
+    def click_addbutton(self, i):
+        self.get_addbutton(i).click()
 
-    def editprofiles(self):
+    def editprofiles(self, i):
         self.dashboard()
         self.edit_profile()
-        for i in range(1, 11):
-            self.click_addbutton()
+        for i in range(1, 17):
+            self.click_addbutton(i)
         self.save()

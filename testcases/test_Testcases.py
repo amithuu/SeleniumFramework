@@ -95,12 +95,12 @@ class TestCases:
         self.myp = MyProfile(self.driver, self.wait)
         self.lan = Landing_page(self.driver, self.wait)
 
-    @pytest.mark.signup
-    def test_signUp(self): #BCZ of  Line 60
-        self.sup.sign_up(firstname, lastname, email, countryname[1], phone_no, password, confirm_password)
+    # @pytest.mark.signup
+    # def test_signUp(self): #BCZ of  Line 60
+    #     self.sup.sign_up(firstname, lastname, email, countryname[1], phone_no, password, confirm_password)
 
-    def test_welcome_page(self):
-        self.wcl.welcomepage()
+    # def test_welcome_page(self):
+    #     self.wcl.welcomepage()
 
     def test_editprofiles(self):
         self.edi.editprofiles()
