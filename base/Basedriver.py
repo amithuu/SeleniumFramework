@@ -86,9 +86,13 @@ class BaseDriver:
         discard = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Discard']")))
         discard.click()
 
-    # def select(self, path):
-    #     author_title = Select(self.driver.find_element(By.XPATH, f"{path}"))
-    #     author_title.select_by_visible_text()
+    def select(self, path, text):
+        author_title = Select(self.driver.find_element(By.XPATH, f"{path}"))
+        author_title.select_by_visible_text(text)
+
+    def backto_menu(self):
+        back_to_menu = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//a//button")))
+        back_to_menu.click()
 
     def login(self):
         self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()

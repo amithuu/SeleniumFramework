@@ -22,9 +22,9 @@ class EditProfiles(BaseDriver):
     def click_addbutton(self, i):
         self.get_addbutton(i).click()
 
-    def editprofiles(self, i):
-        self.dashboard()
+    def editprofiles(self):
+        # self.dashboard()
         self.edit_profile()
-        for i in range(1, 17):
+        for i in range(1, 15):
             self.click_addbutton(i)
         self.save()

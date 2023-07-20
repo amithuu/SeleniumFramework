@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from pages.Assessment_page import Assessment
 from pages.Carriersummary_page import Carrier
@@ -22,18 +24,18 @@ from pages.Membership_page import Membership
 from pages.Settings_page import Setting
 from pages.Myprofie_page import MyProfile
 from pages.Landing_Page import Landing_page
+from pages.Profile_picture import Profile_picture
 # Variables
 
 language = ["kannada", "english", "hindi"]
 proficiency = ["beg", "adv", "inter"]
-location = ["bangalore", "delhi", "561203"]
-companyname = ["IBM", "Google", "Cognizant"]
-jobtype = ["full time", "intern", "part time", "freelance", "contract"]
+
+companyname = ["ibm", "Google", "Cognizant"]
+jobtype = ["full time", "intern", "part time", "freelancing", "contract"]
 experience = ["Advanced Technologies", "IT Services", "Agri-business"]
 organization = ["startup", "small", "mnc"]
 based = ["product", "service", "both"]
-date = "25041999"
-month = ["jan", "feb", "march", "may", "june", "july"]
+month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 year = ["1900", "1910", "1920", "1930", "1940", "2000", "2001", "2002"]
 designation = ["Developer", "Automation", "Manualtester", "frontend", "backend"]
 managementlevel = ["jun", "sen", "mid"]
@@ -53,10 +55,17 @@ servicetype = ["Buynow", "Enquire Now"]
 membership_type = ["Resume Builder", "Professional Service"]
 user_settings = ["editprofile", "changepassword", "changemobile", "cancelsubsription"]
 user_myprofile = ["shareprofile", "downloadresume", "editprofile"]
-linkdin = "https://www.linkedin.com/in/amith-kulkarni-1326241b4"
-headline = "Automation Developer"
 firstname = "Amith"
 lastname = "talentPlace"
+location = ["Bangalore", "Delhi", "Sydney"]
+date = "03251999"
+currency = ["inr", "usd"]
+gender = ["male", "female", "not mention"]
+social_media = ["twitter", "linkdin", "instagram", "facebook", "github", "dribble"]
+social_medialink = ["https://twitter.com/AmithKulkarni18", "https://www.linkedin.com/in/amith-kulkarni-1326241b4", "https://instagram.com/AmithKulkarni18", "https://facebook.com/AmithKulkarni18", "https://github.com/amithuu", "https://dribble.com/AmithKulkarni18"]
+
+headline = "Automation Developer"
+
 k = 76
 email = f"autotest{k}@g.co"
 phone_no = f"11234567890"
@@ -94,6 +103,7 @@ class TestCases:
         self.set = Setting(self.driver, self.wait)
         self.myp = MyProfile(self.driver, self.wait)
         self.lan = Landing_page(self.driver, self.wait)
+        self.pic = Profile_picture(self.driver, self.wait)
 
     # @pytest.mark.signup
     # def test_signUp(self): #BCZ of  Line 60
@@ -102,22 +112,31 @@ class TestCases:
     # def test_welcome_page(self):
     #     self.wcl.welcomepage()
 
+    @pytest.mark.editprofiles
     def test_editprofiles(self):
         self.edi.editprofiles()
 
     @pytest.mark.personaldetails
     def test_personal_details(self):
+        self.per.edit_profile()
         for i in range(1):
-            self.per.personaldetails(firstname, lastname, date, year[i], location[i], headline, linkdin)
-        self.next()
+            self.per.personaldetails(firstname, lastname, location[2], gender[2], date, currency[1], month[8], "2022", social_media[3], social_medialink[3])
+        self.per.backto_menu()
+
+    @pytest.mark.profilepicture
+    def test_profilepicture(self):
+        self.pic.edit_profile()
+        self.pic.picturestatus(headline)
+        self.pic.backto_menu()
+        time.sleep(2)
 
     @pytest.mark.jobrole
     def test_jobrole(self):
         self.job.edit_profile()
-        self.job.click_experiencedashboard()
-        for i in range(3):
-            self.job.addcompany(i, companyname[i], jobtype[i], experience[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], year[i], year[i+1], startsalary[i], endsalary[i])
-        self.job.next()
+        self.job.click_experience_editprofile()
+        for i in range(1):
+            self.job.addcompany(i, companyname[i], jobtype[i])
+            # ", jobtype[i], experience[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], year[i], year[i+1], startsalary[i], endsalary[i]"
 
     @pytest.mark.projects
     def test_projects(self):

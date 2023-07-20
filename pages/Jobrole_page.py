@@ -1,6 +1,8 @@
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Keys
+from selenium.webdriver.support.ui import Select
+
 from base.Basedriver import BaseDriver
 
 
@@ -11,14 +13,26 @@ class JobRole(BaseDriver):
         self.wait = wait
 
     # Locators
-    experience_dashboard = "//*[text()='Experience']"
+    experience_editprofiles = "//*[text()='Experience']"
+
     addcompany_button = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]//button"
-    company_name = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div[1]/div[1]//input"
-    job_type = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div[2]/div[1]//input"
-    experience = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div[2]/div[2]//input"
-    organization = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div[3]/div[1]//input"
-    based = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div[3]/div[2]//input"
-    save_company = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div//button"
+
+    company_name = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]//input"
+    companyname_list = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[2]//li/div"
+
+    nature_work = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[1]//input"
+    naturework_list = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[1]/div/div/div[2]//div/div/li/div"
+
+    industry = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[2]//input"
+    industry_list = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div[2]//div/div/li/div"
+
+    organization_type = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[1]//input"
+    organization_list = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[1]/div/div/div[2]//div/div/li/div"
+
+    based = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[2]//input"
+    based_list = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[2]/div/div/div[2]//div/div/li/div"
+
+    save_next = "//button[text()='Save and Next']"
 
     addrole_button = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div/div[{s+1}]//ul//button"
     designation = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div[2]/div[1]/div/form/div/div[1]/div[1]/div[1]//input"
@@ -40,7 +54,7 @@ class JobRole(BaseDriver):
 
     """GETTERS"""
     def get_experience_dashbaord(self):
-        return self.element_to_click(By.XPATH, self.experience_dashboard)
+        return self.element_to_click(By.XPATH, self.experience_editprofiles)
 
     def get_addcompanybutton(self):
         return self.element_to_click(By.XPATH, self.addcompany_button)
@@ -48,14 +62,20 @@ class JobRole(BaseDriver):
     def get_companyname(self):
         return self.element_to_click(By.XPATH, self.company_name)
 
-    def get_jobtype(self):
-        return self.element_to_click(By.XPATH, self.job_type)
+    def get_company_list(self):
+        return self.presence_of_all_element(By.XPATH, self.companyname_list)
+
+    def get_nature_of_work(self):
+        return self.element_to_click(By.XPATH, self.nature_work)
+
+    def get_naturework_list(self):
+        return self.presence_of_all_element(By.XPATH, self.naturework_list)
 
     def get_experience(self):
-        return self.element_to_click(By.XPATH, self.experience)
+        return self.element_to_click(By.XPATH, self.industry)
 
     def get_organization(self):
-        return self.element_to_click(By.XPATH, self.organization)
+        return self.element_to_click(By.XPATH, self.organization_type)
 
     def get_based(self):
         return self.element_to_click(By.XPATH, self.based)
@@ -108,14 +128,14 @@ class JobRole(BaseDriver):
     def get_backtocompany(self):
         return self.element_to_click(By.XPATH, self.back_to_company)
 
-    def get_savecompany(self):
-        return self.element_to_click(By.XPATH, self.save_company)
+    def get_save_next(self):
+        return self.element_to_click(By.XPATH, self.save_next)
 
     def get_saverole(self):
         return self.element_to_click(By.XPATH, self.save_role)
 
     """SETTERS"""
-    def click_experiencedashboard(self):
+    def click_experience_editprofile(self):
         self.get_experience_dashbaord().click()
 
     def click_addcompanybutton(self):
@@ -124,12 +144,24 @@ class JobRole(BaseDriver):
     def enter_companyname(self, companyname):
         self.get_companyname().click()
         self.get_companyname().send_keys(companyname)
-        self.get_companyname().send_keys(Keys.TAB)
+        time.sleep(2)
+        company_name = self.get_company_list()
 
-    def enter_jobtype(self, jobtype):
-        self.get_jobtype().click()
-        self.get_jobtype().send_keys(jobtype)
-        self.get_jobtype().send_keys(Keys.TAB)
+        for companies in company_name:
+            if companyname in companies.text.casefold():
+                companies.click()
+                break
+
+    def enter_nature_of_work(self, jobtype):
+        self.get_nature_of_work().click()
+        self.get_nature_of_work().send_keys(jobtype)
+        time.sleep(2)
+        job_type = self.get_naturework_list()
+
+        for naturework in job_type:
+            if jobtype in naturework.text.casefold():
+                naturework.click()
+                break
 
     def enter_experience(self, experience):
         self.get_experience().click()
@@ -146,8 +178,8 @@ class JobRole(BaseDriver):
         self.get_based().send_keys(based)
         self.get_based().send_keys(Keys.TAB)
 
-    def click_save(self):
-        self.get_savecompany().click()
+    def click_savenext(self):
+        self.get_save_next().click()
 
     def enter_designation(self, designation):
         self.get_designation().click()
@@ -220,31 +252,33 @@ class JobRole(BaseDriver):
     def click_backtocompany(self):
         self.get_backtocompany().click()
 
-    def addcompany(self, s, companyname, jobtype, experience, organization, based, designation, managemnetlevel, location, functionalarea, skill, expertise, startyear, endyear, startsalary, endsalary):
-        self.click_addcompanybutton()
+    # " jobtype, experience, organization, based, designation, managemnetlevel, location, functionalarea, skill, expertise, startyear, endyear, startsalary, endsalary"
+    def addcompany(self, s, companyname, jobtype):
+        # self.click_addcompanybutton()
         self.enter_companyname(companyname)
-        self.enter_jobtype(jobtype)
-        self.enter_experience(experience)
-        self.enter_organization(organization)
-        self.enter_based(based)
-        self.click_save()
-        # add job role
-        for a in range(1, 3):
-            self.element_to_click(By.XPATH, f"//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div/div[{s+1}]//ul//button").click()
-            self.enter_designation(designation)
-            self.enter_managementlevel(managemnetlevel)
-            self.enter_location(location)
-            self.enter_functionalarea(functionalarea)
-            self.enter_skill(skill)
-            self.enter_expertise(expertise)
-            self.enter_startdate(startyear)
-            self.enter_enddate(endyear)
-            self.enter_startsalary(startsalary)
-            self.enter_endsalary(endsalary)
-            # self.click_generatesuggestion()
-            self.click_saverole()
-            time.sleep(3)
-            self.click_backtocompany()
+        self.enter_nature_of_work(jobtype)
+        self.click_savenext()
+        time.sleep(2)
+        # self.enter_experience(experience)
+        # self.enter_organization(organization)
+        # self.enter_based(based)
+        # # add job role
+        # for a in range(1, 3):
+        #     self.element_to_click(By.XPATH, f"//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div/div[{s+1}]//ul//button").click()
+        #     self.enter_designation(designation)
+        #     self.enter_managementlevel(managemnetlevel)
+        #     self.enter_location(location)
+        #     self.enter_functionalarea(functionalarea)
+        #     self.enter_skill(skill)
+        #     self.enter_expertise(expertise)
+        #     self.enter_startdate(startyear)
+        #     self.enter_enddate(endyear)
+        #     self.enter_startsalary(startsalary)
+        #     self.enter_endsalary(endsalary)
+        #     # self.click_generatesuggestion()
+        #     self.click_saverole()
+        #     time.sleep(3)
+        #     self.click_backtocompany()
 
 
 
