@@ -368,6 +368,9 @@ class JobRole(BaseDriver):
             self.enter_salary(startsalary, endsalary)
             # self.click_generatesuggestion()
             self.save()
+            time.sleep(3)
+            self.driver.refresh()
+            time.sleep(3)
             self.click_back_to_company()
             time.sleep(1)
             self.click_add_another_company()
@@ -392,6 +395,8 @@ class JobRole(BaseDriver):
             # self.click_generatesuggestion()
             self.save()
             time.sleep(3)
+            self.driver.refresh()
+            time.sleep(5)
             self.click_back_to_company()
 
 
