@@ -1,5 +1,4 @@
 import time
-
 import pytest
 from pages.Assessment_page import Assessment
 from pages.Carriersummary_page import Carrier
@@ -32,16 +31,16 @@ proficiency = ["beg", "adv", "inter"]
 
 companyname = ["ibm", "Google", "Cognizant"]
 jobtype = ["full time", "intern", "part time", "freelancing", "contract"]
-experience = ["Advanced Technologies", "IT Services", "Agri-business"]
-organization = ["startup", "small", "mnc"]
+industry = ["advanced", "it Services", "agri"]
+organization = ["startup", "small", "medium", "large", "mnc"]
 based = ["product", "service", "both"]
-month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+month = ["month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 year = ["1900", "1910", "1920", "1930", "1940", "2000", "2001", "2002"]
-designation = ["Developer", "Automation", "Manualtester", "frontend", "backend"]
-managementlevel = ["jun", "sen", "mid"]
-functionalarea = ["development", "human", "marketing"]
+designation = ["developer", "automation", "manualtester", "frontend", "backend"]
+managementlevel = ["cxo", "jun", "sen", "mid", "owner"]
+functionalarea = ["administ", "customer", "development", "distribution", "finance", "human", "ict", "management", "marketing", "production"]
 skill = ["java", "python", "c prog", "automation", "php"]
-expertise = ["beg", "skil", "expert"]
+expertise = ["beg", "average", "skill", "expert", "advanced"]
 startsalary = ["12", "3213", "214"]
 endsalary = ["21433", "2136832", "812765"]
 degree = ["10th", "12th", "bsc", "mca", "phd"]
@@ -120,7 +119,7 @@ class TestCases:
     def test_personal_details(self):
         self.per.edit_profile()
         for i in range(1):
-            self.per.personaldetails(firstname, lastname, location[2], gender[2], date, currency[1], month[8], "2022", social_media[3], social_medialink[3])
+            self.per.personaldetails(firstname, lastname, location[1], gender[0], date, currency[0], month[12], "2022", social_media[0], social_medialink[0])
         self.per.backto_menu()
 
     @pytest.mark.profilepicture
@@ -134,9 +133,8 @@ class TestCases:
     def test_jobrole(self):
         self.job.edit_profile()
         self.job.click_experience_editprofile()
-        for i in range(1):
-            self.job.addcompany(i, companyname[i], jobtype[i])
-            # ", jobtype[i], experience[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], year[i], year[i+1], startsalary[i], endsalary[i]"
+        for i in range(3):
+            self.job.addcompany(user[1], companyname[i], jobtype[i], industry[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[2], year[i], month[4], year[i+1], startsalary[i], endsalary[i])
 
     @pytest.mark.projects
     def test_projects(self):
@@ -146,7 +144,7 @@ class TestCases:
     @pytest.mark.education
     def test_education(self):
         for i in range(3):
-            self.edu.education(i, degree[i], university[i], location[i], cgpa[i], year[i], year[i+1], description[i], description[i+1])
+            self.edu.education(i, degree[i], university[i], location[i], cgpa[i], month[2], year[i], year[i+1], description[i], description[i+1])
 
     @pytest.mark.certificate
     def test_certificate(self):

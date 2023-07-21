@@ -86,8 +86,8 @@ class BaseDriver:
         discard = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Discard']")))
         discard.click()
 
-    def select(self, path, text):
-        author_title = Select(self.driver.find_element(By.XPATH, f"{path}"))
+    def select_options(self, path, text):
+        author_title = Select(path)
         author_title.select_by_visible_text(text)
 
     def backto_menu(self):
