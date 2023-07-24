@@ -26,16 +26,15 @@ from pages.Landing_Page import Landing_page
 from pages.Profile_picture import Profile_picture
 # Variables
 
-language = ["kannada", "english", "hindi"]
-proficiency = ["beg", "adv", "inter"]
 
+user = ["new", "old", "Renew"]
 companyname = ["ibm", "google", "cognizant"]
 jobtype = ["full time", "intern", "part time", "freelancing", "contract"]
 industry = ["advanced", "automation", "agri"]
 organization = ["startup", "small", "medium", "large", "mnc"]
 based = ["product", "service", "both"]
 month = ["month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-year = ["1900", "1910", "1920", "1930", "1940", "2000", "2001", "2002"]
+year = ["1900", "1910", "1920", "1930", "1940", "2000", "2001", "2002", "2020", "2023"]
 designation = ["developer", "automation", "manualtester", "frontend", "backend"]
 managementlevel = ["cxo", "jun", "sen", "mid", "owner"]
 functionalarea = ["administ", "customer", "development", "distribution", "finance", "human", "ict", "management", "marketing", "production"]
@@ -43,20 +42,31 @@ skill = ["java", "python", "c prog", "automation", "php"]
 expertise = ["beg", "average", "skil", "expert", "advanced"]
 startsalary = ["12", "3213", "214"]
 endsalary = ["21433", "2136832", "812765"]
+
 degree = ["10th", "12th", "bsc", "mca", "phd"]
-university = ["bangalore", "delhi", "odisha"]
+university = ["mabl high school", "reva university", "delhi university", "odisha university", "archarya"]
+cgpa = ["7.89", "9.65", "5.98", "8.66", "9.59"]
+description = ["Listing projects on your resume allows hiring managers", " It's important to list your most relevant projects on your resume.", "List the skills you want to highlight", "Think of the specific projects you want to include.", "Think of the specific projects you want to include."]
+
+project_name = ["talentplace.ai", "face recogniztion system", "line follower robot"]
+
+author_title = ["Mr", "Ms", "Mrs", "Mx"]
+
 hobbies = ["Romantic songs", "Cricket", "Cricket highlights", "Hill Climbing"]
-cgpa = ["7.89", "9.65", "5.98"]
-user = ["new", "old", "Renew"]
+
+language = ["kannada", "english", "hindi"]
+proficiency = ["beg", "adv", "inter"]
+
 plan = ["Trail", "Monthly", "Quarterly", "Year"]
 professionalservice = ["Fresher Resume Writing", "Experience Resume Writing", "Linkdin Optimization", "What Job Fits Me"]
 servicetype = ["Buynow", "Enquire Now"]
 membership_type = ["Resume Builder", "Professional Service"]
 user_settings = ["editprofile", "changepassword", "changemobile", "cancelsubsription"]
 user_myprofile = ["shareprofile", "downloadresume", "editprofile"]
+
 firstname = "Amith"
 lastname = "talentPlace"
-location = ["Bangalore", "Delhi", "Sydney"]
+location = ["Bangalore", "Delhi", "Sydney", "new york", "oval"]
 date = "03251999"
 currency = ["inr", "usd"]
 gender = ["male", "female", "not mention"]
@@ -71,7 +81,6 @@ phone_no = f"11234567890"
 countryname = ["Indonesia", "United States"]
 password = "New@1234"
 confirm_password = "New@1234"
-description = ["Listing projects on your resume allows hiring managers", " It's important to list your most relevant projects on your resume.", "List the skills you want to highlight", "Think of the specific projects you want to include."]
 
 
 @pytest.mark.usefixtures("setup")
@@ -134,32 +143,36 @@ class TestCases:
         self.job.edit_profile()
         self.job.click_experience_editprofile()
         for i in range(3):
-            self.job.addcompany(user[1], companyname[i], jobtype[i], industry[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[2], year[i], month[4], year[i+1], startsalary[i], endsalary[i])
+            self.job.addcompany(user[0], companyname[i], jobtype[i], industry[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[i+1], year[i], month[i+1], year[i+1], startsalary[i], endsalary[i])
 
     @pytest.mark.projects
     def test_projects(self):
+        self.prj.edit_profile()
         for j in range(3):
-            self.prj.project(firstname, year[j], year[j+1], linkdin, description[j], skill[j], j, description[j])
+            self.prj.project(user[1], project_name[j], month[j+1], year[j], month[j+2], year[j+1], companyname[j], social_medialink[j], description[j], skill[j], j, description[j])
 
     @pytest.mark.education
     def test_education(self):
-        for i in range(3):
-            self.edu.education(i, degree[i], university[i], location[i], cgpa[i], month[2], year[i], year[i+1], description[i], description[i+1])
+        self.edu.edit_profile()
+        for i in range(5):
+            self.edu.education(user[0], degree[i], university[i], location[i], cgpa[i], month[i+1], year[i], month[i+3], year[i+1], description[i], description[i+1])
 
     @pytest.mark.certificate
     def test_certificate(self):
+        self.cert.edit_profile()
         for i in range(3):
-            self.cert.certificate(i, designation[i], university[i], year[i], year[i+1], skill[i], description[i])
+            self.cert.certificate(user[1], project_name[i], university[i], month[i+1], year[i], month[i+2], year[i+1], skill[i], description[i])
 
     @pytest.mark.publication
     def test_publication(self):
+        self.pub.edit_profile()
         for i in range(3):
-            self.pub.publication(i, companyname[i], year[i], date, linkdin, firstname, linkdin, description[i])
+            self.pub.publication(user[1], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
 
     @pytest.mark.patent
     def test_patent(self):
         for i in range(3):
-            self.pat.patent(i, companyname[i], year[i], date, linkdin, firstname, linkdin, description[i])
+            self.pat.patent(i, companyname[i], year[i], date, social_medialink[1], firstname, social_medialink[1], description[i])
 
     @pytest.mark.voluntaryrole
     def test_voluntary_roles(self):

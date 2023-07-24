@@ -303,7 +303,6 @@ class JobRole(BaseDriver):
     def enter_expertise(self, expertise):
         self.get_expertise().click()
         self.get_expertise().send_keys(expertise)
-        self.get_expertise_list()
         expertises = self.get_expertise_list()
 
         for expertise_list in expertises:

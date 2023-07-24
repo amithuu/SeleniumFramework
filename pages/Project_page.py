@@ -13,31 +13,40 @@ class Projects(BaseDriver):
         self.wait = wait
 
     # Locators
-    projects_dashboard = "//p[text()='Projects']"
-    add_projects = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]//button[1]"
-    project_name = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/form/div/div[1]/input"
-    start_month = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/div/form/div/div[2]/div[1]//select"
-    start_year = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/div/form/div/div[2]/div[1]//input"
-    end_month = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/div/form/div/div[2]/div[2]//select"
-    end_year = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/div/form/div/div[2]/div[2]//input"
-    associated_with = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/div/form/div/div[3]/div[1]//input"
-    project_link = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/div/form/div/div[3]/div[2]//input"
-    description = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/form/div/div[4]//p"
-    skill = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/form/div/div[5]/div[2]/div[1]//input"
-    skill_slider = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/form/div/div[5]/div[2]/div[2]//div[@role='slider']"
-    add_button = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/form/div/div[5]/div[2]/div[2]//button"
-    description_skillapplication = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/form/div/div[6]//p"
-    save_project = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/div/form/div/button"
+    projects_editprofiles = "//p[text()='Projects']"
+
+    add_another_projects = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div//button"
+
+    project_name = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[1]//input"
+
+    start_month = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[2]/div[1]//select"
+    start_year = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[2]/div[1]//input"
+    end_month = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[2]/div[2]//select"
+    end_year = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[2]/div[2]//input"
+
+    associated_with = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[3]/div[1]//input"
+    associated_with_list = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[3]//li/div"
+
+    project_link = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[3]/div[2]//input"
+    description = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[4]//p"
+
+    skill = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[5]/div[2]/div[1]//input"
+    skill_list = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[5]//li/div"
+
+    skill_slider = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[5]/div[2]/div[2]//div[@role='slider']"
+
+    skillapplication_descsription = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[6]//p"
+    save = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]//form/div/div[7]//button[2]"
 
     """GETTERS"""
 
-    def get_projectdasboard(self):
-        return self.element_to_click(By.XPATH, self.projects_dashboard)
+    def get_project_editprofiles(self):
+        return self.element_to_click(By.XPATH, self.projects_editprofiles)
 
-    def get_addprojects(self):
-        return self.element_to_click(By.XPATH, self.add_projects)
+    def get_add_another_projects(self):
+        return self.element_to_click(By.XPATH, self.add_another_projects)
 
-    def get_name(self):
+    def get_project_name(self):
         return self.element_to_click(By.XPATH, self.project_name)
 
     def get_startmonth(self):
@@ -52,10 +61,13 @@ class Projects(BaseDriver):
     def get_endyear(self):
         return self.element_to_click(By.XPATH, self.end_year)
 
-    def get_associatedwith(self):
+    def get_associated_with(self):
         return self.element_to_click(By.XPATH, self.associated_with)
 
-    def get_projectlink(self):
+    def get_associated_with_list(self):
+        return self.presence_of_all_element(By.XPATH, self.associated_with_list)
+
+    def get_project_link(self):
         return self.element_to_click(By.XPATH, self.project_link)
 
     def get_description(self):
@@ -64,99 +76,108 @@ class Projects(BaseDriver):
     def get_skill(self):
         return self.element_to_click(By.XPATH, self.skill)
 
-    def get_skillslider(self):
+    def get_skill_list(self):
+        return self.presence_of_all_element(By.XPATH, self.skill_list)
+
+    def get_skill_slider(self):
         return self.element_to_click(By.XPATH, self.skill_slider)
 
-    def get_addbutton(self):
-        return self.element_to_click(By.XPATH, self.add_button)
+    def get_skillapplication_description(self):
+        return self.element_to_click(By.XPATH, self.skillapplication_descsription)
 
-    def get_descriptionskillapplication(self):
-        return self.element_to_click(By.XPATH, self.description_skillapplication)
-
-    def get_saveproject(self):
-        return self.element_to_click(By.XPATH, self.save_project)
-
-    def click_addprojects(self):
-        self.get_addprojects().click()
+    def get_save_button(self):
+        return self.element_to_click(By.XPATH, self.save)
 
     """SETTERS"""
 
-    def click_projectdashboard(self):
-        self.get_projectdasboard().click()
+    def click_project_editprofiles(self):
+        self.get_project_editprofiles().click()
+        time.sleep(2)
 
-    def enter_name(self, name):
-        self.get_name().click()
-        self.get_name().send_keys(name)
-        self.get_name().send_keys(Keys.TAB)
+    def enter_project_name(self, name):
+        self.get_project_name().click()
+        self.get_project_name().send_keys(name)
 
-    def enter_startdate(self, year):
+    def enter_start_date(self, month, year):
         self.get_startmonth().click()
-        self.get_startmonth().send_keys(Keys.ARROW_DOWN)
-        self.get_startmonth().send_keys(Keys.ARROW_DOWN)
-        self.get_startmonth().send_keys(Keys.ENTER)
+        self.select_options(self.get_startmonth(), month)
         self.get_startyear().send_keys(year)
 
-    def enter_enddate(self, year):
+    def enter_end_date(self, month, year):
         self.get_endmonth().click()
-        self.get_endmonth().send_keys(Keys.ARROW_DOWN)
-        self.get_endmonth().send_keys(Keys.ARROW_DOWN)
-        self.get_endmonth().send_keys(Keys.ARROW_DOWN)
-        self.get_endmonth().send_keys(Keys.ENTER)
+        self.select_options(self.get_endmonth(), month)
         self.get_endyear().send_keys(year)
 
-    def enter_associatedwith(self):
-        self.get_associatedwith().click()
-        self.get_associatedwith().send_keys(Keys.ARROW_DOWN)
-        self.get_associatedwith().send_keys(Keys.ENTER)
+    def enter_associated_with(self, associated_with):
+        self.get_associated_with().click()
+        time.sleep(1)
+        associated_withs = self.get_associated_with_list()
 
-    def enter_projectlink(self, link):
-        self.get_projectlink().click()
-        self.get_projectlink().send_keys(link)
+        for associates in associated_withs:
+            if associated_with in associates.text.casefold():
+                associates.click()
+                break
+
+    def enter_project_link(self, link):
+        self.get_project_link().send_keys(link)
 
     def enter_description(self, description):
-        self.get_description().click()
         self.get_description().send_keys(description)
 
     def enter_skill(self, skill):
         self.get_skill().click()
         self.get_skill().send_keys(skill)
-        self.get_skill().send_keys(Keys.TAB)
+        time.sleep(1)
+        skills = self.get_skill_list()
 
-    def slide_skillslider(self, j):
-        ActionChains(self.driver).move_to_element(self.get_skillslider()).pause(1).click_and_hold(self.get_skillslider()).move_by_offset((35 * (j + 1)), 0).release().perform()
+        for skil in skills:
+            if skill in skil.text.casefold():
+                skil.click()
+                break
+
+    def slide_skill_slider(self, j):
+        ActionChains(self.driver).move_to_element(self.get_skill_slider()).pause(1).click_and_hold(self.get_skill_slider()).move_by_offset((35 * (j + 1)), 0).release().perform()
         time.sleep(1)
 
-    def click_addbutton(self):
-        self.get_addbutton().click()
+    def enter_skillapplication_description(self, skillapplication_description):
+        self.get_skillapplication_description().click()
+        self.get_skillapplication_description().send_keys(skillapplication_description)
 
-    def enter_descriptionskillapplication(self, descriptionskillapplication):
-        self.get_descriptionskillapplication().click()
-        self.get_descriptionskillapplication().send_keys(descriptionskillapplication)
+    def click_save_button(self):
+        self.get_save_button().click()
+        time.sleep(3)
+        self.driver.refresh()
 
-    def click_saveproject(self):
-        self.get_saveproject().click()
+    def click_add_another_project(self):
+        self.get_add_another_projects().click()
 
-    def project(self, name, startyear, endyear, link, description, skill, j, descriptionskillapplication):
-        self.click_addprojects()
-        self.enter_name(name)
-        self.enter_startdate(startyear)
-        self.enter_enddate(endyear)
-        self.enter_associatedwith()
-        self.enter_projectlink(link)
-        self.enter_description(description)
-        self.enter_skill(skill)
-        self.slide_skillslider(j)
-        self.enter_descriptionskillapplication(descriptionskillapplication)
-        self.click_saveproject()
-        time.sleep(5)
-        if j == 0:
-            self.next()
-            self.back()
-        elif j == 1:
-            self.next()
-            self.discard()
-            self.back()
-        else:
-            self.next()
+    def project(self, user, project_name, month, year, month1, year1, associated_with, link, description, skill, j, skillapplication_description):
+        self.click_project_editprofiles()
+
+        if user == "new":
+            self.enter_project_name(project_name)
+            self.enter_start_date(month, year)
+            self.enter_end_date(month1, year1)
+            self.enter_associated_with(associated_with)
+            self.enter_project_link(link)
+            self.enter_description(description)
+            self.enter_skill(skill)
+            self.slide_skill_slider(j)
+            self.enter_skillapplication_description(skillapplication_description)
+            self.click_save_button()
+            self.click_add_another_project()
+
+        elif user == "old":
+            self.click_add_another_project()
+            self.enter_project_name(project_name)
+            self.enter_start_date(month, year)
+            self.enter_end_date(month1, year1)
+            self.enter_associated_with(associated_with)
+            self.enter_project_link(link)
+            self.enter_description(description)
+            self.enter_skill(skill)
+            self.slide_skill_slider(j)
+            self.enter_skillapplication_description(skillapplication_description)
+            self.click_save_button()
 
 

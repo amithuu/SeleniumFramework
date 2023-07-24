@@ -13,31 +13,42 @@ class Certificate(BaseDriver):
         self.wait = wait
 
     # Locators
-    certificate_dashboard = "//*[text()='Certification']"
-    add_certificate = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]//button[1]"
-    title = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[1]/div[1]//input"
-    institution = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[1]/div[2]//input"
+    certificate_editprofiles = "//*[text()='Certification']"
+
+    add_another_certificate = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div[2]//button"
+
+    certificate_title = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]/div[1]//input"
+
+    certificate_institution = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]/div[2]//input"
+
     save_certificate = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/button"
-    startmonth = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]//select"
-    startyear = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]//input"
-    endmonth = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/div[2]//select"
-    endyear = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/div[2]//input"
-    skill = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div[2]/div[1]//input"
-    add_skill = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div[2]/div[2]//button"
-    project_description = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[4]//p"
+
+    startmonth = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[1]//select"
+    startyear = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[1]//input"
+
+    endmonth = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[2]//select"
+    endyear = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[2]//input"
+
+    skill = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]//input"
+    skill_list = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]//li/div"
+
+    project_description = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[4]//p"
+
     image = "document.getElementsByTagName('u')[0]"
+    save = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[6]//button[2]"
+
     """GETTERS"""
-    def get_certificatedashboard(self):
-        return self.element_to_click(By.XPATH, self.certificate_dashboard)
+    def get_certificate_editprofile(self):
+        return self.element_to_click(By.XPATH, self.certificate_editprofiles)
 
-    def get_addcertificate(self):
-        return self.element_to_click(By.XPATH, self.add_certificate)
+    def get_add_another_certificate(self):
+        return self.element_to_click(By.XPATH, self.add_another_certificate)
 
-    def get_title(self):
-        return self.element_to_click(By.XPATH, self.title)
+    def get_certificate_title(self):
+        return self.element_to_click(By.XPATH, self.certificate_title)
 
-    def get_institution(self):
-        return self.element_to_click(By.XPATH, self.institution)
+    def get_certificate_institution(self):
+        return self.element_to_click(By.XPATH, self.certificate_institution)
 
     def get_startmonth(self):
         return self.element_to_click(By.XPATH, self.startmonth)
@@ -54,74 +65,90 @@ class Certificate(BaseDriver):
     def get_skill(self):
         return self.element_to_click(By.XPATH, self.skill)
 
-    def get_addskill(self):
-        return self.element_to_click(By.XPATH, self.add_skill)
+    def get_skill_list(self):
+        return self.presence_of_all_element(By.XPATH, self.skill_list)
 
-    def get_projectdescription(self):
+    def get_project_description(self):
         return self.element_to_click(By.XPATH, self.project_description)
 
-    def get_savecertificate(self):
-        return self.element_to_click(By.XPATH, self.save_certificate)
+    def get_save_button(self):
+        return self.element_to_click(By.XPATH, self.save)
+
+    def get_image(self):
+        return self.javascript_link(self.image)
 
     """SETTERS"""
-    def click_certificatedashboard(self):
-        self.get_certificatedashboard().click()
+    def click_certificate_editprofiles(self):
+        self.get_certificate_editprofile().click()
+        time.sleep(1)
 
-    def click_addcertificate(self):
-        self.get_addcertificate().click()
+    def click_add_another_certificate(self):
+        self.get_add_another_certificate().click()
+        time.sleep(1)
 
-    def enter_title(self, title):
-        self.get_title().click()
-        self.get_title().send_keys(title)
-        self.get_title().send_keys(Keys.TAB)
+    def enter_certificate_title(self, title):
+        self.get_certificate_title().send_keys(title)
 
-    def enter_institution(self, institution):
-        self.get_institution().click()
-        self.get_institution().send_keys(institution)
-        self.get_institution().send_keys(Keys.TAB)
+    def enter_certificate_institution(self, institution):
+        self.get_certificate_institution().send_keys(institution)
 
-    def enter_durationfrom(self, year):
+    def select_durationfrom(self, month, year):
         self.get_startmonth().click()
-        for i in range(2):
-            self.get_startmonth().send_keys(Keys.ARROW_DOWN)
-        self.get_startmonth().send_keys(Keys.ENTER)
+        self.select_options(self.get_startmonth(), month)
         self.get_startyear().send_keys(year)
 
-    def enter_durationto(self, year):
+    def select_durationto(self, month, year):
         self.get_endmonth().click()
-        for i in range(3):
-            self.get_endmonth().send_keys(Keys.ARROW_DOWN)
-        self.get_endmonth().send_keys(Keys.ENTER)
+        self.select_options(self.get_endmonth(), month)
         self.get_endyear().send_keys(year)
 
     def enter_skill(self, skill):
-        self.get_skill().click()
         self.get_skill().send_keys(skill)
-        self.get_skill().send_keys(Keys.TAB)
+        time.sleep(1)
+        skills = self.get_skill_list()
 
-    def click_addskill(self):
-        self.get_addskill().click()
+        for skil in skills:
+            if skill in skil.text.casefold():
+                skil.click()
+                break
 
-    def enter_projectdescription(self, description):
-        self.get_projectdescription().click()
-        self.get_projectdescription().send_keys(description)
+    def enter_project_description(self, description):
+        self.get_project_description().send_keys(description)
 
-    def click_savecertrificate(self):
-        self.get_savecertificate().click()
+    def click_image(self):
+        self.get_image()
 
-    def certificate(self, i, title, institution, durationfrom, durationto, skill, description):
-        self.click_addcertificate()
-        self.enter_title(title)
-        self.enter_institution(institution)
-        self.enter_durationfrom(durationfrom)
-        self.enter_durationto(durationto)
-        self.enter_skill(skill)
-        self.enter_projectdescription(description)
-        self.javascript_link(self.image)
-        self.click_savecertrificate()
-        time.sleep(5)
-        if i <= 1:
-            self.next()
-            self.back()
-        else:
-            self.next()
+    def click_save(self):
+        self.get_save_button().click()
+        time.sleep(2)
+        self.driver.refresh()
+        time.sleep(1)
+
+    def certificate(self, user, title, institution, month, year, month1, year1, skill, description):
+        self.click_certificate_editprofiles()
+
+        if user == "new":
+            self.enter_certificate_title(title)
+            self.enter_certificate_institution(institution)
+            self.select_durationfrom(month, year)
+            self.select_durationto(month1, year1)
+            self.enter_skill(skill)
+            self.enter_project_description(description)
+            self.click_image()
+            self.click_save()
+            self.click_add_another_certificate()
+
+        elif user == "old":
+            self.click_add_another_certificate()
+            self.enter_certificate_title(title)
+            self.enter_certificate_institution(institution)
+            self.select_durationfrom(month, year)
+            self.select_durationto(month1, year1)
+            self.enter_skill(skill)
+            self.enter_project_description(description)
+            self.click_image()
+            self.click_save()
+
+
+
+
