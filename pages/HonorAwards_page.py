@@ -11,29 +11,36 @@ class HonorAwards(BaseDriver):
         self.wait = wait
 
     # Locators
-    HONORAWARDS_DASHBOARD = "//*[text()='Honors & Awards']"
-    ADD_HONORAWARDS = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]//button"
-    TITLE = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[1]/div[1]//input"
-    ISSUER = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[1]/div[2]//input"
-    START_MONTH = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]//select"
-    START_YEAR = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]//input"
-    ASSOCIATED_WITH = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/div[2]//input"
-    DESCRIPTION = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[3]//p"
-    SAVE_HONORAWARDS = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/button"
+    HONORAWARDS_EDITPROFILE = "//*[text()='Honors & Awards']"
+    
+    ADD_ANOTHER_HONORAWARDS = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div//div[2]//button"
+    
+    HONOR_AWARD_TITLE = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]/div[1]//input"
+    HONOR_AWARD_ISSUER = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]/div[2]//input"
+
+    START_MONTH = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]/div[3]//select"
+    START_YEAR = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]/div[3]//input"
+
+    ASSOCIATED_WITH = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]/div[4]//input"
+    ASSOCIATED_WITH_LIST = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]//div[4]/div/div/div[2]//li"
+
+    HONOR_AWARD_DESCRIPTION = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]//p"
+
+    SAVE = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]//button[2]"
 
     """GETTERS"""
 
-    def get_honorawarddashboard(self):
-        return self.element_to_click(By.XPATH, self.HONORAWARDS_DASHBOARD)
+    def get_honoraward_editprofiles(self):
+        return self.element_to_click(By.XPATH, self.HONORAWARDS_EDITPROFILE)
 
-    def get_addhonoraward(self):
-        return self.element_to_click(By.XPATH, self.ADD_HONORAWARDS)
+    def get_add_another_honoraward(self):
+        return self.element_to_click(By.XPATH, self.ADD_ANOTHER_HONORAWARDS)
 
-    def get_title(self):
-        return self.element_to_click(By.XPATH, self.TITLE)
+    def get_honoraward_title(self):
+        return self.element_to_click(By.XPATH, self.HONOR_AWARD_TITLE)
 
-    def get_issuer(self):
-        return self.element_to_click(By.XPATH, self.ISSUER)
+    def get_honoraward_issuer(self):
+        return self.element_to_click(By.XPATH, self.HONOR_AWARD_ISSUER)
 
     def get_startmonth(self):
         return self.element_to_click(By.XPATH, self.START_MONTH)
@@ -44,65 +51,68 @@ class HonorAwards(BaseDriver):
     def get_associatedwith(self):
         return self.element_to_click(By.XPATH, self.ASSOCIATED_WITH)
 
-    def get_description(self):
-        return self.element_to_click(By.XPATH, self.DESCRIPTION)
+    def get_associated_with_list(self):
+        return self.presence_of_all_element(By.XPATH, self.ASSOCIATED_WITH_LIST)
 
-    def get_savehonorawards(self):
-        return self.element_to_click(By.XPATH, self.SAVE_HONORAWARDS)
+    def get_honoraward_description(self):
+        return self.element_to_click(By.XPATH, self.HONOR_AWARD_DESCRIPTION)
+
+    def get_save_button(self):
+        return self.element_to_click(By.XPATH, self.SAVE)
 
     """SETTERS"""
-    def click_honorawarddashboard(self):
-        self.get_honorawarddashboard().click()
+    def click_honoraward_editprofiles(self):
+        self.get_honoraward_editprofiles().click()
 
-    def click_addhonoraward(self):
-        self.get_addhonoraward().click()
+    def click_add_another_honoraward(self):
+        self.get_add_another_honoraward().click()
 
-    def enter_title(self, title):
-        self.get_title().click()
-        self.get_title().send_keys(title)
-        self.get_title().send_keys(Keys.TAB)
+    def enter_honoraward_title(self, title):
+        self.get_honoraward_title().send_keys(title)
 
-    def enter_issuer(self, issuer):
-        self.get_issuer().click()
-        self.get_issuer().send_keys(issuer)
-        self.get_issuer().send_keys(Keys.TAB)
+    def enter_honoraward_issuer(self, issuer):
+        self.get_honoraward_issuer().send_keys(issuer)
 
-    def enter_issuedate(self, year):
+    def select_honoraward_issuedate(self, month, year):
         self.get_startmonth().click()
-        self.get_startmonth().send_keys(Keys.ARROW_DOWN)
-        self.get_startmonth().send_keys(Keys.ARROW_DOWN)
-        self.get_startmonth().send_keys(Keys.ENTER)
+        self.select_options(self.get_startmonth(), month)
         self.get_startyear().send_keys(year)
 
-    def enter_associatedwith(self):
+    def enter_associatedwith(self, associated_with):
         self.get_associatedwith().click()
-        self.get_associatedwith().send_keys(Keys.ARROW_DOWN)
-        self.get_associatedwith().send_keys(Keys.ARROW_DOWN)
-        self.get_associatedwith().send_keys(Keys.ENTER)
+        time.sleep(1)
+        associated_withs = self.get_associated_with_list()
 
-    def enter_description(self, description):
-        self.get_description().click()
-        self.get_description().send_keys(description)
+        for associates in associated_withs:
+            if associated_with in associates.text.casefold():
+                associates.click()
+                break
 
-    def click_savehonoraward(self):
-        self.get_savehonorawards().click()
+    def enter_honoraward_description(self, description):
+        self.get_honoraward_description().send_keys(description)
 
-    def honorawards(self, i, title, issuer, issueyear, description):
-        self.click_addhonoraward()
-        self.enter_title(title)
-        self.enter_issuer(issuer)
-        self.enter_issuedate(issueyear)
-        self.enter_associatedwith()
-        self.enter_description(description)
-        self.click_savehonoraward()
-        time.sleep(5)
-        if i == 0:
-            self.next()
-            self.back()
-        elif i == 1:
-            self.next()
-            self.discard()
-            self.back()
-        else:
-            self.next()
-            self.discard()
+    def click_save_button(self):
+        self.get_save_button().click()
+        time.sleep(2)
+        self.driver.refresh()
+
+    def honorawards(self, user, honoraward_title, honoraward_issuer, month, year, associated_with, honoraward_description):
+        self.click_honoraward_editprofiles()
+
+        if user == "new":
+            self.enter_honoraward_title(honoraward_title)
+            self.enter_honoraward_issuer(honoraward_issuer)
+            self.select_honoraward_issuedate(month, year)
+            self.enter_associatedwith(associated_with)
+            self.enter_honoraward_description(honoraward_description)
+            self.click_save_button()
+            self.click_add_another_honoraward()
+
+        elif user == "old":
+            self.click_add_another_honoraward()
+            self.enter_honoraward_title(honoraward_title)
+            self.enter_honoraward_issuer(honoraward_issuer)
+            self.select_honoraward_issuedate(month, year)
+            self.enter_associatedwith(associated_with)
+            self.enter_honoraward_description(honoraward_description)
+            self.click_save_button()

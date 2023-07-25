@@ -80,6 +80,7 @@ class Publication(BaseDriver):
 
     def click_add_another_publication(self):
         self.get_add_another_publication().click()
+        time.sleep(2)
 
     def enter_publisher_id(self, id):
         self.get_publisher_id().click()
@@ -94,11 +95,13 @@ class Publication(BaseDriver):
         self.get_publication_url().send_keys(url)
 
     def click_add_author(self):
+        time.sleep(3)
         self.get_add_author().click()
         time.sleep(3)
 
     def enter_author_title(self, title):
         self.get_author_title().click()
+        self.get_author_title().send_keys(Keys.ARROW_DOWN)
         self.select_options(self.get_author_title(), title)
 
     def enter_author_name(self, name):

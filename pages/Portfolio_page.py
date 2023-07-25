@@ -1,5 +1,4 @@
 import time
-from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
 
@@ -11,76 +10,89 @@ class Portfolio(BaseDriver):
         self.driver = driver
 
     # Locator
-    portfolio_dashboard = "//*[text()='Portfolio']"
-    add_portfolio = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]//button"
-    title = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[1]//input"
-    description = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[2]//p"
-    link = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[4]/div/div[2]//input"
-    add_link = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[4]/div/div[2]//button"
-    save_portfolio = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[4]/button"
-    image = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div[1]/div[1]//u"
+    portfolio_editprofile = "//*[text()='Portfolio']"
+
+    add_another_portfolio = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div//button"
+
+    portfolio_title = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]//input"
+    portfolio_description = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]//p"
+
+    image = "document.getElementsByTagName('u')[0]"
+
+    portfolio_link = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[4]//input"
+    add_button = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[4]//button"
+
+    save = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[4]/div[2]//button[2]"
 
     """GETTER"""
-    def get_portfoliodashboard(self):
-        return self.element_to_click(By.XPATH, self.portfolio_dashboard)
+    def get_portfolio_editprofile(self):
+        return self.element_to_click(By.XPATH, self.portfolio_editprofile)
 
-    def get_addportfolio(self):
-        return self.element_to_click(By.XPATH, self.add_portfolio)
+    def get_add_another_portfolio(self):
+        return self.element_to_click(By.XPATH, self.add_another_portfolio)
 
-    def get_title(self):
-        return self.element_to_click(By.XPATH, self.title)
+    def get_portfolio_title(self):
+        return self.element_to_click(By.XPATH, self.portfolio_title)
 
-    def get_description(self):
-        return self.element_to_click(By.XPATH, self.description)
+    def get_portfolio_description(self):
+        return self.element_to_click(By.XPATH, self.portfolio_description)
 
-    def get_link(self):
-        return self.element_to_click(By.XPATH, self.link)
+    def get_portfolio_link(self):
+        return self.element_to_click(By.XPATH, self.portfolio_link)
 
-    def get_addlink(self):
-        return self.element_to_click(By.XPATH, self.add_link)
+    def get_add_button(self):
+        return self.element_to_click(By.XPATH, self.add_button)
 
-    def get_saveportfolio(self):
-        return self.element_to_click(By.XPATH, self.save_portfolio)
+    def get_save_button(self):
+        return self.element_to_click(By.XPATH, self.save)
+
+    def get_image(self):
+        return self.javascript_link(self.image)
 
     """SETTER"""
-    def click_portfoliodashboard(self):
-        self.get_portfoliodashboard().click()
+    def click_portfolio_editprofile(self):
+        self.get_portfolio_editprofile().click()
 
-    def click_addportfolio(self):
-        self.get_addportfolio().click()
+    def click_add_another_portfolio(self):
+        self.get_add_another_portfolio().click()
 
-    def enter_title(self, title):
-        self.get_title().click()
-        self.get_title().send_keys(title)
-        self.get_title().send_keys(Keys.TAB)
+    def enter_portfolio_title(self, title):
+        self.get_portfolio_title().send_keys(title)
 
-    def enter_description(self, description):
-        self.get_description().click()
-        self.get_description().send_keys(description)
+    def enter_portfolio_description(self, description):
+        self.get_portfolio_description().send_keys(description)
 
-    def enter_link(self, link):
-        self.get_link().click()
-        self.get_link().send_keys(link)
+    def add_image(self):
+        self.get_image()
 
-    def click_addlink(self):
-        self.get_addlink().click()
+    def enter_portfolio_link(self, link):
+        self.get_portfolio_link().send_keys(link)
 
-    def click_saveportfolio(self):
-        self.get_saveportfolio().click()
+    def click_add_button(self):
+        self.get_add_button().click()
 
-    def portfolio(self, title, description, link):
-        self.click_portfoliodashboard()
-        self.click_addportfolio()
-        self.enter_title(title)
-        self.enter_description(description)
-        self.enter_link(link)
-        self.click_addlink()
-        self.click_saveportfolio()
-        self.next()
-        self.back()
+    def click_save_button(self):
+        self.get_save_button().click()
+        time.sleep(3)
 
+    def portfolio(self, user, portfolio_title, portfolio_description, portfolio_link):
+        self.click_portfolio_editprofile()
 
+        if user == "new":
+            self.enter_portfolio_title(portfolio_title)
+            self.enter_portfolio_description(portfolio_description)
+            self.add_image()
+            self.enter_portfolio_link(portfolio_link)
+            self.click_add_button()
+            self.click_save_button()
+            self.click_add_another_portfolio()
 
-
-
-
+        elif user == "old":
+            self.click_add_another_portfolio()
+            self.click_portfolio_editprofile()
+            self.enter_portfolio_title(portfolio_title)
+            self.enter_portfolio_description(portfolio_description)
+            self.enter_portfolio_link(portfolio_link)
+            self.click_add_button()
+            self.click_save_button()
+            self.click_add_another_portfolio()

@@ -24,6 +24,7 @@ from pages.Settings_page import Setting
 from pages.Myprofie_page import MyProfile
 from pages.Landing_Page import Landing_page
 from pages.Profile_picture import Profile_picture
+from pages.Portfolio_page import Portfolio
 # Variables
 
 
@@ -101,6 +102,7 @@ class TestCases:
         self.cert = Certificate(self.driver, self.wait)
         self.pub = Publication(self.driver, self.wait)
         self.pat = Patent(self.driver, self.wait)
+        self.port = Portfolio(self.driver, self.wait)
         self.vol = VoluntaryRoles(self.driver, self.wait)
         self.hon = HonorAwards(self.driver, self.wait)
         self.cau = Causes(self.driver, self.wait)
@@ -167,22 +169,31 @@ class TestCases:
     def test_publication(self):
         self.pub.edit_profile()
         for i in range(3):
-            self.pub.publication(user[1], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
+            self.pub.publication(user[0], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
 
     @pytest.mark.patent
     def test_patent(self):
+        self.pat.edit_profile()
         for i in range(3):
-            self.pat.patent(i, companyname[i], year[i], date, social_medialink[1], firstname, social_medialink[1], description[i])
+            self.pat.patent(user[1], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
+
+    @pytest.mark.portfolio
+    def test_portfolio(self):
+        self.port.edit_profile()
+        for i in range(3):
+            self.port.portfolio(user[0], project_name[i], description[i], social_medialink[i])
 
     @pytest.mark.voluntaryrole
     def test_voluntary_roles(self):
+        self.vol.edit_profile()
         for i in range(3):
-            self.vol.voluntaryroles(i, designation[i], companyname[i], year[i], year[i+1], description[i])
+            self.vol.voluntaryroles(user[1], designation[i], companyname[i], month[i+1], year[i],  month[i+3], year[i+3], description[i])
 
     @pytest.mark.honorawards
     def test_honorawards(self):
+        self.hon.edit_profile()
         for i in range(3):
-            self.hon.honorawards(i, designation[i], companyname[i], year[i], description[i])
+            self.hon.honorawards(user[1], designation[i], companyname[i], month[i+6], year[i], degree[i], description[i])
 
     @pytest.mark.causes
     def test_causes(self):
