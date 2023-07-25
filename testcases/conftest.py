@@ -23,8 +23,8 @@ def setup(url, browser, request):
     driver.maximize_window()
 
     """ Login Page"""
-    # wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("autotest1@g.co")
-    wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("prod6@g.co")
+    wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("autotest1@g.co")
+    # wait.until(ec.element_to_be_clickable((By.NAME, "email"))).send_keys("prod6@g.co")
     wait.until(ec.element_to_be_clickable((By.NAME, "password"))).send_keys("New@1234")
     wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Log In']"))).click()
     time.sleep(3)

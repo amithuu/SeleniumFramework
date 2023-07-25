@@ -1,6 +1,4 @@
-import time
 from selenium.webdriver.common.by import By
-from selenium.webdriver import Keys
 from base.Basedriver import BaseDriver
 
 class EditProfiles(BaseDriver):

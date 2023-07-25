@@ -1,4 +1,3 @@
-import time
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
 
@@ -11,23 +10,26 @@ class Welcome(BaseDriver):
         self.wait = wait
 
     # Locators
-    carrer_profile = "//div[@id ='root']/div/div[2]/div[2]/div[1]//button"
+    carrier_profile = "//div[@id ='root']/div/div[2]/div[2]/div[1]//button"
     assessment = "//div[@id ='root']/div/div[2]/div[2]/div[2]//button"
 
     """GETTERS"""
-    def get_carrerbutton(self):
-        return self.element_to_click(By.XPATH, self.carrer_profile)
+    def get_carrier_button(self):
+        return self.element_to_click(By.XPATH, self.carrier_profile)
 
-    def get_assessmentbutton(self):
+    def get_assessment_button(self):
         return self.element_to_click(By.XPATH, self.assessment)
 
     """SETTERS"""
-    def click_carrerbutton(self):
-        self.get_carrerbutton().click()
+    def click_carrier_button(self):
+        self.get_carrier_button().click()
 
-    def click_assessmentbutton(self):
-        self.get_assessmentbutton().click()
+    def click_assessment_button(self):
+        self.get_assessment_button().click()
 
-    def welcomepage(self):
-        self.click_carrerbutton()
-        # self.click_assessmentbutton()
+    def welcomepage(self, choose):
+
+        if choose == "carrier":
+            self.click_carrier_button()
+        elif choose == "assessment":
+            self.click_assessment_button()

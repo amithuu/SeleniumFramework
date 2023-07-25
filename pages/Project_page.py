@@ -1,8 +1,6 @@
 import time
-
-from selenium.webdriver import Keys, ActionChains
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-
 from base.Basedriver import BaseDriver
 
 
@@ -179,5 +177,3 @@ class Projects(BaseDriver):
             self.slide_skill_slider(j)
             self.enter_skillapplication_description(skillapplication_description)
             self.click_save_button()
-
-

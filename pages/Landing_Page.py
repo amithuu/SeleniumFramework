@@ -357,7 +357,7 @@ class Landing_page(Membership):
                 time.sleep(2)
                 self.click_subscribe()
                 time.sleep(2)
-                self.click_closetab()
+                self.click_close_tab()
                 time.sleep(2)
                 break
         self.driver.switch_to.window(parent_wind)

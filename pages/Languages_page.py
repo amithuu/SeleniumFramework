@@ -1,5 +1,4 @@
 import time
-from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
 
@@ -11,51 +10,69 @@ class Language(BaseDriver):
         self.wait = wait
 
     # Locators
-    location_button_in_edit_profile = "//*[text()='Languages']"
-    language_drop_down = "//*[@id='root']/div[2]/div/div/div/div/div/div[1]//input"
-    language_proficiency = "//*[@id='root']/div[2]/div/div/div/div/div/div[2]//input"
-    language_add_button = "//*[@id='root']/div[2]/div/div/div/div/div[2]/div[2]//button"
+    language_editprofile = "//*[text()='Languages']"
+
+    language_dropdown = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div[2]/div[1]//input"
+    language_dropdown_list = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div[2]/div[1]//li/div"
+
+    language_proficiency = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div[2]/div[2]//input"
+    language_proficiency_list = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div[2]/div[2]//li/div"
+
+    add_button = "//*[@id='root']/div/div[2]/div[2]/div/div[2]/div[2]/div[2]//button"
 
     """GETTERS"""
-    def get_Locationbutton(self):
-        return self.element_to_click(By.XPATH, self.location_button_in_edit_profile)
-    def get_locationdropdown(self):
-        return self.element_to_click(By.XPATH, self.language_drop_down)
+    def get_language_editprofile(self):
+        return self.element_to_click(By.XPATH, self.language_editprofile)
+
+    def get_language_dropdown(self):
+        return self.element_to_click(By.XPATH, self.language_dropdown)
+
+    def get_language_dropdown_list(self):
+        return self.presence_of_all_element(By.XPATH, self.language_dropdown_list)
+
     def get_proficiency(self):
         return self.element_to_click(By.XPATH, self.language_proficiency)
-    def get_addbutton(self):
-        return self.element_to_click(By.XPATH, self.language_add_button)
+
+    def get_proficiency_list(self):
+        return self.presence_of_all_element(By.XPATH, self.language_proficiency_list)
+
+    def get_add_button(self):
+        return self.element_to_click(By.XPATH, self.add_button)
 
     """SETTERS"""
 
-    def click_locationbutton(self):
-        self.get_Locationbutton().click()
+    def click_language_editprofile(self):
+        self.get_language_editprofile().click()
 
-    def enter_langdrop(self, user_language):
-        self.get_locationdropdown().click()
-        self.get_locationdropdown().send_keys(user_language)
-        self.get_locationdropdown().send_keys(Keys.TAB)
+    def select_language_dropdown(self, language):
+        self.get_language_dropdown().click()
+        self.get_language_dropdown().send_keys(language)
+        time.sleep(1)
+        languages = self.get_language_dropdown_list()
 
-    def enter_profiency(self, user_proficiency):
+        for lang in languages:
+            if language in lang.text.casefold():
+                lang.click()
+                break
+
+    def select_language_profiency(self, proficiency):
         self.get_proficiency().click()
-        self.get_proficiency().send_keys(user_proficiency)
-        self.get_proficiency().send_keys(Keys.TAB)
+        time.sleep(1)
+        profcience = self.get_proficiency_list()
+
+        for proficience in profcience:
+            if proficiency in proficience.text.casefold():
+                proficience.click()
+                break
 
     def click_addbutton(self):
-        self.get_addbutton().click()
-        time.sleep(2)
+        self.get_add_button().click()
 
-    def language(self, i, user_language, user_proficiency):
-        self.click_locationbutton()
-        # time.sleep(5)
-        self.enter_langdrop(user_language)
-        self.enter_profiency(user_proficiency)
+    def language(self, language, proficiency):
+        self.click_language_editprofile()
+        time.sleep(2)
+        self.select_language_dropdown(language)
+        self.select_language_profiency(proficiency)
         self.click_addbutton()
         self.save()
-        if i <= 1:
-            self.next()
-            self.back()
-        else:
-            self.next()
-
-
+        self.backto_menu()

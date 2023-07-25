@@ -1,4 +1,3 @@
-import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Keys
 from pages.EditProfiles_page import EditProfiles
@@ -147,6 +146,3 @@ class Setting(EditProfiles):
             self.click_closepopup()
             # self.click_staypremium()
             # self.click_cancelsubsriptionpopup()
-
-
-

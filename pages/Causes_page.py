@@ -1,5 +1,4 @@
 import time
-from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
 
@@ -11,22 +10,23 @@ class Causes(BaseDriver):
         self.driver = driver
 
     # LOCATORS
-    CAUSES_DASHBOARD = "//*[text()='Causes']"
-    ICON = "//div[@id='root']/div[2]/div[2]/div/div/div/div/div[{i}]//span[1]"
-    SAVE_CAUSES = "//div[@id='root']/div[2]/div[2]/div/div/div/button"
+    CAUSES_EDITPROFILE = "//*[text()='Causes']"
+    CAUSES_ICON = "//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[{i}]//span[1]"
+
     """GETTERS"""
-    def get_causesdashboard(self):
-        return self.element_to_click(By.XPATH, self.CAUSES_DASHBOARD)
+    def get_causes_editprofile(self):
+        return self.element_to_click(By.XPATH, self.CAUSES_EDITPROFILE)
 
     """SETTERS"""
-    def click_causesdashboard(self):
-        self.get_causesdashboard().click()
+    def click_causes_editprofiles(self):
+        self.get_causes_editprofile().click()
+
+    def select_causes(self):
+        for i in range(1, 9):
+            self.element_to_click(By.XPATH, f"//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[{i}]//span[1]").click()
+            time.sleep(1)
 
     def causes(self):
-        time.sleep(2)
-        for i in range(1, 7):
-            self.element_to_click(By.XPATH, f"//div[@id='root']/div[2]/div[2]/div/div/div/div/div[{i}]//span[1]").click()
-            time.sleep(1)
+        self.click_causes_editprofiles()
+        self.select_causes()
         self.save()
-        time.sleep(3)
-        self.next()

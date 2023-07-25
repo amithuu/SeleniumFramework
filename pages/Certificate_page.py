@@ -1,10 +1,6 @@
 import time
-
-from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-
 from base.Basedriver import BaseDriver
-
 
 class Certificate(BaseDriver):
     def __init__(self, driver, wait):
@@ -148,7 +144,3 @@ class Certificate(BaseDriver):
             self.enter_project_description(description)
             self.click_image()
             self.click_save()
-
-
-
-

@@ -53,10 +53,11 @@ project_name = ["talentplace.ai", "face recogniztion system", "line follower rob
 
 author_title = ["Mr", "Ms", "Mrs", "Mx"]
 
-hobbies = ["Romantic songs", "Cricket", "Cricket highlights", "Hill Climbing"]
+category = ["entertainment", "music", "sports", "leisure", "adventure", "travel", "books", "others"]
+hobbies = ["Watching cricket", "Motivational songs", "Cricket", " Watching Cricket highlights", "Hill Climbing", "Goa", "The King Virat Kohli", "hanging with friends"]
 
-language = ["kannada", "english", "hindi"]
-proficiency = ["beg", "adv", "inter"]
+language = ["kannada", "english", "hindi", "telugu", "european", "bengali", "bihari", "nepali", "german", "zuni"]
+proficiency = ["beg", "adv", "inter", "beg", "adv", "inter", "beg", "adv", "inter", "beg"]
 
 plan = ["Trail", "Monthly", "Quarterly", "Year"]
 professionalservice = ["Fresher Resume Writing", "Experience Resume Writing", "Linkdin Optimization", "What Job Fits Me"]
@@ -75,6 +76,8 @@ social_media = ["twitter", "linkdin", "instagram", "facebook", "github", "dribbl
 social_medialink = ["https://twitter.com/AmithKulkarni18", "https://www.linkedin.com/in/amith-kulkarni-1326241b4", "https://instagram.com/AmithKulkarni18", "https://facebook.com/AmithKulkarni18", "https://github.com/amithuu", "https://dribble.com/AmithKulkarni18"]
 
 headline = "Automation Developer"
+
+choose = ["carrier", "assessment"]
 
 k = 76
 email = f"autotest{k}@g.co"
@@ -115,12 +118,13 @@ class TestCases:
         self.lan = Landing_page(self.driver, self.wait)
         self.pic = Profile_picture(self.driver, self.wait)
 
-    # @pytest.mark.signup
-    # def test_signUp(self): #BCZ of  Line 60
-    #     self.sup.sign_up(firstname, lastname, email, countryname[1], phone_no, password, confirm_password)
+    @pytest.mark.signup
+    def test_signUp(self): #BCZ of  Line 60
+        self.sup.sign_up(firstname, lastname, email, countryname[1], phone_no, password, confirm_password)
 
-    # def test_welcome_page(self):
-    #     self.wcl.welcomepage()
+    @pytest.mark.welcomepage
+    def test_welcome_page(self):
+        self.wcl.welcomepage(choose[0])
 
     @pytest.mark.editprofiles
     def test_editprofiles(self):
@@ -197,24 +201,29 @@ class TestCases:
 
     @pytest.mark.causes
     def test_causes(self):
+        self.cau.edit_profile()
         self.cau.causes()
 
     @pytest.mark.hobbies
     def test_hobbies(self):
-        for i in range(1, 4):
-            self.hob.hobbies(i, hobbies[i])
+        self.hob.edit_profile()
+        for i in range(8):
+            self.hob.hobbies(category[i], hobbies[i])
 
-    @pytest.mark.languages
+    @pytest.mark.language
     def test_languages(self):
+        self.lang.edit_profile()
         for i in range(len(language)):
-            self.lang.language(i, language[i], proficiency[i])
+            self.lang.language(language[i], proficiency[i])
 
-    @pytest.mark.cognitiveskills
+    @pytest.mark.cognitiveskill
     def test_cognitive_skills(self):
+        self.cog.edit_profile()
         self.cog.cognitive()
 
     @pytest.mark.carriersummary
     def test_carrier(self):
+        self.cas.edit_profile()
         self.cas.carrier()
 
     @pytest.mark.assessment
@@ -223,8 +232,9 @@ class TestCases:
 
     @pytest.mark.resume
     def test_resume(self):
-        for i in range(1, 22):
-            self.res.resume(i, plan[1])
+        # self.res.filter()
+        for i in range(3, 52):
+            self.res.resume(i, plan[0])
 
     @pytest.mark.membership
     def test_membership(self):

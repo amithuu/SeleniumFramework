@@ -1,5 +1,4 @@
 import time
-from selenium.webdriver import Keys
 from base.Basedriver import BaseDriver
 from selenium.webdriver.common.by import By
 
@@ -18,7 +17,7 @@ class MyProfile(BaseDriver):
     SHARE_INDIFFERENT = "//body/div[6]//button[{i}]"
 
     """GETTERS"""
-    def get_myprofiledashboard(self):
+    def get_myprofile_editprofile(self):
         return self.element_to_click(By.XPATH, self.MYPROFILE_DASHBOARD)
 
     def get_editprofile(self):
@@ -30,12 +29,12 @@ class MyProfile(BaseDriver):
     def get_shareprofile(self):
         return self.element_to_click(By.XPATH, self.SHARE_PROFILE)
 
-    def get_shareprofiledifferent(self, i):
+    def get_shareprofile_socialmedia(self, i):
         return self.element_to_click(By.XPATH, f"//*[@class='css-1jc4bnu']/button[{i}]")
 
     """SETTERS"""
-    def click_myprofiledashboard(self):
-        self.get_myprofiledashboard().click()
+    def click_myprofile_editprofile(self):
+        self.get_myprofile_editprofile().click()
 
     def click_editprofile(self):
         self.get_editprofile().click()
@@ -49,7 +48,7 @@ class MyProfile(BaseDriver):
         time.sleep(2)
         my_profile_window = self.driver.current_window_handle
         for i in range(1, 5):
-            self.get_shareprofiledifferent(i).click()
+            self.get_shareprofile_socialmedia(i).click()
 
             all_handle = self.driver.window_handles
             for handle in all_handle:
@@ -61,7 +60,7 @@ class MyProfile(BaseDriver):
             self.driver.switch_to.window(my_profile_window)
 
     def myprofile(self, user):
-        self.click_myprofiledashboard()
+        self.click_myprofile_editprofile()
 
         if user == "shareprofile":
             self.click_shareprofile()
@@ -69,6 +68,3 @@ class MyProfile(BaseDriver):
             self.click_download()
         elif user == "editprofile":
             self.click_editprofile()
-
-
-

@@ -13,7 +13,7 @@ class Assessment(BaseDriver):
     # Locators
     assessment_button = "//*[text()='Take Assessment']"
     check_box = "//*[@id='root']/div/div[2]/div[1]/div[2]/div[1]//span[1]"
-    start_test = "//*[@id='root']/div/div[2]/div[1]/div[2]/div[1]/div/div[3]//button"
+    start_test = "//button[text() = 'Start Test']"
 
     """GETTERS"""
     def get_assessment(self):
@@ -22,18 +22,18 @@ class Assessment(BaseDriver):
     def get_checkbox(self):
         return self.element_to_click(By.XPATH, self.check_box)
 
-    def get_starttest(self):  # Start Test
+    def get_start_test(self):  # Start Test
         return self.element_to_click(By.XPATH, self.start_test)
 
     """ SETTERS"""
-    def click_takeassessment(self):
+    def click_take_assessment(self):
         self.get_assessment().click()
 
     def click_checkbox(self):
         self.get_checkbox().click()
 
-    def click_starttest(self):
-        self.get_starttest().click()
+    def click_start_test(self):
+        self.get_start_test().click()
 
     def click_answer(self):
         # Answers
@@ -51,10 +51,9 @@ class Assessment(BaseDriver):
         time.sleep(3)
 
     def assessment(self):
-        self.dashboard()
-        self.click_takeassessment()
+        self.click_take_assessment()
         self.page_end()
         self.click_checkbox()
-        self.click_starttest()
+        self.click_start_test()
         self.click_answer()
 

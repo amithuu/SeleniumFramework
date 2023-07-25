@@ -2,16 +2,6 @@ import time
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
-from selenium.webdriver.support import expected_conditions as ec
-# firstname = "test"
-# lastname = "talentPlace"
-# email = f"prod{k}@g.co"
-# phone_no = f"1{k}234567890"
-# location = "Bangalore"
-# dob = "25031999"
-# gender = "male"
-# password = "New@1234"
-# confirm_password = "New@1234"
 
 class Signup(BaseDriver):
 

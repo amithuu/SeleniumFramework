@@ -1,7 +1,6 @@
 import time
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
-from selenium.webdriver.support import expected_conditions as ec
 
 class Education(BaseDriver):
     def __init__(self, driver, wait):
@@ -188,4 +187,3 @@ class Education(BaseDriver):
             self.enter_extracircular(extracircular)
             self.click_image()
             self.save_button()
-

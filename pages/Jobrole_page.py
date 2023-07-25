@@ -1,8 +1,5 @@
 import time
 from selenium.webdriver.common.by import By
-from selenium.webdriver import Keys
-from selenium.webdriver.support.ui import Select
-
 from base.Basedriver import BaseDriver
 
 
@@ -397,6 +394,3 @@ class JobRole(BaseDriver):
             self.driver.refresh()
             time.sleep(5)
             self.click_back_to_company()
-
-
-

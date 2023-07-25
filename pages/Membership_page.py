@@ -19,7 +19,7 @@ class Membership(BaseDriver):
     CITY = "//form/div/div/div[4]//input"
     STREET = "//form/div/div/div[5]//input"
     ZIP_CODE = "//form/div/div/div[6]//input"
-    PROCEED_BUTTON_MEMBSERSHIP = "//button[text()='Proceed']"
+    PROCEED_BUTTON_MEMBERSHIP = "//button[text()='Proceed']"
     SUCCESS_MEMBERSHIP = "//a[text()='Success']"
     SUBSCRIBE_BUTTON = "//*[@type='submit' and @id='submit-button']"
     CLOSE_TAB = "//button[text()='Close this Tab']"
@@ -83,23 +83,23 @@ class Membership(BaseDriver):
     def get_zipcode(self):
         return self.element_to_click(By.XPATH, self.ZIP_CODE)
 
-    def get_proceedbutton(self):
-        return self.element_to_click(By.XPATH, self.PROCEED_BUTTON_MEMBSERSHIP)
+    def get_proceed_button(self):
+        return self.element_to_click(By.XPATH, self.PROCEED_BUTTON_MEMBERSHIP)
 
-    def get_successlinkmembership(self):
+    def get_successlink_membership(self):
         return self.element_to_click(By.XPATH, self.SUCCESS_MEMBERSHIP)
 
     def get_subscribe(self):
         return self.element_to_click(By.XPATH, self.SUBSCRIBE_BUTTON)
 
-    def get_closetab(self):
+    def get_close_tab(self):
         return self.element_to_click(By.XPATH, self.CLOSE_TAB)
 
     def get_refresh(self):
         return self.element_to_click(By.XPATH, self.REFRESH)
 
     """SETTERS"""
-    def click_membershipdashboard(self):
+    def click_membership_editprofile(self):
         self.get_membership_dashboard().click()
 
     def click_plan(self, plan):
@@ -138,16 +138,16 @@ class Membership(BaseDriver):
         self.get_zipcode().send_keys(Keys.TAB)
 
     def click_proceed(self):
-        self.get_proceedbutton().click()
+        self.get_proceed_button().click()
 
-    def click_successlinkmembership(self):
-        self.get_successlinkmembership().click()
+    def click_successlink_membership(self):
+        self.get_successlink_membership().click()
 
     def click_subscribe(self):
         self.get_subscribe().click()
 
-    def click_closetab(self):
-        self.get_closetab().click()
+    def click_close_tab(self):
+        self.get_close_tab().click()
 
     def click_refresh(self):
         self.get_refresh().click()
@@ -156,7 +156,7 @@ class Membership(BaseDriver):
         self.get_professionalservice(professionalservice, servicetype).click()
 
     def membership(self, plan, user, name, country, state, city, street, zipcode, membership_type, professionalservice, servicetype):
-        self.click_membershipdashboard()
+        self.click_membership_editprofile()
         time.sleep(2)
         self.page_end()
         time.sleep(2)
@@ -182,11 +182,11 @@ class Membership(BaseDriver):
                         self.page_end()
                         time.sleep(5)
                         if user == "new":
-                            self.click_successlinkmembership()
+                            self.click_successlink_membership()
                             time.sleep(2)
                         self.click_subscribe()
                         time.sleep(3)
-                        self.click_closetab()
+                        self.click_close_tab()
                         break
                 self.driver.switch_to.window(parent_wind)
 
@@ -207,7 +207,7 @@ class Membership(BaseDriver):
                         time.sleep(3)
                         self.click_subscribe()
                         time.sleep(3)
-                        self.click_closetab()
+                        self.click_close_tab()
                         time.sleep(2)
                         break
                 self.driver.switch_to.window(parent_wind)
@@ -237,10 +237,10 @@ class Membership(BaseDriver):
                         self.page_end()
                         time.sleep(5)
                         if user == "new":
-                            self.click_successlinkmembership()
+                            self.click_successlink_membership()
                             time.sleep(2)
                         self.click_subscribe()
                         time.sleep(3)
-                        self.click_closetab()
+                        self.click_close_tab()
                         break
                 self.driver.switch_to.window(parent_wind)
