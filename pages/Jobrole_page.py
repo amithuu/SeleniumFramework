@@ -14,30 +14,30 @@ class JobRole(BaseDriver):
 
     addcompany_button = "//*[@id='root']/div[2]/div[2]/div/div/div/div/div[2]//button"
 
-    company_name = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]//input"
-    companyname_list = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[2]//li/div"
+    company_name = "//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[1]//input"
+    companyname_list = "//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[2]//li/div"
 
-    nature_work = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[1]//input"
-    naturework_list = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[1]/div/div/div[2]//div/div/li/div"
+    nature_work = "//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[1]//input"
+    naturework_list = "//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[1]/div/div/div[2]//div/div/li/div"
 
-    industry = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[2]//input"
-    industry_list = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div[2]//div/div/li/div"
+    industry = "//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[2]//input"
+    industry_list = "//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div[2]//div/div/li/div"
 
-    organization_type = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[1]//input"
-    organization_list = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[1]/div/div/div[2]//div/div/li/div"
+    organization_type = "//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[1]//input"
+    organization_list = "//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[1]/div/div/div[2]//div/div/li/div"
 
-    based = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[2]//input"
-    based_list = "//div[@id='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[2]/div/div/div[2]//div/div/li/div"
+    based = "//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[2]//input"
+    based_list = "//div[@id='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[3]/div[2]/div/div/div[2]//div/div/li/div"
 
-    save_next = "//*[@id ='root']/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[4]//button[2]"
+    save_next = "//*[@id ='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[4]//button[2]"
 
     add_another_job_role = "//button[text() = 'Add another job role']"
 
-    add_another_company = "//*[@id ='root']/div[2]/div[2]/div/div[2]/div/div[2]/div/div[2]//button"
+    add_another_company = "//*[@id ='root']/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div[2]//button"
 
-    addrole_button = "//div[@id='root']/div[2]/div[2]/div/div/div[1]/div/div/div[{s+1}]//ul//button"
+    addrole_button = "//div[@id='root']/div/div[2]/div[2]/div/div/div[1]/div/div/div[{s+1}]//ul//button"
 
-    back_to_company = "//*[@id = 'root']/div[2]/div[2]/div/div[2]/div/div[2]//button"
+    back_to_company = "//*[@id = 'root']/div/div[2]/div[2]/div/div[2]/div/div[2]//button"
 
     designation = "//form/div/div[1]/div[1]//input"
     designation_list = "//form/div/div[1]/div[1]/div/div/div[2]//div/div/li/div"
@@ -241,6 +241,7 @@ class JobRole(BaseDriver):
 
     def click_savenext(self):
         self.get_save_next().click()
+        time.sleep(2)
 
     def enter_designation(self, designation):
         self.get_designation().click()
@@ -271,7 +272,7 @@ class JobRole(BaseDriver):
         select_location = self.get_location_list()
 
         for locations in select_location:
-            if location_name in locations.text:
+            if location_name in locations.text.casefold():
                 locations.click()
                 break
 
@@ -378,7 +379,6 @@ class JobRole(BaseDriver):
             self.enter_organization(organization)
             self.enter_based(based)
             self.click_savenext()
-            time.sleep(2)
             self.enter_designation(designation)
             self.enter_managementlevel(managementlevel)
             self.enter_location(location)
@@ -390,7 +390,6 @@ class JobRole(BaseDriver):
             self.enter_salary(startsalary, endsalary)
             # self.click_generatesuggestion()
             self.save()
-            time.sleep(3)
             self.driver.refresh()
             time.sleep(5)
             self.click_back_to_company()

@@ -101,7 +101,7 @@ class Publication(BaseDriver):
 
     def enter_author_title(self, title):
         self.get_author_title().click()
-        self.get_author_title().send_keys(Keys.ARROW_DOWN)
+        time.sleep(2)
         self.select_options(self.get_author_title(), title)
 
     def enter_author_name(self, name):
@@ -115,6 +115,8 @@ class Publication(BaseDriver):
 
     def click_save_button(self):
         self.get_save_button().click()
+        time.sleep(3)
+        self.driver.refresh()
         time.sleep(3)
 
     def publication(self, user, title, id, date, url, author_title, author_name, linkdin_link, publication_description):

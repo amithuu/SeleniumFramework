@@ -1,4 +1,3 @@
-import time
 import pytest
 from pages.Assessment_page import Assessment
 from pages.Carriersummary_page import Carrier
@@ -6,7 +5,7 @@ from pages.Cognitiveskills_page import CognitiveSkills
 from pages.Languages_page import Language
 from pages.SignUp_page import Signup
 from pages.Welcome_page import Welcome
-from pages.Personal_details_page import Personaldetails
+from pages.Personaldetails_page import Personaldetails
 from pages.Jobrole_page import JobRole
 from pages.Project_page import Projects
 from pages.Education_page import Education
@@ -25,9 +24,8 @@ from pages.Myprofie_page import MyProfile
 from pages.Landing_Page import Landing_page
 from pages.Profile_picture import Profile_picture
 from pages.Portfolio_page import Portfolio
+
 # Variables
-
-
 user = ["new", "old", "Renew"]
 companyname = ["ibm", "google", "cognizant"]
 jobtype = ["full time", "intern", "part time", "freelancing", "contract"]
@@ -41,8 +39,8 @@ managementlevel = ["cxo", "jun", "sen", "mid", "owner"]
 functionalarea = ["administ", "customer", "development", "distribution", "finance", "human", "ict", "management", "marketing", "production"]
 skill = ["java", "python", "c prog", "automation", "php"]
 expertise = ["beg", "average", "skil", "expert", "advanced"]
-startsalary = ["12", "3213", "214"]
-endsalary = ["21433", "2136832", "812765"]
+startsalary = ["12", "3213", "214", "213", "543"]
+endsalary = ["21433", "2136832", "812765", "323544", "435345546"]
 
 degree = ["10th", "12th", "bsc", "mca", "phd"]
 university = ["mabl high school", "reva university", "delhi university", "odisha university", "archarya"]
@@ -68,7 +66,7 @@ user_myprofile = ["shareprofile", "downloadresume", "editprofile"]
 
 firstname = "Amith"
 lastname = "talentPlace"
-location = ["Bangalore", "Delhi", "Sydney", "new york", "oval"]
+location = ["bangalore", "delhi", "sydney", "new york", "oval"]
 date = "03251999"
 currency = ["inr", "usd"]
 gender = ["male", "female", "not mention"]
@@ -79,10 +77,10 @@ headline = "Automation Developer"
 
 choose = ["carrier", "assessment"]
 
-k = 76
+k = 2
 email = f"autotest{k}@g.co"
-phone_no = f"11234567890"
-countryname = ["Indonesia", "United States"]
+phone_no = f"{k}89921018"
+countryname = ["Australia", "Indonesia", "United States"]
 password = "New@1234"
 confirm_password = "New@1234"
 
@@ -119,7 +117,7 @@ class TestCases:
         self.pic = Profile_picture(self.driver, self.wait)
 
     @pytest.mark.signup
-    def test_signUp(self): #BCZ of  Line 60
+    def test_signUp(self):
         self.sup.sign_up(firstname, lastname, email, countryname[1], phone_no, password, confirm_password)
 
     @pytest.mark.welcomepage
@@ -134,15 +132,13 @@ class TestCases:
     def test_personal_details(self):
         self.per.edit_profile()
         for i in range(1):
-            self.per.personaldetails(firstname, lastname, location[1], gender[0], date, currency[0], month[12], "2022", social_media[0], social_medialink[0])
-        self.per.backto_menu()
+            self.per.personaldetails(user[1], firstname, lastname, location[1], gender[1], date, currency[1], month[4], "2022", social_media[4], social_medialink[4])
 
     @pytest.mark.profilepicture
     def test_profilepicture(self):
         self.pic.edit_profile()
         self.pic.picturestatus(headline)
         self.pic.backto_menu()
-        time.sleep(2)
 
     @pytest.mark.jobrole
     def test_jobrole(self):
@@ -155,7 +151,7 @@ class TestCases:
     def test_projects(self):
         self.prj.edit_profile()
         for j in range(3):
-            self.prj.project(user[1], project_name[j], month[j+1], year[j], month[j+2], year[j+1], companyname[j], social_medialink[j], description[j], skill[j], j, description[j])
+            self.prj.project(user[0], project_name[j], month[j+1], year[j], month[j+2], year[j+1], companyname[j], social_medialink[j], description[j], skill[j], j, description[j])
 
     @pytest.mark.education
     def test_education(self):
@@ -173,13 +169,13 @@ class TestCases:
     def test_publication(self):
         self.pub.edit_profile()
         for i in range(3):
-            self.pub.publication(user[0], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
+            self.pub.publication(user[1], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
 
     @pytest.mark.patent
     def test_patent(self):
         self.pat.edit_profile()
         for i in range(3):
-            self.pat.patent(user[1], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
+            self.pat.patent(user[0], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
 
     @pytest.mark.portfolio
     def test_portfolio(self):
@@ -191,13 +187,13 @@ class TestCases:
     def test_voluntary_roles(self):
         self.vol.edit_profile()
         for i in range(3):
-            self.vol.voluntaryroles(user[1], designation[i], companyname[i], month[i+1], year[i],  month[i+3], year[i+3], description[i])
+            self.vol.voluntaryroles(user[0], designation[i], companyname[i], month[i+1], year[i],  month[i+3], year[i+3], description[i])
 
     @pytest.mark.honorawards
     def test_honorawards(self):
         self.hon.edit_profile()
         for i in range(3):
-            self.hon.honorawards(user[1], designation[i], companyname[i], month[i+6], year[i], degree[i], description[i])
+            self.hon.honorawards(user[0], designation[i], companyname[i], month[i+6], year[i], degree[i], description[i])
 
     @pytest.mark.causes
     def test_causes(self):
@@ -232,9 +228,9 @@ class TestCases:
 
     @pytest.mark.resume
     def test_resume(self):
-        # self.res.filter()
-        for i in range(3, 52):
-            self.res.resume(i, plan[0])
+        self.res.filter()
+        for i in range(1, 52):
+            self.res.resume(i, plan[1])
 
     @pytest.mark.membership
     def test_membership(self):

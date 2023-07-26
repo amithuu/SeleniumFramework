@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
 
@@ -23,9 +25,11 @@ class Welcome(BaseDriver):
     """SETTERS"""
     def click_carrier_button(self):
         self.get_carrier_button().click()
+        time.sleep(3)
 
     def click_assessment_button(self):
         self.get_assessment_button().click()
+        time.sleep(3)
 
     def welcomepage(self, choose):
 

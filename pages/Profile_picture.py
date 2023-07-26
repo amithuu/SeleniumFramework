@@ -11,14 +11,14 @@ class Profile_picture(BaseDriver):
         self.driver = driver
 
     # Locators
-    picturestatus_editprofiles = "//*[text()='Picture/Status']"
+    picturestatus_editprofile = "//*[text()='Picture/Status']"
     uploadpicture = "//button[text()='Upload Picture']"
     headline = "headline"
-    Iam_opento_work = "//*[@id = 'root']/div[2]/div[2]/div/div/div[2]/label//span"
+    Iam_opento_work = "//label//span[1]"
 
     # GETTERS
-    def get_picturestatus(self):
-        return self.element_to_click(By.XPATH, self.picturestatus_editprofiles)
+    def get_picturestatus_editprofile(self):
+        return self.element_to_click(By.XPATH, self.picturestatus_editprofile)
 
     def get_uploadpicture(self):
         return self.element_to_click(By.XPATH, self.uploadpicture)
@@ -30,8 +30,8 @@ class Profile_picture(BaseDriver):
         return self.element_to_click(By.XPATH, self.Iam_opento_work)
 
     # SETTERS
-    def click_picturestatus(self):
-        self.get_picturestatus().click()
+    def click_picturestatus_editprofile(self):
+        self.get_picturestatus_editprofile().click()
 
     def click_uploadpicture(self):
         self.get_uploadpicture().click()
@@ -46,9 +46,8 @@ class Profile_picture(BaseDriver):
         self.get_iamopentowork_checkbox().click()
 
     def picturestatus(self, headline):
-        self.click_picturestatus()
+        self.click_picturestatus_editprofile()
         self.click_uploadpicture()
         self.enter_headline(headline)
         self.click_iamopentowork()
         self.save()
-        time.sleep(3)

@@ -10,13 +10,13 @@ class Resume(BaseDriver):
         self.driver = driver
 
     # Locators
-    RESUME_EDITPROFILE = "//p[text()='Resumes']"
+    RESUME_SIDEPANEL = "//p[text()='Resumes']"
     RESUME_CLICK = "//*[@id='root']/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div[{i}]/div"
 
     NEXT = "//body/div[4]/div[3]/div//div//button[2]"
     BACK = "//body/div[4]/div[3]/div//div//button[1]"
 
-    DOWNLOAD = "//button[text() ='Download']"
+    DOWNLOAD = "//a[text() ='Download']"
     DOWNLOAD_POPUP = "//a[text() = 'Download']"
     POP_UP = "//body/div[4]/div[3]/div//button[1]"
     UPGRADE_BUTTON = "//body/div[4]/div[3]/div//div/div/div[2]//div//button"
@@ -29,8 +29,8 @@ class Resume(BaseDriver):
 
     """GETTERS"""
 
-    def get_resume_editprofile(self):
-        return self.element_to_click(By.XPATH, self.RESUME_EDITPROFILE)
+    def get_resume_sidepanel(self):
+        return self.element_to_click(By.XPATH, self.RESUME_SIDEPANEL)
 
     def get_click_resume(self, i):
         return self.element_to_click(By.XPATH, f"//*[@id='root']/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div[{i}]/div")
@@ -67,8 +67,8 @@ class Resume(BaseDriver):
 
     """SETTERS"""
 
-    def resume_editprofile(self):
-        self.get_resume_editprofile().click()
+    def resume_sidepanel(self):
+        self.get_resume_sidepanel().click()
 
     def click_resume(self, i):
         self.get_click_resume(i).click()
@@ -89,6 +89,9 @@ class Resume(BaseDriver):
 
     def click_upgrade_button(self):
         self.get_upgrade_button().click()
+        time.sleep(3)
+        self.driver.back()
+        time.sleep(1)
 
     def click_pop_up(self):
         self.get_close_popup().click()
@@ -117,7 +120,7 @@ class Resume(BaseDriver):
             self.get_filter_color(i).click()
 
     def filter(self):
-        self.resume_editprofile()
+        self.resume_sidepanel()
         time.sleep(4)
         self.choose_filter()
         self.choose_country_filter()
@@ -129,19 +132,14 @@ class Resume(BaseDriver):
         time.sleep(3)
         if plan == "Trail" or "Monthly":
             if plan == "Trail":
+                pass
                 if i <= 2:
-                    if i == 1:
-                        self.click_download()
-                        self.click_download_popup()
-                        self.click_pop_up()
-                    else:
-                        self.click_download()
-                        self.click_pop_up()
+                    self.click_download()
+                    self.click_download_popup()
+                    self.click_pop_up()
                 else:
                     self.click_upgrade_button()
-                    time.sleep(3)
-                    self.driver.back()
-                    time.sleep(1)
+
             elif plan == "Monthly":
                 if i <= 5:
                     self.click_download()
