@@ -24,6 +24,7 @@ from pages.Myprofie_page import MyProfile
 from pages.Landing_Page import Landing_page
 from pages.Profile_picture import Profile_picture
 from pages.Portfolio_page import Portfolio
+from ddt import ddt, data, unpack
 
 # Variables
 user = ["new", "old", "Renew"]
@@ -86,6 +87,7 @@ confirm_password = "New@1234"
 
 
 @pytest.mark.usefixtures("setup")
+@ddt
 class TestCases:
     # Login happens automatically using fixtures..!!![for all the forms]
     @pytest.fixture(autouse=True)
@@ -197,6 +199,7 @@ class TestCases:
         self.vol.backto_menu()
 
     @pytest.mark.honorawards
+    @data(())
     def test_honorawards(self):
         # self.hon.edit_profile()
         for i in range(3):
