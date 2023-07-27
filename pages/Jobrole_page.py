@@ -187,7 +187,7 @@ class JobRole(BaseDriver):
     def enter_companyname(self, companyname):
         self.get_companyname().click()
         self.get_companyname().send_keys(companyname)
-        time.sleep(2)
+        time.sleep(1)
         company_name = self.get_company_list()
 
         for companies in company_name:
@@ -198,7 +198,7 @@ class JobRole(BaseDriver):
     def enter_nature_of_work(self, jobtype):
         self.get_nature_of_work().click()
         self.get_nature_of_work().send_keys(jobtype)
-        time.sleep(2)
+        time.sleep(1)
         job_type = self.get_naturework_list()
 
         for naturework in job_type:
@@ -209,7 +209,7 @@ class JobRole(BaseDriver):
     def enter_industry(self, industry):
         self.get_industry().click()
         self.get_industry().send_keys(industry)
-        time.sleep(2)
+        time.sleep(1)
         industries = self.get_industry_list()
 
         for industry_list in industries:
@@ -220,7 +220,7 @@ class JobRole(BaseDriver):
     def enter_organization(self, organition):
         self.get_organization().click()
         self.get_organization().send_keys(organition)
-        time.sleep(2)
+        time.sleep(1)
         organizations = self.get_organization_list()
 
         for organization in organizations:
@@ -231,7 +231,7 @@ class JobRole(BaseDriver):
     def enter_based(self, based):
         self.get_based().click()
         self.get_based().send_keys(based)
-        time.sleep(2)
+        time.sleep(1)
         service_based = self.get_based_list()
 
         for based_list in service_based:
@@ -239,9 +239,9 @@ class JobRole(BaseDriver):
                 based_list.click()
                 break
 
-    def click_savenext(self):
+    def click_save_next(self):
         self.get_save_next().click()
-        time.sleep(2)
+        time.sleep(3)
 
     def enter_designation(self, designation):
         self.get_designation().click()
@@ -331,8 +331,9 @@ class JobRole(BaseDriver):
 
     def click_generatesuggestion(self):
         self.get_generatesuggestion().click()
+        time.sleep(7)
         for j in range(1, 4):
-            self.element_to_click(By.XPATH, f"//form/div/div[6]/div/div[2]/div/div/div[{j}]//button").click()
+            self.element_to_click(By.XPATH, f"//form/div/div[5]/div/div[2]/div/div/div[{j}]//button").click()
             time.sleep(1)
 
     def click_add_another_job_role(self):
@@ -340,20 +341,67 @@ class JobRole(BaseDriver):
 
     def click_add_another_company(self):
         self.get_add_another_company().click()
+        time.sleep(1)
 
     def click_back_to_company(self):
         self.get_back_to_company().click()
+        time.sleep(1)
 
-    def addcompany(self, user,  companyname, jobtype, industry, organization, based, designation, managementlevel, location, functionalarea, skill, expertise, month, year, month1, year1, startsalary, endsalary):
+    def addcompany(self, i, user,  companyname, jobtype, industry, organization, based, designation, managementlevel, location, functionalarea, skill, expertise, month, year, month1, year1, startsalary, endsalary):
 
         if user == "new":
+            if i == 0:
+                self.enter_companyname(companyname)
+                self.enter_nature_of_work(jobtype)
+                self.enter_industry(industry)
+                self.enter_organization(organization)
+                self.enter_based(based)
+                self.click_save_next()
+
+                self.enter_designation(designation)
+                self.enter_managementlevel(managementlevel)
+                self.enter_location(location)
+                self.enter_functionalarea(functionalarea)
+                self.enter_skill(skill)
+                self.enter_expertise(expertise)
+                self.select_startmonth(month, year)
+                self.select_endmonth(month1, year1)
+                self.enter_salary(startsalary, endsalary)
+                self.click_generatesuggestion()
+                self.save_refresh()
+                self.click_back_to_company()
+
+            else:
+                self.click_add_another_company()
+                self.enter_companyname(companyname)
+                self.enter_nature_of_work(jobtype)
+                self.enter_industry(industry)
+                self.enter_organization(organization)
+                self.enter_based(based)
+                self.click_save_next()
+
+                self.enter_designation(designation)
+                self.enter_managementlevel(managementlevel)
+                self.enter_location(location)
+                self.enter_functionalarea(functionalarea)
+                self.enter_skill(skill)
+                self.enter_expertise(expertise)
+                self.select_startmonth(month, year)
+                self.select_endmonth(month1, year1)
+                self.enter_salary(startsalary, endsalary)
+                self.click_generatesuggestion()
+                self.save_refresh()
+                self.click_back_to_company()
+
+        elif user == "old":
+            self.click_add_another_company()
             self.enter_companyname(companyname)
             self.enter_nature_of_work(jobtype)
             self.enter_industry(industry)
             self.enter_organization(organization)
             self.enter_based(based)
-            self.click_savenext()
-            time.sleep(2)
+            self.click_save_next()
+
             self.enter_designation(designation)
             self.enter_managementlevel(managementlevel)
             self.enter_location(location)
@@ -364,32 +412,5 @@ class JobRole(BaseDriver):
             self.select_endmonth(month1, year1)
             self.enter_salary(startsalary, endsalary)
             # self.click_generatesuggestion()
-            self.save()
-            time.sleep(3)
-            self.driver.refresh()
-            time.sleep(3)
-            self.click_back_to_company()
-            time.sleep(1)
-            self.click_add_another_company()
-        else:
-            self.click_add_another_company()
-            self.enter_companyname(companyname)
-            self.enter_nature_of_work(jobtype)
-            self.enter_industry(industry)
-            self.enter_organization(organization)
-            self.enter_based(based)
-            self.click_savenext()
-            self.enter_designation(designation)
-            self.enter_managementlevel(managementlevel)
-            self.enter_location(location)
-            self.enter_functionalarea(functionalarea)
-            self.enter_skill(skill)
-            self.enter_expertise(expertise)
-            self.select_startmonth(month, year)
-            self.select_endmonth(month1, year1)
-            self.enter_salary(startsalary, endsalary)
-            # self.click_generatesuggestion()
-            self.save()
-            self.driver.refresh()
-            time.sleep(5)
+            self.save_refresh()
             self.click_back_to_company()

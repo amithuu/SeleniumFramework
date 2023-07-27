@@ -51,6 +51,7 @@ class Assessment(BaseDriver):
         time.sleep(3)
 
     def assessment(self):
+        self.dashboard()
         self.click_take_assessment()
         self.page_end()
         self.click_checkbox()

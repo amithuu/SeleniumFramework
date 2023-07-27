@@ -11,10 +11,10 @@ class MyProfile(BaseDriver):
 
     # Locators
     MYPROFILE_DASHBOARD = "//p[text()='My Profile']"
-    PENCIL_MARK = "//*[@id = 'root']/div[2]/div[3]/div//button[1]"
-    RESUME_DOWNLOAD = "//*[@id = 'root']/div[2]/div[3]/div//button[2]"
-    SHARE_PROFILE = "//*[@id = 'root']/div[2]/div[3]/div//button[3]"
-    SHARE_INDIFFERENT = "//body/div[6]//button[{i}]"
+    PENCIL_MARK = "//*[@id = 'root']/div/div[1]/div/div[2]/div[1]//button[1]"
+    RESUME_DOWNLOAD = "//*[@id = 'root']/div/div[1]/div/div[2]/div[1]//button[1]"
+    SHARE_PROFILE = "//*[@id = 'root']/div/div[1]/div/div[2]/div[1]//button[1]"
+    SHARE_INDIFFERENT = "//body/div[4]//button[{i}]"
 
     """GETTERS"""
     def get_myprofile_editprofile(self):

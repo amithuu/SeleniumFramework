@@ -51,3 +51,5 @@ class Profile_picture(BaseDriver):
         self.enter_headline(headline)
         self.click_iamopentowork()
         self.save()
+        self.backto_menu()
+

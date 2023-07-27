@@ -86,19 +86,27 @@ class VoluntaryRoles(BaseDriver):
 
     def click_save_button(self):
         self.get_save_button().click()
-        time.sleep(3)
+        time.sleep(2)
 
-    def voluntaryroles(self, user, role, organization, month, year, month1, year1, description):
+    def voluntaryroles(self, i, user, role, organization, month, year, month1, year1, description):
         self.click_voluntaryroles_editprofiles()
 
         if user == "new":
-            self.enter_voluntary_role(role)
-            self.enter_voluntary_organization(organization)
-            self.select_durationfrom(month, year)
-            self.select_durationto(month1, year1)
-            self.enter_voluntary_description(description)
-            self.click_save_button()
-            self.click_add_another_voluntaryroles()
+            if i == 0:
+                self.enter_voluntary_role(role)
+                self.enter_voluntary_organization(organization)
+                self.select_durationfrom(month, year)
+                self.select_durationto(month1, year1)
+                self.enter_voluntary_description(description)
+                self.click_save_button()
+            else:
+                self.click_add_another_voluntaryroles()
+                self.enter_voluntary_role(role)
+                self.enter_voluntary_organization(organization)
+                self.select_durationfrom(month, year)
+                self.select_durationto(month1, year1)
+                self.enter_voluntary_description(description)
+                self.click_save_button()
 
         elif user == "old":
             self.click_add_another_voluntaryroles()

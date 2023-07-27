@@ -143,8 +143,9 @@ class Projects(BaseDriver):
 
     def click_save_button(self):
         self.get_save_button().click()
-        time.sleep(3)
+        time.sleep(2)
         self.driver.refresh()
+        time.sleep(1)
 
     def click_add_another_project(self):
         self.get_add_another_projects().click()
@@ -153,17 +154,29 @@ class Projects(BaseDriver):
         self.click_project_editprofiles()
 
         if user == "new":
-            self.enter_project_name(project_name)
-            self.enter_start_date(month, year)
-            self.enter_end_date(month1, year1)
-            self.enter_associated_with(associated_with)
-            self.enter_project_link(link)
-            self.enter_description(description)
-            self.enter_skill(skill)
-            self.slide_skill_slider(j)
-            self.enter_skillapplication_description(skillapplication_description)
-            self.click_save_button()
-            self.click_add_another_project()
+            if j == 0:
+                self.enter_project_name(project_name)
+                self.enter_start_date(month, year)
+                self.enter_end_date(month1, year1)
+                self.enter_associated_with(associated_with)
+                self.enter_project_link(link)
+                self.enter_description(description)
+                self.enter_skill(skill)
+                self.slide_skill_slider(j)
+                self.enter_skillapplication_description(skillapplication_description)
+                self.click_save_button()
+            else:
+                self.click_add_another_project()
+                self.enter_project_name(project_name)
+                self.enter_start_date(month, year)
+                self.enter_end_date(month1, year1)
+                self.enter_associated_with(associated_with)
+                self.enter_project_link(link)
+                self.enter_description(description)
+                self.enter_skill(skill)
+                self.slide_skill_slider(j)
+                self.enter_skillapplication_description(skillapplication_description)
+                self.click_save_button()
 
         elif user == "old":
             self.click_add_another_project()

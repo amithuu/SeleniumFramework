@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from base.Basedriver import BaseDriver
 
@@ -19,8 +21,9 @@ class EditProfiles(BaseDriver):
     """SETTERS"""
     
     def click_addbutton(self):
-        for i in range(1, 15):
+        for i in range(1, 17):
             self.get_addbutton(i).click()
+            time.sleep(1)
 
     def editprofiles(self):
         self.edit_profile()

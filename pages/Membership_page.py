@@ -34,36 +34,42 @@ class Membership(BaseDriver):
 
     def get_plan(self, plan):
         if plan == "Trail":
-            return self.element_to_click(By.XPATH, f"//*[@id='root']/div[2]/div[2]/div/div[2]/div[1]//button")
+            return self.element_to_click(By.XPATH, f"//*[@id='root']/div/div[2]/div[2]/div/div[2]/div[1]//button")
         if plan == "Monthly":
-            return self.element_to_click(By.XPATH, f"//*[@id='root']/div[2]/div[2]/div/div[2]/div[2]//button")
+            return self.element_to_click(By.XPATH, f"//*[@id='root']/div/div[2]/div[2]/div/div[2]/div[2]//button")
         elif plan == "Quarterly":
-            return self.element_to_click(By.XPATH, f"//*[@id='root']/div[2]/div[2]/div/div[2]/div[3]//button")
-        elif plan == "Year":
-            return self.element_to_click(By.XPATH, f"//*[@id='root']/div[2]/div[2]/div/div[2]/div[4]//button")
+            return self.element_to_click(By.XPATH, f"//*[@id='root']/div/div[2]/div[2]/div/div[2]/div[3]//button")
+        elif plan == "Yearly":
+            return self.element_to_click(By.XPATH, f"//*[@id='root']/div/div[2]/div[2]/div/div[2]/div[4]//button")
 
     def get_professionalservice(self, professionalservice, servicetype):
-        if professionalservice == "Fresher Resume Writing":
+        if professionalservice == "ENTRY-LEVEL Resume Writing":
             if servicetype == "Buynow":
-                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[1]//button[1]")
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div/div[2]/div[2]/div/div[3]/div[1]//button[1]")
             else:
-                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[1]//button[2]")
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div/div[2]/div[2]/div/div[3]/div[1]//button[2]")
 
-        if professionalservice == "Experience Resume Writing":
+        if professionalservice == "MID-CAREER Resume Writing":
             if servicetype == "Buynow":
-                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[2]//button[1]")
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div/div[2]/div[2]/div/div[3]/div[2]//button[1]")
             else:
-                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[2]//button[2]")
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div/div[2]/div[2]/div/div[3]/div[2]//button[2]")
+
+        if professionalservice == "PROFESSIONAL Resume Writing":
+            if servicetype == "Buynow":
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div/div[2]/div[2]/div/div[3]/div[3]//button[1]")
+            else:
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div/div[2]/div[2]/div/div[3]/div[3]//button[2]")
 
         if professionalservice == "Linkdin Optimization":
             if servicetype == "Buynow":
-                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[3]//button[1]")
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div/div[2]/div[2]/div/div[3]/div[4]//button[1]")
             else:
-                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[3]//button[2]")
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div/div[2]/div[2]/div/div[3]/div[4]//button[2]")
 
-        if professionalservice == "What Job Fits Me":
+        if professionalservice == "PERSONALITY Assessment":
             if servicetype == "Buynow":
-                return self.element_to_click(By.XPATH, "//*[@id='root']/div[2]/div[2]/div/div[3]/div[4]//button[1]")
+                return self.element_to_click(By.XPATH, "//*[@id='root']/div/div[2]/div[2]/div/div[3]/div[5]//button[1]")
 
     def get_name(self):
         return self.element_to_click(By.XPATH, self.NAME)
@@ -99,7 +105,7 @@ class Membership(BaseDriver):
         return self.element_to_click(By.XPATH, self.REFRESH)
 
     """SETTERS"""
-    def click_membership_editprofile(self):
+    def click_membership_sidepanel(self):
         self.get_membership_dashboard().click()
 
     def click_plan(self, plan):
@@ -156,9 +162,9 @@ class Membership(BaseDriver):
         self.get_professionalservice(professionalservice, servicetype).click()
 
     def membership(self, plan, user, name, country, state, city, street, zipcode, membership_type, professionalservice, servicetype):
-        self.click_membership_editprofile()
+        self.click_membership_sidepanel()
         time.sleep(2)
-        self.page_end()
+        self.page_up()
         time.sleep(2)
         parent_wind = self.driver.current_window_handle
 
@@ -215,7 +221,7 @@ class Membership(BaseDriver):
                 self.click_refresh()
                 for i in range(4):
                     self.driver.refresh()
-                    time.sleep(3)
+                    time.sleep(2)
 
         elif membership_type == "Professional Service":
             self.click_professionalservice(professionalservice, servicetype)

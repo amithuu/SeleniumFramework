@@ -28,12 +28,19 @@ class BaseDriver:
     def save(self):
         save = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Save']")))
         save.click()
-        time.sleep(5)
+        time.sleep(2)
+
+    def save_refresh(self):
+        save = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Save']")))
+        save.click()
+        time.sleep(1)
+        self.driver.refresh()
+        time.sleep(1)
 
     def save_next(self):
         save = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Save and Next']")))
         save.click()
-        time.sleep(5)
+        time.sleep(3)
 
     def back(self):
         back_to_company = self.wait.until(
@@ -98,7 +105,7 @@ class BaseDriver:
     def backto_menu(self):
         back_to_menu = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//a//button")))
         back_to_menu.click()
-        time.sleep(2)
+        time.sleep(1)
 
     def login(self):
         self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Login']"))).click()

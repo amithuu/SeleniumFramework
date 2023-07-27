@@ -157,23 +157,36 @@ class Education(BaseDriver):
         self.get_save().click()
         time.sleep(3)
         self.driver.refresh()
+        time.sleep(1)
 
-    def education(self, user, degree, university, location, cgpa, month, year, month1, year1, project_description, extracircular):
+    def education(self, i, user, degree, university, location, cgpa, month, year, month1, year1, project_description, extracircular):
         self.click_education_editprofiles()
         time.sleep(3)
 
         if user == "new":
-            self.enter_degree(degree)
-            self.enter_university(university)
-            self.enter_location(location)
-            self.enter_cgpa(cgpa)
-            self.select_durationfrom(month, year)
-            self.select_durationto(month1, year1)
-            self.enter_project_description(project_description)
-            self.enter_extracircular(extracircular)
-            self.click_image()
-            self.save_button()
-            self.click_add_another_education()
+            if i == 0:
+                self.enter_degree(degree)
+                self.enter_university(university)
+                self.enter_location(location)
+                self.enter_cgpa(cgpa)
+                self.select_durationfrom(month, year)
+                self.select_durationto(month1, year1)
+                self.enter_project_description(project_description)
+                self.enter_extracircular(extracircular)
+                self.click_image()
+                self.save_button()
+            else:
+                self.click_add_another_education()
+                self.enter_degree(degree)
+                self.enter_university(university)
+                self.enter_location(location)
+                self.enter_cgpa(cgpa)
+                self.select_durationfrom(month, year)
+                self.select_durationto(month1, year1)
+                self.enter_project_description(project_description)
+                self.enter_extracircular(extracircular)
+                self.click_image()
+                self.save_button()
 
         elif user == "old":
             self.click_add_another_education()

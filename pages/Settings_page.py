@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Keys
 from pages.EditProfiles_page import EditProfiles
@@ -13,16 +15,23 @@ class Setting(EditProfiles):
     # Locators
     SETTING_DASHBOARD = "//p[text()='Settings']"
 
-    CHANGE_PASSWORD = "//div[@id='root']/div[2]/div[2]/div/ul/li[2]//button"
-    OLD_PASSWORD = "//div[@id='root']//form/div/div[1]//input"
-    NEW_PASSWORD = "//div[@id='root']//form/div/div[2]//input"
-    CONFIRM_PASSWORD = "//div[@id='root']//form/div/div[3]//input"
-    EYE_BUTTON = "//div[@id='root']//form/div/div[3]//button"
+    # CHANGE_PASSWORD = "//ul/li[2]//button"
+    CHANGE_PASSWORD = "//button[text() ='Change Password']"
+    OLD_PASSWORD = "//input[@name = 'oldPassword']"
+    NEW_PASSWORD = "//input[@name = 'newPassword']"
+    CONFIRM_PASSWORD = "//input[@name = 'confirmPassword']"
+    EYE_BUTTON = "//button[@aria-label = 'Show or Hide password']"
     CHANGE_PASSWORD_BUTTON = "//button[text()='Change Password']"
 
-    CHANGE_MOBILE = "//div[@id='root']/div[2]/div[2]/div/ul/li[3]//button"
-    ENTER_MOBILE_NUMBER = "//*[@id = 'root']/div[2]/div[2]/div/div/div//input"
-    UPDATE_MOBILE = "//*[@id = 'root']/div[2]/div[2]/div/div//button"
+    # CHANGE_MOBILE = "//div[@id='root']/div[2]/div[2]/div/ul/li[3]//button"
+    # ENTER_MOBILE_NUMBER = "//*[@id = 'root']/div[2]/div[2]/div/div/div//input"
+    # UPDATE_MOBILE = "//*[@id = 'root']/div[2]/div[2]/div/div//button"
+    CHANGE_MOBILE = "//button[text() =' Change Mobile']"
+    COUNTRY_FLAG = "//*[@class='selected-flag']"
+    SELECTCOUNTRY_LIST = "//div[@class = 'flag-container']/ul/li//span"
+    ENTER_MOBILE_NUMBER = "//input[@type ='tel']"
+    SEND_OTP = "//button[text()='Send OTP']"
+    UPDATE_MOBILE = "//button[text() = 'Update Mobile Number']"
 
     CANCEL_SUBSCRIPTION = "//div[@id='root']/div[2]/div[2]/div/ul/li[4]//button"
     X_MARK = "//button[@aria-label='Close']"
@@ -30,63 +39,72 @@ class Setting(EditProfiles):
     CANCEL_SUBSCRIPTION_POPUP = "//footer//button[2]"
 
     """GETTERS"""
-    def get_settingdasboard(self):
+    def get_setting_editprofile(self):
         return self.element_to_click(By.XPATH, self.SETTING_DASHBOARD)
 
-    def get_changepassword(self):
+    def get_change_password(self):
         return self.element_to_click(By.XPATH, self.CHANGE_PASSWORD)
 
-    def get_oldpassword(self):
+    def get_old_password(self):
         return self.element_to_click(By.XPATH, self.OLD_PASSWORD)
 
-    def get_newpassword(self):
+    def get_new_password(self):
         return self.element_to_click(By.XPATH, self.NEW_PASSWORD)
 
     def get_confirmpassword(self):
         return self.element_to_click(By.XPATH, self.CONFIRM_PASSWORD)
 
-    def get_eyebutton(self):
+    def get_eye_button(self):
         return self.element_to_click(By.XPATH, self.EYE_BUTTON)
 
-    def get_changepasswordbutton(self):
+    def get_changepassword_button(self):
         return self.element_to_click(By.XPATH, self.CHANGE_PASSWORD_BUTTON)
 
     def get_changemobile(self):
         return self.element_to_click(By.XPATH, self.CHANGE_MOBILE)
 
-    def get_entermobilenumber(self):
+    def get_enter_mobilenumber(self):
         return self.element_to_click(By.XPATH, self.ENTER_MOBILE_NUMBER)
 
-    def get_updatemobile(self):
+    def get_countaryflag(self):
+        return self.element_to_click(By.XPATH, self.COUNTRY_FLAG)
+
+    def get_countrydropdown(self):
+        return self.presence_of_all_element(By.XPATH, self.SELECTCOUNTRY_LIST)
+
+    def get_update_mobilenumber(self):
         return self.element_to_click(By.XPATH, self.UPDATE_MOBILE)
+
+    def get_send_otp(self):
+        return self.element_to_click(By.XPATH, self.SEND_OTP)
 
     def get_cancelsubsription(self):
         return self.element_to_click(By.XPATH, self.CANCEL_SUBSCRIPTION)
 
-    def get_closepopup(self):
+    def get_close_popup(self):
         return self.element_to_click(By.XPATH, self.X_MARK)
 
-    def get_staypremium(self):
+    def get_stay_premium(self):
         return self.element_to_click(By.XPATH, self.STAY_PREMIUM_POPUP)
 
-    def get_cancelsubsriptionpopup(self):
+    def get_cancel_subsriptionpopup(self):
         return self.element_to_click(By.XPATH, self.CANCEL_SUBSCRIPTION_POPUP)
 
     """SETTERS"""
 
-    def click_settingdashboard(self):
-        self.get_settingdasboard().click()
+    def click_setting_sidepanel(self):
+        self.get_setting_editprofile().click()
 
     def click_changepassword(self):
-        self.get_changepassword().click()
+        self.get_change_password().click()
 
-    def enter_oldpassword(self, oldpassword):
-        self.get_oldpassword().click()
-        self.get_oldpassword().send_keys(oldpassword)
+    def enter_old_password(self, old_password):
+        self.get_old_password().click()
+        self.get_old_password().send_keys(old_password)
 
-    def enter_newpassword(self, newpassword):
-        self.get_newpassword().click()
-        self.get_newpassword().send_keys(newpassword)
+    def enter_new_password(self, new_password):
+        self.get_new_password().click()
+        self.get_new_password().send_keys(new_password)
         self.get_confirmpassword().send_keys(Keys.TAB)
 
     def enter_confirmpassword(self, confirmpassword):
@@ -94,55 +112,78 @@ class Setting(EditProfiles):
         self.get_confirmpassword().send_keys(confirmpassword)
         self.get_confirmpassword().send_keys(Keys.TAB)
 
-    def click_eyebutton(self):
-        self.get_eyebutton().click()
+    def click_eye_button(self):
+        self.get_eye_button().click()
+        time.sleep(2)
 
-    def click_changepasswordbutton(self):
-        self.get_changepasswordbutton().click()
+    def click_changepassword_button(self):
+        self.get_changepassword_button().click()
+        time.sleep(2)
 
     def click_changemobile(self):
         self.get_changemobile().click()
 
-    def enter_entermobilenumber(self, number):
-        self.get_entermobilenumber().click()
-        self.get_entermobilenumber().send_keys(number)
-        self.get_entermobilenumber().send_keys(Keys.TAB)
+    def select_countarydropdown(self, countryname):
+        # I am storing the all the list of country flags in this list and taking which ever I need by sending its country name.
+        self.get_countaryflag().click()
+        time.sleep(2)
 
-    def click_updatemobilebutton(self):
-        self.get_updatemobile().click()
+        country_list = self.get_countrydropdown()
+        for country in country_list:
+            if countryname in country.text:
+                country.click()
+                break
+
+    def enter_mobilenumber(self, number):
+        self.get_enter_mobilenumber().click()
+        self.get_enter_mobilenumber().send_keys(number)
+        self.get_enter_mobilenumber().send_keys(Keys.TAB)
+
+    def click_update_mobilebutton(self):
+        self.get_update_mobilenumber().click()
+        time.sleep(2)
+
+    def click_send_otp(self):
+        self.get_send_otp().click()
+        time.sleep(2)
 
     def click_cancelsubsription(self):
         self.get_cancelsubsription().click()
 
-    def click_closepopup(self):
-        return self.get_closepopup().click()
+    def click_close_popup(self):
+        return self.get_close_popup().click()
 
-    def click_staypremium(self):
-        self.get_staypremium().click()
+    def click_stay_premium(self):
+        self.get_stay_premium().click()
 
-    def click_cancelsubsriptionpopup(self):
-        self.get_cancelsubsriptionpopup().click()
+    def click_cancel_subsriptionpopup(self):
+        self.get_cancel_subsriptionpopup().click()
 
-    def setting(self, user, oldpassword, newpassword, confirmpassword, mobilenumber):
-        self.click_settingdashboard()
+    def setting(self, user, old_password, new_password, confirmpassword, countryname, mobile_number):
+        self.click_setting_sidepanel()
+
         if user == "editprofile":
             self.editprofiles()
 
         elif user == "changepassword":
             self.click_changepassword()
-            self.enter_oldpassword(oldpassword)
-            self.enter_newpassword(newpassword)
+            self.enter_old_password(old_password)
+            self.enter_new_password(new_password)
             self.enter_confirmpassword(confirmpassword)
-            self.click_eyebutton()
-            self.click_changepasswordbutton()
+            self.click_eye_button()
+            self.click_changepassword_button()
 
         elif user == "changemobile":
             self.click_changemobile()
-            self.enter_entermobilenumber(mobilenumber)
-            self.click_updatemobilebutton()
+            self.select_countarydropdown(countryname)
+            self.enter_mobilenumber(mobile_number)
+            if countryname.casefold() == "india":
+                self.click_send_otp()
+            else:
+                self.click_update_mobilebutton()
 
         elif user == "cancelsubsription":
             self.click_cancelsubsription()
-            self.click_closepopup()
-            # self.click_staypremium()
-            # self.click_cancelsubsriptionpopup()
+            self.click_close_popup()
+            # self.click_stay_premium()
+            # self.click_cancel_subsriptionpopup()

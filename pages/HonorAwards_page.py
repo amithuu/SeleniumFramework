@@ -78,8 +78,9 @@ class HonorAwards(BaseDriver):
         self.get_startyear().send_keys(year)
 
     def enter_associatedwith(self, associated_with):
+        time.sleep(2)
         self.get_associatedwith().click()
-        time.sleep(1)
+        time.sleep(3)
         associated_withs = self.get_associated_with_list()
 
         for associates in associated_withs:
@@ -94,18 +95,27 @@ class HonorAwards(BaseDriver):
         self.get_save_button().click()
         time.sleep(2)
         self.driver.refresh()
+        time.sleep(1)
 
-    def honorawards(self, user, honoraward_title, honoraward_issuer, month, year, associated_with, honoraward_description):
+    def honorawards(self, i, user, honoraward_title, honoraward_issuer, month, year, associated_with, honoraward_description):
         self.click_honoraward_editprofiles()
 
         if user == "new":
-            self.enter_honoraward_title(honoraward_title)
-            self.enter_honoraward_issuer(honoraward_issuer)
-            self.select_honoraward_issuedate(month, year)
-            self.enter_associatedwith(associated_with)
-            self.enter_honoraward_description(honoraward_description)
-            self.click_save_button()
-            self.click_add_another_honoraward()
+            if i == 0:
+                self.enter_honoraward_title(honoraward_title)
+                self.enter_honoraward_issuer(honoraward_issuer)
+                self.select_honoraward_issuedate(month, year)
+                self.enter_associatedwith(associated_with)
+                self.enter_honoraward_description(honoraward_description)
+                self.click_save_button()
+            else:
+                self.click_add_another_honoraward()
+                self.enter_honoraward_title(honoraward_title)
+                self.enter_honoraward_issuer(honoraward_issuer)
+                self.select_honoraward_issuedate(month, year)
+                self.enter_associatedwith(associated_with)
+                self.enter_honoraward_description(honoraward_description)
+                self.click_save_button()
 
         elif user == "old":
             self.click_add_another_honoraward()

@@ -110,21 +110,33 @@ class Patent (BaseDriver):
         self.get_save_button().click()
         time.sleep(2)
 
-    def patent(self, user, patent_title, patent_id, patent_issue_date, patent_url,  author_title, author_name, author_link, patents_description):
+    def patent(self, i, user, patent_title, patent_id, patent_issue_date, patent_url,  author_title, author_name, author_link, patents_description):
         self.click_patent_editprofile()
 
         if user == "new":
-            self.enter_patent_title(patent_title)
-            self.enter_patent_id(patent_id)
-            self.enter_patent_date(patent_issue_date)
-            self.enter_patent_url(patent_url)
-            self.click_add_author()
-            self.enter_author_title(author_title)
-            self.enter_author_name(author_name)
-            self.enter_link(author_link)
-            self.enter_description(patents_description)
-            self.click_save_button()
-            self.click_add_another_patent()
+            if i == 0:
+                self.enter_patent_title(patent_title)
+                self.enter_patent_id(patent_id)
+                self.enter_patent_date(patent_issue_date)
+                self.enter_patent_url(patent_url)
+                self.click_add_author()
+                self.enter_author_title(author_title)
+                self.enter_author_name(author_name)
+                self.enter_link(author_link)
+                self.enter_description(patents_description)
+                self.click_save_button()
+            else:
+                self.click_add_another_patent()
+                self.enter_patent_title(patent_title)
+                self.enter_patent_id(patent_id)
+                self.enter_patent_date(patent_issue_date)
+                self.enter_patent_url(patent_url)
+                self.click_add_author()
+                self.enter_author_title(author_title)
+                self.enter_author_name(author_name)
+                self.enter_link(author_link)
+                self.enter_description(patents_description)
+                self.click_save_button()
 
         elif user == "old":
             self.click_add_another_patent()

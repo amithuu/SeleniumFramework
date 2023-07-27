@@ -73,19 +73,27 @@ class Portfolio(BaseDriver):
 
     def click_save_button(self):
         self.get_save_button().click()
-        time.sleep(3)
+        time.sleep(2)
 
-    def portfolio(self, user, portfolio_title, portfolio_description, portfolio_link):
+    def portfolio(self, i, user, portfolio_title, portfolio_description, portfolio_link):
         self.click_portfolio_editprofile()
 
         if user == "new":
-            self.enter_portfolio_title(portfolio_title)
-            self.enter_portfolio_description(portfolio_description)
-            self.add_image()
-            self.enter_portfolio_link(portfolio_link)
-            self.click_add_button()
-            self.click_save_button()
-            self.click_add_another_portfolio()
+            if i == 0:
+                self.enter_portfolio_title(portfolio_title)
+                self.enter_portfolio_description(portfolio_description)
+                self.add_image()
+                self.enter_portfolio_link(portfolio_link)
+                self.click_add_button()
+                self.click_save_button()
+            else:
+                self.click_add_another_portfolio()
+                self.enter_portfolio_title(portfolio_title)
+                self.enter_portfolio_description(portfolio_description)
+                self.add_image()
+                self.enter_portfolio_link(portfolio_link)
+                self.click_add_button()
+                self.click_save_button()
 
         elif user == "old":
             self.click_add_another_portfolio()
@@ -95,4 +103,3 @@ class Portfolio(BaseDriver):
             self.enter_portfolio_link(portfolio_link)
             self.click_add_button()
             self.click_save_button()
-            self.click_add_another_portfolio()

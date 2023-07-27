@@ -116,23 +116,33 @@ class Certificate(BaseDriver):
 
     def click_save(self):
         self.get_save_button().click()
-        time.sleep(2)
+        time.sleep(3)
         self.driver.refresh()
         time.sleep(1)
 
-    def certificate(self, user, title, institution, month, year, month1, year1, skill, description):
+    def certificate(self, i, user, title, institution, month, year, month1, year1, skill, description):
         self.click_certificate_editprofiles()
 
         if user == "new":
-            self.enter_certificate_title(title)
-            self.enter_certificate_institution(institution)
-            self.select_durationfrom(month, year)
-            self.select_durationto(month1, year1)
-            self.enter_skill(skill)
-            self.enter_project_description(description)
-            self.click_image()
-            self.click_save()
-            self.click_add_another_certificate()
+            if i == 0:
+                self.enter_certificate_title(title)
+                self.enter_certificate_institution(institution)
+                self.select_durationfrom(month, year)
+                self.select_durationto(month1, year1)
+                self.enter_skill(skill)
+                self.enter_project_description(description)
+                self.click_image()
+                self.click_save()
+            else:
+                self.click_add_another_certificate()
+                self.enter_certificate_title(title)
+                self.enter_certificate_institution(institution)
+                self.select_durationfrom(month, year)
+                self.select_durationto(month1, year1)
+                self.enter_skill(skill)
+                self.enter_project_description(description)
+                self.click_image()
+                self.click_save()
 
         elif user == "old":
             self.click_add_another_certificate()

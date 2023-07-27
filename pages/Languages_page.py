@@ -70,7 +70,7 @@ class Language(BaseDriver):
 
     def language(self, language, proficiency):
         self.click_language_editprofile()
-        time.sleep(2)
+        time.sleep(1)
         self.select_language_dropdown(language)
         self.select_language_profiency(proficiency)
         self.click_addbutton()

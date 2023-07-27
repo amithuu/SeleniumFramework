@@ -80,10 +80,9 @@ class Signup(BaseDriver):
         self.get_email().send_keys(email)
         self.get_email().send_keys(Keys.TAB)
 
-    def click_countryflag(self):
+    def select_countarydropdown(self, countryname):
         self.get_countaryflag().click()
 
-    def select_countarydropdown(self, countryname):
         # I am storing the all the list of country flags in this list and taking which ever I need by sending its country name.
         country_list = self.get_countrydropdown()
         for country in country_list:
@@ -124,7 +123,6 @@ class Signup(BaseDriver):
         self.enter_firstname(firstname)
         self.enter_lastname(lastname)
         self.enter_email(email)
-        self.click_countryflag()
         self.select_countarydropdown(countaryname)
         time.sleep(5)
         self.enter_phonenumber(phone_no)

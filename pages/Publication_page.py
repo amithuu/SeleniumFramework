@@ -115,25 +115,37 @@ class Publication(BaseDriver):
 
     def click_save_button(self):
         self.get_save_button().click()
-        time.sleep(3)
-        self.driver.refresh()
-        time.sleep(3)
+        time.sleep(4)
+        # self.driver.refresh()
+        # time.sleep(4)
 
-    def publication(self, user, title, id, date, url, author_title, author_name, linkdin_link, publication_description):
+    def publication(self, i, user, title, id, date, url, author_title, author_name, linkdin_link, publication_description):
         self.click_publication_editprofiles()
 
         if user == "new":
-            self.enter_publication_title(title)
-            self.enter_publisher_id(id)
-            self.enter_publication_date(date)
-            self.enter_publication_url(url)
-            self.click_add_author()
-            self.enter_author_title(author_title)
-            self.enter_author_name(author_name)
-            self.enter_link(linkdin_link)
-            self.enter_description(publication_description)
-            self.click_save_button()
-            self.click_add_another_publication()
+            if i == 0:
+                self.enter_publication_title(title)
+                self.enter_publisher_id(id)
+                self.enter_publication_date(date)
+                self.enter_publication_url(url)
+                self.click_add_author()
+                self.enter_author_title(author_title)
+                self.enter_author_name(author_name)
+                self.enter_link(linkdin_link)
+                self.enter_description(publication_description)
+                self.click_save_button()
+            else:
+                self.click_add_another_publication()
+                self.enter_publication_title(title)
+                self.enter_publisher_id(id)
+                self.enter_publication_date(date)
+                self.enter_publication_url(url)
+                self.click_add_author()
+                self.enter_author_title(author_title)
+                self.enter_author_name(author_name)
+                self.enter_link(linkdin_link)
+                self.enter_description(publication_description)
+                self.click_save_button()
 
         elif user == "old":
             self.click_add_another_publication()
