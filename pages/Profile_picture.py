@@ -1,9 +1,9 @@
 import time
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-from base.Basedriver import BaseDriver
+from pages.EditProfiles_page import EditProfiles
 
-class Profile_picture(BaseDriver):
+class Profile_picture(EditProfiles):
 
     def __init__(self, driver, wait):
         super().__init__(driver, wait)
@@ -45,11 +45,22 @@ class Profile_picture(BaseDriver):
     def click_iamopentowork(self):
         self.get_iamopentowork_checkbox().click()
 
-    def picturestatus(self, headline):
-        self.click_picturestatus_editprofile()
-        self.click_uploadpicture()
-        self.enter_headline(headline)
-        self.click_iamopentowork()
-        self.save()
-        self.backto_menu()
+    def picturestatus(self, user, headline):
+        if user == "new":
+            self.click_uploadpicture()
+            self.enter_headline(headline)
+            self.click_iamopentowork()
+            self.save_next()
+            time.sleep(1)
+            self.editprofiles()
+
+        else:
+            self.edit_profile()
+            self.click_picturestatus_editprofile()
+            self.click_uploadpicture()
+            self.enter_headline(headline)
+            self.click_iamopentowork()
+            self.save()
+            self.backto_menu()
+
 

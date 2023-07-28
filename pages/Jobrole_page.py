@@ -367,7 +367,7 @@ class JobRole(BaseDriver):
                 self.select_startmonth(month, year)
                 self.select_endmonth(month1, year1)
                 self.enter_salary(startsalary, endsalary)
-                self.click_generatesuggestion()
+                # self.click_generatesuggestion()
                 self.save_refresh()
                 self.click_back_to_company()
 
@@ -389,7 +389,7 @@ class JobRole(BaseDriver):
                 self.select_startmonth(month, year)
                 self.select_endmonth(month1, year1)
                 self.enter_salary(startsalary, endsalary)
-                self.click_generatesuggestion()
+                # self.click_generatesuggestion()
                 self.save_refresh()
                 self.click_back_to_company()
 

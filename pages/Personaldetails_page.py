@@ -35,7 +35,7 @@ class Personaldetails(BaseDriver):
 
     year = "//input[@Placeholder='Year']"
 
-    iam_fresher_onboarding = "//*[@id = 'root']/div[2]/div/div/div/div/div[2]/div[4]/div/label/input"
+    iam_fresher_onboarding = "//*[@id = 'root']/div[2]/div/div/div/div/div[2]/div[4]/div/label//span[1]"
     iam_fresher = "//*[@id = 'root']/div/div[2]/div[2]/div/div/div[2]/div[4]/div/label//span[1]"
 
     location = "//*[@placeholder ='Search Location']"
@@ -351,6 +351,7 @@ class Personaldetails(BaseDriver):
             self.save_next()
 
         elif user == "old":
+            self.edit_profile()
             self.click_personaldetailsdashboard()
             self.enter_firstname(firstname)
             self.enter_lastname(lastname)

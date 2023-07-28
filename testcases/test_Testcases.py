@@ -78,7 +78,7 @@ headline = "Automation Developer"
 
 choose = ["carrier", "assessment"]
 
-k = 2
+k = 3
 email = f"autotest{k}@g.co"
 phone_no = f"{k}89921018"
 countryname = ["India", "Australia", "Indonesia", "United States"]
@@ -89,7 +89,7 @@ confirm_password = "New@1234"
 @pytest.mark.usefixtures("setup")
 @ddt
 class TestCases:
-    # Login happens automatically using fixtures..!!![for all the forms]
+    # Login happens automatically using fixtures!!![for all the forms]
     @pytest.fixture(autouse=True)
     def class_setup(self):
         self.lang = Language(self.driver, self.wait)
@@ -121,89 +121,86 @@ class TestCases:
     # @pytest.mark.signup
     # def test_signUp(self):
     #     self.sup.sign_up(firstname, lastname, email, countryname[1], phone_no, password, confirm_password)
-
-    # @pytest.mark.welcomepage
-    # def test_welcome_page(self):
-    #     self.wcl.welcomepage(choose[0])
-
-    @pytest.mark.editprofiles
-    def test_editprofiles(self):
-        self.edi.editprofiles()
-
-    @pytest.mark.personaldetails
-    def test_personal_details(self):
-        # self.per.edit_profile()
-        for i in range(1):
-            self.per.personaldetails(user[1], firstname, lastname, location[1], gender[1], date, currency[1], month[4], "2022", social_media[4], social_medialink[4])
-
-    @pytest.mark.profilepicture
-    def test_profilepicture(self):
-        # self.pic.edit_profile()
-        self.pic.picturestatus(headline)
+    #
+    # # @pytest.mark.welcomepage
+    # # def test_welcome_page(self):
+    # #     self.wcl.welcomepage(choose[0])
+    #
+    # @pytest.mark.personaldetails
+    # def test_personal_details(self):
+    #     for i in range(1):
+    #         self.per.personaldetails(user[0], firstname, lastname, location[1], gender[1], date, currency[1], month[4], "2022", social_media[4], social_medialink[4])
+    #
+    # @pytest.mark.profilepicture
+    # def test_profilepicture(self):
+    #     self.pic.picturestatus(user[0], headline)
+    #
+    # @pytest.mark.editprofiles
+    # def test_editprofiles(self):
+    #     self.edi.editprofiles(user[0])
 
     @pytest.mark.jobrole
     def test_jobrole(self):
-        # self.job.edit_profile()
+        self.job.edit_profile()
         self.job.click_experience_editprofile()
         for i in range(3):
-            self.job.addcompany(i, user[1], companyname[i], jobtype[i], industry[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[i+1], year[i], month[i+1], year[i+1], startsalary[i], endsalary[i])
+            self.job.addcompany(i, user[0], companyname[i], jobtype[i], industry[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[i+1], year[i], month[i+1], year[i+1], startsalary[i], endsalary[i])
         self.job.backto_menu()
 
     @pytest.mark.projects
     def test_projects(self):
         # self.prj.edit_profile()
         for j in range(3):
-            self.prj.project(user[1], project_name[j], month[j+1], year[j], month[j+2], year[j+1], companyname[j], social_medialink[j], description[j], skill[j], j, description[j])
+            self.prj.project(user[0], project_name[j], month[j+1], year[j], month[j+2], year[j+1], companyname[j], social_medialink[j], description[j], skill[j], j, description[j])
         self.prj.backto_menu()
 
     @pytest.mark.education
     def test_education(self):
         # self.edu.edit_profile()
         for i in range(4):
-            self.edu.education(i, user[1], degree[i], university[i], location[i], cgpa[i], month[i+1], year[i], month[i+3], year[i+1], description[i], description[i+1])
+            self.edu.education(i, user[0], degree[i], university[i], location[i], cgpa[i], month[i+1], year[i], month[i+3], year[i+1], description[i], description[i+1])
         self.edu.backto_menu()
 
     @pytest.mark.certificate
     def test_certificate(self):
         # self.cert.edit_profile()
         for i in range(3):
-            self.cert.certificate(i, user[1], project_name[i], university[i], month[i+1], year[i], month[i+2], year[i+1], skill[i], description[i])
+            self.cert.certificate(i, user[0], project_name[i], university[i], month[i+1], year[i], month[i+2], year[i+1], skill[i], description[i])
         self.cert.backto_menu()
 
     @pytest.mark.publication
     def test_publication(self):
         # self.pub.edit_profile()
         for i in range(3):
-            self.pub.publication(i, user[1], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
+            self.pub.publication(i, user[0], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
         self.pub.backto_menu()
 
     @pytest.mark.patent
     def test_patent(self):
         # self.pat.edit_profile()
         for i in range(3):
-            self.pat.patent(i, user[1], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
+            self.pat.patent(i, user[0], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
         self.pat.backto_menu()
 
     @pytest.mark.portfolio
     def test_portfolio(self):
         # self.port.edit_profile()
         for i in range(3):
-            self.port.portfolio(i, user[1], project_name[i], description[i], social_medialink[i])
+            self.port.portfolio(i, user[0], project_name[i], description[i], social_medialink[i])
         self.port.backto_menu()
 
     @pytest.mark.voluntaryrole
     def test_voluntary_roles(self):
         # self.vol.edit_profile()
         for i in range(3):
-            self.vol.voluntaryroles(i, user[1], designation[i], companyname[i], month[i+1], year[i],  month[i+3], year[i+3], description[i])
+            self.vol.voluntaryroles(i, user[0], designation[i], companyname[i], month[i+1], year[i],  month[i+3], year[i+3], description[i])
         self.vol.backto_menu()
 
     @pytest.mark.honorawards
-    @data(())
     def test_honorawards(self):
         # self.hon.edit_profile()
         for i in range(3):
-            self.hon.honorawards(i, user[1], designation[i], companyname[i], month[i+6], year[i], companyname[i], description[i])
+            self.hon.honorawards(i, user[0], designation[i], companyname[i], month[i+6], year[i], companyname[i], description[i])
         self.hon.backto_menu()
 
     @pytest.mark.causes
@@ -219,12 +216,14 @@ class TestCases:
             self.hob.hobbies(category[i], hobbies[i])
         self.hob.backto_menu()
 
+    # @data(("kannada", "adv"), ("english", "beg"))
+    # @unpack
     @pytest.mark.language
     def test_languages(self):
-        # self.lang.edit_profile()
+        self.lang.edit_profile()
         for i in range(len(language)):
             self.lang.language(language[i], proficiency[i])
-        self.lang.backto_menu()
+            self.lang.backto_menu()
 
     @pytest.mark.cognitiveskill
     def test_cognitive_skills(self):
@@ -260,6 +259,6 @@ class TestCases:
     def test_myprofile(self):
         self.myp.myprofile(user_myprofile[0])
 
-    @pytest.mark.landingpage
-    def test_landingpage(self):
-        self.lan.landingpage(firstname, "autotest61@g.co", date, "india", "karnataka", "bangalore", "15th cross jp nagar", "560078")
+    # @pytest.mark.landingpage
+    # def test_landingpage(self):
+    #     self.lan.landingpage(firstname, "autotest61@g.co", date, "india", "karnataka", "bangalore", "15th cross jp nagar", "560078")
