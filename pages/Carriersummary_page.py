@@ -43,4 +43,4 @@ class Carrier(Language):
         self.click_carriersummary_editprofiles()
         self.click_generatesuggestion()
         self.click_suggestion()
-        self.save()
+        self.save_simple()

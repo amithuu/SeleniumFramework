@@ -414,3 +414,5 @@ class JobRole(BaseDriver):
             # self.click_generatesuggestion()
             self.save_refresh()
             self.click_back_to_company()
+
+

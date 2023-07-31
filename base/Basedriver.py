@@ -25,7 +25,7 @@ class BaseDriver:
                 match = True
         time.sleep(2)
 
-    def save(self):
+    def save_simple(self):
         save = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Save']")))
         save.click()
         time.sleep(2)
@@ -41,6 +41,13 @@ class BaseDriver:
         save = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Save and Next']")))
         save.click()
         time.sleep(3)
+
+    def save_after_refresh(self):
+        save_after_refresh = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//*[@data-rbd-droppable-id='droppable']/div[1]/div/div/button[1]")))
+        save_after_refresh.click()
+        self.page_end()
+        self.save_simple()
+        time.sleep(1)
 
     def back(self):
         back_to_company = self.wait.until(

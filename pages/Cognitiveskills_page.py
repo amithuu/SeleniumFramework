@@ -33,4 +33,4 @@ class CognitiveSkills(Language):
     def cognitive(self):
         self.click_cognitiveskill_editprofile()
         self.select_cognitive_skill()
-        self.save()
+        self.save_simple()

@@ -29,4 +29,4 @@ class Causes(BaseDriver):
     def causes(self):
         self.click_causes_editprofiles()
         self.select_causes()
-        self.save()
+        self.save_simple()

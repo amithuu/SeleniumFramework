@@ -56,5 +56,5 @@ class Hobbies(BaseDriver):
         self.click_hobbies_editprofiles()
         self.select_category(category, hobbies)
         self.click_add_hobbies()
-        self.save()
+        self.save_simple()
         self.backto_menu()

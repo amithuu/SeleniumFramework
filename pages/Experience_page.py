@@ -75,6 +75,6 @@ class Experience(BaseDriver):
             self.enter_experience(experience)
             self.enter_organization(organization)
             self.enter_based(based)
-            self.save()
+            self.save_simple()
             time.sleep(3)
             self.next()

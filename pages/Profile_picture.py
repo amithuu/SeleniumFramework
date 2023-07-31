@@ -60,7 +60,7 @@ class Profile_picture(EditProfiles):
             self.click_uploadpicture()
             self.enter_headline(headline)
             self.click_iamopentowork()
-            self.save()
+            self.save_simple()
             self.backto_menu()
 
 

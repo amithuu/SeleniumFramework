@@ -42,5 +42,5 @@ class EditProfiles(BaseDriver):
         else:
             self.edit_profile()
             self.click_addbutton()
-            self.save()
+            self.save_simple()
 

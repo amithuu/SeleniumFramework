@@ -362,5 +362,5 @@ class Personaldetails(BaseDriver):
             self.enter_experience(month, year)
             self.click_iam_fresher()
             self.enter_socialmedia(user, socialmedia, socialmedialink)
-            self.save()
+            self.save_simple()
             self.backto_menu()

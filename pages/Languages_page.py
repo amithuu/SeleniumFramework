@@ -74,5 +74,5 @@ class Language(BaseDriver):
         self.select_language_dropdown(language)
         self.select_language_profiency(proficiency)
         self.click_addbutton()
-        self.save()
+        self.save_simple()
         self.backto_menu()
