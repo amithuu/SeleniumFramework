@@ -5,7 +5,6 @@ from pages.Carriersummary_page import Carrier
 from pages.Causes_page import Causes
 from pages.Certificate_page import Certificate
 from pages.Cognitiveskills_page import CognitiveSkills
-from pages.EditProfiles_page import EditProfiles
 from pages.Education_page import Education
 from pages.Hobbies_page import Hobbies
 from pages.HonorAwards_page import HonorAwards
@@ -23,6 +22,7 @@ from pages.Publication_page import Publication
 from pages.Resume_page import Resume
 from pages.Settings_page import Setting
 from pages.SignUp_page import Signup
+from pages.EditProfiles_page import EditProfiles
 from pages.VoluntaryRoles_page import VoluntaryRoles
 from pages.Welcome_page import Welcome
 
@@ -122,10 +122,6 @@ class TestCases:
     # def test_signUp(self):
     #     self.sup.sign_up(firstname, lastname, email, countryname[1], phone_no, password, confirm_password)
 
-    # @pytest.mark.welcomepage
-    # def test_welcome_page(self):
-    #     self.wcl.welcomepage(choose[0])
-
     @pytest.mark.personaldetails
     def test_personal_details(self):
         for i in range(1):
@@ -135,23 +131,24 @@ class TestCases:
     def test_profilepicture(self):
         self.pic.picturestatus(user[1], headline)
 
-    # @pytest.mark.editprofiles
-    # def test_editprofiles(self):
-    #     self.edi.editprofiles(user[1])
+    @pytest.mark.editprofiles
+    def test_editprofiles(self):
+        self.edi.editprofiles(user[1])
+        self.edi.discard()
 
     @pytest.mark.jobrole
     def test_jobrole(self):
         # self.job.edit_profile()
         self.job.click_experience_editprofile()
         for i in range(3):
-            self.job.addcompany(i, user[1], companyname[i], jobtype[i], industry[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[i+1], year[i], month[i+1], year[i+1], startsalary[i], endsalary[i])
+            self.job.addcompany(i, user[0], companyname[i], jobtype[i], industry[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[i+1], year[i], month[i+1], year[i+1], startsalary[i], endsalary[i])
         self.job.backto_menu()
 
     @pytest.mark.projects
     def test_projects(self):
         # self.prj.edit_profile()
         for j in range(1):
-            self.prj.project(user[1], project_name[j], month[j+1], year[j], month[j+2], year[j+1], companyname[j], social_medialink[j], description[j], skill[j], j, description[j])
+            self.prj.project(user[0], project_name[j], month[j+1], year[j], month[j+2], year[j+1], companyname[j], social_medialink[j], description[j], skill[j], j, description[j])
         self.prj.save_after_refresh()
         self.prj.backto_menu()
 
@@ -159,7 +156,7 @@ class TestCases:
     def test_education(self):
         # self.edu.edit_profile()
         for i in range(2):
-            self.edu.education(i, user[1], degree[i], university[i], location[i], cgpa[i], month[i+1], year[i], month[i+3], year[i+1], description[i], description[i+1])
+            self.edu.education(i, user[0], degree[i], university[i], location[i], cgpa[i], month[i+1], year[i], month[i+3], year[i+1], description[i], description[i+1])
         self.job.save_after_refresh()
         self.edu.backto_menu()
 
@@ -167,7 +164,7 @@ class TestCases:
     def test_certificate(self):
         # self.cert.edit_profile()
         for i in range(2):
-            self.cert.certificate(i, user[1], project_name[i], university[i], month[i+1], year[i], month[i+2], year[i+1], skill[i], description[i])
+            self.cert.certificate(i, user[0], project_name[i], university[i], month[i+1], year[i], month[i+2], year[i+1], skill[i], description[i])
         self.cert.save_after_refresh()
         self.cert.backto_menu()
 
@@ -175,28 +172,28 @@ class TestCases:
     def test_publication(self):
         # self.pub.edit_profile()
         for i in range(3):
-            self.pub.publication(i, user[1], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
+            self.pub.publication(i, user[0], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
         self.pub.backto_menu()
 
     @pytest.mark.patent
     def test_patent(self):
         # self.pat.edit_profile()
         for i in range(3):
-            self.pat.patent(i, user[1], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
+            self.pat.patent(i, user[0], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
         self.pat.backto_menu()
 
     @pytest.mark.portfolio
     def test_portfolio(self):
         # self.port.edit_profile()
         for i in range(3):
-            self.port.portfolio(i, user[1], project_name[i], description[i], social_medialink[i])
+            self.port.portfolio(i, user[0], project_name[i], description[i], social_medialink[i])
         self.port.backto_menu()
 
     @pytest.mark.voluntaryrole
     def test_voluntary_roles(self):
         # self.vol.edit_profile()
         for i in range(3):
-            self.vol.voluntaryroles(i, user[1], designation[i], companyname[i], month[i+1], year[i],  month[i+3], year[i+3], description[i])
+            self.vol.voluntaryroles(i, user[0], designation[i], companyname[i], month[i+1], year[i],  month[i+3], year[i+3], description[i])
         self.vol.save_after_refresh()
         self.vol.backto_menu()
 
@@ -204,7 +201,7 @@ class TestCases:
     def test_honorawards(self):
         # self.hon.edit_profile()
         for i in range(3):
-            self.hon.honorawards(i, user[1], designation[i], companyname[i], month[i+6], year[i], companyname[i], description[i])
+            self.hon.honorawards(i, user[0], designation[i], companyname[i], month[i+6], year[i], companyname[i], description[i])
         self.hon.backto_menu()
 
     @pytest.mark.causes
@@ -261,6 +258,10 @@ class TestCases:
     @pytest.mark.myprofile
     def test_myprofile(self):
         self.myp.myprofile(user_myprofile[0])
+
+    # @pytest.mark.welcomepage
+    # def test_welcome_page(self):
+    #     self.wcl.welcomepage(choose[0])
 
     # @pytest.mark.landingpage
     # def test_landingpage(self):
