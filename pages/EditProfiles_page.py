@@ -43,4 +43,3 @@ class EditProfiles(BaseDriver):
             self.edit_profile()
             self.click_addbutton()
             self.save_simple()
-

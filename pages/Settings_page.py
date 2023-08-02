@@ -163,7 +163,7 @@ class Setting(EditProfiles):
         self.click_setting_sidepanel()
 
         if user == "editprofile":
-            self.editprofiles()
+            self.editprofiles(user)
 
         elif user == "changepassword":
             self.click_changepassword()

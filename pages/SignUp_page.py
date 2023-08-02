@@ -124,7 +124,7 @@ class Signup(BaseDriver):
         self.enter_lastname(lastname)
         self.enter_email(email)
         self.select_countarydropdown(countaryname)
-        time.sleep(5)
+        time.sleep(3)
         self.enter_phonenumber(phone_no)
         self.enter_password(password)
         self.enter_confirmpassword(confirm_password)
