@@ -20,6 +20,7 @@ class Causes(BaseDriver):
     """SETTERS"""
     def click_causes_editprofiles(self):
         self.get_causes_editprofile().click()
+        time.sleep(2)
 
     def select_causes(self):
         for i in range(1, 9):

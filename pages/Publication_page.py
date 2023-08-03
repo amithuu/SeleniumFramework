@@ -116,8 +116,6 @@ class Publication(BaseDriver):
     def click_save_button(self):
         self.get_save_button().click()
         time.sleep(4)
-        # self.driver.refresh()
-        # time.sleep(4)
 
     def publication(self, i, user, title, id, date, url, author_title, author_name, linkdin_link, publication_description):
         self.click_publication_editprofiles()
@@ -149,7 +147,6 @@ class Publication(BaseDriver):
 
         elif user == "old":
             self.click_add_another_publication()
-            self.enter_publication_title(title)
             self.enter_publication_title(title)
             self.enter_publisher_id(id)
             self.enter_publication_date(date)

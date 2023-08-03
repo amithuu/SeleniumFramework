@@ -100,6 +100,7 @@ class Portfolio(BaseDriver):
             self.click_portfolio_editprofile()
             self.enter_portfolio_title(portfolio_title)
             self.enter_portfolio_description(portfolio_description)
+            self.add_image()
             self.enter_portfolio_link(portfolio_link)
             self.click_add_button()
             self.click_save_button()

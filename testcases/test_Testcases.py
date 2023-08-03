@@ -131,25 +131,24 @@ class TestCases:
     def test_profilepicture(self):
         self.pic.picturestatus(user[1], headline)
 
-    # @pytest.mark.editprofiles
-    # def test_editprofiles(self):
-    #     self.edi.editprofiles(user[1])
+    @pytest.mark.editprofiles
+    def test_editprofiles(self):
+        self.edi.editprofiles(user[1])
         # self.edi.discard()
 
     @pytest.mark.jobrole
     def test_jobrole(self):
-        self.job.edit_profile()
+        # self.job.edit_profile()
         self.job.click_experience_editprofile()
         for i in range(3):
-            self.job.addcompany(i, user[0], companyname[i], jobtype[i], industry[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[i+1], year[i], month[i+1], year[i+1], startsalary[i], endsalary[i])
+            self.job.addcompany(i, user[1], companyname[i], jobtype[i], industry[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[i+1], year[i], month[i+1], year[i+1], startsalary[i], endsalary[i])
         self.job.backto_menu()
 
     @pytest.mark.projects
     def test_projects(self):
         # self.prj.edit_profile()
         for j in range(2):
-            self.prj.project(user[0], project_name[j], month[j+1], year[j], month[j+2], year[j+1], companyname[j], social_medialink[j], description[j], skill[j], j, description[j])
-        self.prj.save_after_refresh()
+            self.prj.project(user[1], project_name[j], month[j+1], year[j], month[j+2], year[j+1], companyname[j], social_medialink[j], description[j], skill[j], j, description[j])
         self.prj.backto_menu()
 
     @pytest.mark.education
@@ -157,7 +156,6 @@ class TestCases:
         # self.edu.edit_profile()
         for i in range(2):
             self.edu.education(i, user[1], degree[i], university[i], location[i], cgpa[i], month[i+1], year[i], month[i+3], year[i+1], description[i], description[i+1])
-        self.job.save_after_refresh()
         self.edu.backto_menu()
 
     @pytest.mark.certificate
@@ -165,7 +163,6 @@ class TestCases:
         # self.cert.edit_profile()
         for i in range(2):
             self.cert.certificate(i, user[1], project_name[i], university[i], month[i+1], year[i], month[i+2], year[i+1], skill[i], description[i])
-        self.cert.save_after_refresh()
         self.cert.backto_menu()
 
     @pytest.mark.publication
@@ -194,7 +191,6 @@ class TestCases:
         # self.vol.edit_profile()
         for i in range(2):
             self.vol.voluntaryroles(i, user[1], designation[i], companyname[i], month[i+1], year[i],  month[i+3], year[i+3], description[i])
-        self.vol.save_after_refresh()
         self.vol.backto_menu()
 
     @pytest.mark.honorawards
@@ -212,16 +208,15 @@ class TestCases:
 
     @pytest.mark.hobbies
     def test_hobbies(self):
-        # self.hob.edit_profile()
+        self.hob.edit_profile()
         for i in range(8):
             self.hob.hobbies(category[i], hobbies[i])
-        self.hob.backto_menu()
 
     # @data(("kannada", "adv"), ("english", "beg"))
     # @unpack
     @pytest.mark.language
     def test_languages(self):
-        self.lang.edit_profile()
+        # self.lang.edit_profile()
         for i in range(len(language)):
             self.lang.language(language[i], proficiency[i])
 
@@ -249,15 +244,15 @@ class TestCases:
 
     # @pytest.mark.membership
     # def test_membership(self):
-    #     self.mem.membership("Monthly", "new", firstname, "india", "karnataka", "bangalore", "15th cross jp nagar", "560078", "Resume Builder", "Fresher Resume Writing", "Buynow")
+    #     self.mem.membership("Quarterly", "old", firstname, "india", "karnataka", "bangalore", "15th cross jp nagar", "560078", "Resume Builder", "Fresher Resume Writing", "Buynow")
 
     @pytest.mark.setting
     def test_setting(self):
-        self.set.setting(user_settings[2], "New@12345", "New@1234", "New@1234", countryname[2], phone_no+f"{k}")
+        self.set.setting(user_settings[2], "New@12345", "New@1234", "New@1234", countryname[2], phone_no+f"{k+1}")
 
-    @pytest.mark.myprofile
-    def test_myprofile(self):
-        self.myp.myprofile(user_myprofile[0])
+    # @pytest.mark.myprofile
+    # def test_myprofile(self):
+    #     self.myp.myprofile(user_myprofile[0])
 
     # @pytest.mark.welcomepage
     # def test_welcome_page(self):
