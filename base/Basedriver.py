@@ -63,7 +63,7 @@ class BaseDriver:
     def dashboard(self):
         dashboard = self.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Dashboard']")))
         dashboard.click()
-        time.sleep(3)
+        time.sleep(2)
 
     def element_to_click(self, locator_id, path):
         element = self.wait.until(ec.element_to_be_clickable((locator_id, path)))

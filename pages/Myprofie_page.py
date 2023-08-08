@@ -12,8 +12,8 @@ class MyProfile(BaseDriver):
     # Locators
     MYPROFILE_DASHBOARD = "//p[text()='My Profile']"
     PENCIL_MARK = "//*[@id = 'root']/div/div[1]/div/div[2]/div[1]//button[1]"
-    RESUME_DOWNLOAD = "//*[@id = 'root']/div/div[1]/div/div[2]/div[1]//button[1]"
-    SHARE_PROFILE = "//*[@id = 'root']/div/div[1]/div/div[2]/div[1]//button[1]"
+    RESUME_DOWNLOAD = "//*[@id = 'root']/div/div[1]/div/div[2]/div[1]//button[2]"
+    SHARE_PROFILE = "//*[@id = 'root']/div/div[1]/div/div[2]/div[1]//button[3]"
     SHARE_INDIFFERENT = "//body/div[4]//button[{i}]"
 
     """GETTERS"""
@@ -49,13 +49,13 @@ class MyProfile(BaseDriver):
         my_profile_window = self.driver.current_window_handle
         for i in range(1, 5):
             self.get_shareprofile_socialmedia(i).click()
-
+            time.sleep(4)
             all_handle = self.driver.window_handles
             for handle in all_handle:
                 if handle != my_profile_window:
                     self.driver.switch_to.window(handle)
-
-                    time.sleep(3)
+                    self.driver.close()
+                    time.sleep(1)
                     break
             self.driver.switch_to.window(my_profile_window)
 

@@ -78,9 +78,9 @@ class HonorAwards(BaseDriver):
         self.get_startyear().send_keys(year)
 
     def enter_associatedwith(self, associated_with):
-        time.sleep(2)
+        time.sleep(1)
         self.get_associatedwith().click()
-        time.sleep(3)
+        time.sleep(1)
         associated_withs = self.get_associated_with_list()
 
         for associates in associated_withs:
