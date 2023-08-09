@@ -34,3 +34,4 @@ class CognitiveSkills(Language):
         self.click_cognitiveskill_editprofile()
         self.select_cognitive_skill()
         self.save_simple()
+        self.backto_menu()

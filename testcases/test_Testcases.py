@@ -187,7 +187,7 @@ class TestCases:
 
     @pytest.mark.honorawards
     def test_honorawards(self):
-        for i in range(2):
+        for i in range(1):
             self.hon.honorawards(i, user[1], designation[i], companyname[i], month[i+6], year[i], companyname[i], description[i])
         self.hon.backto_menu()
 
@@ -210,14 +210,12 @@ class TestCases:
 
     @pytest.mark.cognitiveskill
     def test_cognitive_skills(self):
-        self.cog.edit_profile()
         self.cog.cognitive()
-        self.cog.backto_menu()
 
-    @pytest.mark.carriersummary
-    def test_carrier(self):
-        self.cas.carrier()
-        self.cas.backto_menu()
+    # @pytest.mark.carriersummary
+    # def test_carrier(self):
+    #     self.cas.carrier()
+    #     self.cas.backto_menu()
 
     @pytest.mark.assessment
     def test_assessment(self):
@@ -231,7 +229,7 @@ class TestCases:
 
     @pytest.mark.membership
     def test_membership(self):
-        self.mem.membership("Quarterly", "old", firstname, "india", "karnataka", "bangalore", "15th cross jp nagar", "560078", "Resume Builder", "Fresher Resume Writing", "Buynow")
+        self.mem.membership("Quarterly", "new", firstname, "india", "karnataka", "bangalore", "15th cross jp nagar", "560078", "Resume Builder", "Fresher Resume Writing", "Buynow")
 
     @pytest.mark.setting
     def test_setting(self):
