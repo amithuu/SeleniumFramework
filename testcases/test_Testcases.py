@@ -129,66 +129,66 @@ class TestCases:
 
     @pytest.mark.profilepicture
     def test_profilepicture(self):
-        self.pic.picturestatus(user[1], headline)
+        self.pic.picturestatus(user[0], headline)
 
     @pytest.mark.editprofiles
     def test_editprofiles(self):
-        self.edi.editprofiles(user[1])
+        self.edi.editprofiles(user[0])
 
     @pytest.mark.jobrole
     def test_jobrole(self):
         self.job.edit_profile()
         self.job.click_experience_editprofile()
         for i in range(3):
-            self.job.addcompany(i, user[1], companyname[i], jobtype[i], industry[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[i+1], year[i], month[i+1], year[i+1], startsalary[i], endsalary[i])
+            self.job.addcompany(i, user[0], companyname[i], jobtype[i], industry[i], organization[i], based[i], designation[i], managementlevel[i], location[i], functionalarea[i], skill[i], expertise[i], month[i+1], year[i], month[i+1], year[i+1], startsalary[i], endsalary[i])
         self.job.backto_menu()
 
     @pytest.mark.projects
     def test_projects(self):
         for j in range(2):
-            self.prj.project(user[1], project_name[j], month[j+1], year[j], month[j+2], year[j+1], companyname[j], social_medialink[j], description[j], skill[j], j, description[j])
+            self.prj.project(user[0], project_name[j], month[j+1], year[j], month[j+2], year[j+1], companyname[j], social_medialink[j], description[j], skill[j], j, description[j])
         self.prj.backto_menu()
 
     @pytest.mark.education
     def test_education(self):
         for i in range(2):
-            self.edu.education(i, user[1], degree[i], university[i], location[i], cgpa[i], month[i+1], year[i], month[i+3], year[i+1], description[i], description[i+1])
+            self.edu.education(i, user[0], degree[i], university[i], location[i], cgpa[i], month[i+1], year[i], month[i+3], year[i+1], description[i], description[i+1])
         self.edu.backto_menu()
 
     @pytest.mark.certificate
     def test_certificate(self):
         for i in range(2):
-            self.cert.certificate(i, user[1], project_name[i], university[i], month[i+1], year[i], month[i+2], year[i+1], skill[i], description[i])
+            self.cert.certificate(i, user[0], project_name[i], university[i], month[i+1], year[i], month[i+2], year[i+1], skill[i], description[i])
         self.cert.backto_menu()
 
     @pytest.mark.publication
     def test_publication(self):
         for i in range(2):
-            self.pub.publication(i, user[1], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
+            self.pub.publication(i, user[0], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
         self.pub.backto_menu()
 
     @pytest.mark.patent
     def test_patent(self):
         for i in range(2):
-            self.pat.patent(i, user[1], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
+            self.pat.patent(i, user[0], project_name[i], year[i], date, social_medialink[1], author_title[i], firstname, social_medialink[1], description[i])
         self.pat.backto_menu()
 
     @pytest.mark.portfolio
     def test_portfolio(self):
         for i in range(2):
-            self.port.portfolio(i, user[1], project_name[i], description[i], social_medialink[i])
+            self.port.portfolio(i, user[0], project_name[i], description[i], social_medialink[i])
         self.port.backto_menu()
 
     @pytest.mark.voluntaryrole
     def test_voluntary_roles(self):
         for i in range(2):
-            self.vol.voluntaryroles(i, user[1], designation[i], companyname[i], month[i+1], year[i],  month[i+3], year[i+3], description[i])
+            self.vol.voluntaryroles(i, user[0], designation[i], companyname[i], month[i+1], year[i],  month[i+3], year[i+3], description[i])
         self.vol.backto_menu()
 
     @pytest.mark.honorawards
     def test_honorawards(self):
         for i in range(1):
-            self.hon.honorawards(i, user[1], designation[i], companyname[i], month[i+6], year[i], companyname[i], description[i])
+            self.hon.honorawards(i, user[0], designation[i], companyname[i], month[i+6], year[i], companyname[i], description[i])
         self.hon.backto_menu()
 
     @pytest.mark.causes
@@ -212,10 +212,10 @@ class TestCases:
     def test_cognitive_skills(self):
         self.cog.cognitive()
 
-    # @pytest.mark.carriersummary
-    # def test_carrier(self):
-    #     self.cas.carrier()
-    #     self.cas.backto_menu()
+    @pytest.mark.carriersummary
+    def test_carrier(self):
+        self.cas.carrier()
+        self.cas.backto_menu()
 
     @pytest.mark.assessment
     def test_assessment(self):
@@ -229,7 +229,7 @@ class TestCases:
 
     @pytest.mark.membership
     def test_membership(self):
-        self.mem.membership("Quarterly", "new", firstname, "india", "karnataka", "bangalore", "15th cross jp nagar", "560078", "Resume Builder", "Fresher Resume Writing", "Buynow")
+        self.mem.membership("Quarterly", "old", firstname, "india", "karnataka", "bangalore", "15th cross jp nagar", "560078", "Resume Builder", "Fresher Resume Writing", "Buynow")
 
     @pytest.mark.setting
     def test_setting(self):

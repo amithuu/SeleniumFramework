@@ -30,7 +30,7 @@ class EditProfiles(BaseDriver):
             time.sleep(1)
 
     def click_addbutton(self):
-        for i in range(1, 17):
+        for i in range(1, 18):
             self.get_addbutton(i).click()
             time.sleep(1)
 
