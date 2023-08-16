@@ -3,15 +3,19 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-chrome_path = Service(executable_path="/home/chiku/webdriver_manager/chromedriver-linux64")
-options = webdriver.ChromeOptions()
+from webdriver_manager.chrome import ChromeDriverManager
+
+chrome_path = Service(ChromeDriverManager("116.0.5845.96").install())
+# chrome_path = Service("/home/chiku/webdriver_manager")
+chromOptions = Options()
 @pytest.fixture(scope="class")
 def setup(url, browser, request):
     if browser == "chrome":
-        driver = webdriver.Chrome(service=chrome_path, options=options)
+        driver = webdriver.Chrome(service=chrome_path, options=chromOptions)
     else:
-        driver = webdriver.Chrome(service=chrome_path, options=options)
+        driver = webdriver.Chrome(service=chrome_path, options=chromOptions)
 
     # driver.get("https://test-talentplace.vercel.app/login")
     # driver.get("https://tp-prettified.vercel.app/")

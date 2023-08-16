@@ -125,7 +125,7 @@ class TestCases:
     @pytest.mark.personaldetails
     def test_personal_details(self):
         for i in range(1):
-            self.per.personaldetails(user[1], firstname, lastname, location[1], gender[1], date, currency[1], month[4], "2022", social_media[4], social_medialink[4])
+            self.per.personaldetails(user[0], firstname, lastname, location[1], gender[1], date, currency[1], month[4], "2022", social_media[4], social_medialink[4])
 
     @pytest.mark.profilepicture
     def test_profilepicture(self):
@@ -187,14 +187,13 @@ class TestCases:
 
     @pytest.mark.honorawards
     def test_honorawards(self):
-        for i in range(1):
+        for i in range(2):
             self.hon.honorawards(i, user[0], designation[i], companyname[i], month[i+6], year[i], companyname[i], description[i])
         self.hon.backto_menu()
 
     @pytest.mark.causes
     def test_causes(self):
         self.cau.causes()
-        self.cau.backto_menu()
 
     @pytest.mark.hobbies
     def test_hobbies(self):

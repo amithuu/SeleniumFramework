@@ -31,3 +31,4 @@ class Causes(BaseDriver):
         self.click_causes_editprofiles()
         self.select_causes()
         self.save_simple()
+        self.backto_menu()
