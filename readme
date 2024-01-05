@@ -1,0 +1,11 @@
+pytest -s -v --browser=chrome --url=https://example.com your_test_file.py
+
+# pytest: Runs pytest.
+# -s: Disable capturing stdout/stderr. This is needed for seeing the print statements.
+# -v: Verbose mode. Prints more information about the tests being run.
+# --browser=chrome: Specifies the value for the --browser option.
+# --url=https://example.com: Specifies the value for the --url option.
+# your_test_file.py: Replace this with the actual filename of your test file.
+# Make sure to replace your_test_file.py with the actual filename of your test script.
+
+# Adjust the browser and URL values as needed for your specific test configuration.
